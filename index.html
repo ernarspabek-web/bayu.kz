@@ -3825,34 +3825,6 @@ table{width:100%;border-collapse:collapse}
 td,th{padding:6px 3px;text-align:left;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
 th{font-size:11px;color:var(--mute);font-weight:400}td.r,th.r{text-align:right}
 .up{color:var(--good)}.dn{color:var(--bad)}
-#menu .box{max-width:640px}
-#film{position:fixed;inset:0;z-index:5;pointer-events:none;overflow:hidden}
-#film i{position:absolute;inset:0;display:block}
-#film .vig{background:radial-gradient(ellipse at 50% 46%,transparent 52%,rgba(10,6,2,.28) 82%,rgba(6,3,1,.62) 100%)}
-#film .grade{background:linear-gradient(180deg,rgba(40,95,130,.20) 0%,transparent 42%,rgba(255,150,60,.17) 100%);mix-blend-mode:soft-light}
-#film .grain{inset:-60px;opacity:.07;background-size:160px 160px;animation:grn .9s steps(1) infinite;mix-blend-mode:overlay}
-@keyframes grn{0%{transform:translate(0,0)}20%{transform:translate(-40px,22px)}40%{transform:translate(30px,-35px)}60%{transform:translate(-18px,-12px)}80%{transform:translate(38px,30px)}}
-body.fx-off #film{display:none}
-.bar{position:fixed;left:0;right:0;height:0;background:#000;z-index:6;pointer-events:none;transition:height .8s ease}
-#bt{top:0}#bb{bottom:0}body.cine .bar{height:11vh}
-#ititle{position:fixed;left:0;right:0;bottom:17vh;z-index:7;pointer-events:none;display:none;flex-direction:column;align-items:center;gap:6px;text-align:center;text-shadow:0 2px 14px #000a}
-body.intro #ititle{display:flex;animation:ttl 7s ease both}
-#ititle b{font:700 clamp(24px,5vw,46px)/1.1 var(--display);letter-spacing:.18em;color:#f3e4bd}#ititle span{font:15px var(--display);letter-spacing:.2em;color:#e0c791}#ititle small{font-size:12px;color:#d9cfb4;opacity:.8;margin-top:10px}
-@keyframes ttl{0%{opacity:0;transform:translateY(10px)}18%{opacity:1;transform:none}78%{opacity:1}100%{opacity:0}}
-body.intro .hud,body.intro #hotbar,body.intro #acts,body.intro #cross,body.intro #menubtn,body.intro #sndbtn{display:none}
-.qty{flex-wrap:wrap}
-.btn.sm{padding:5px 9px;font-size:12.5px}
-.dot{display:inline-block;width:8px;height:8px;border-radius:1px;margin-right:6px}
-.evl{display:flex;flex-direction:column;gap:3px;font-size:12.5px;margin-bottom:8px}
-.qty{display:flex;gap:6px;align-items:center;margin:4px 0 8px}.qty button{padding:5px 10px;border-radius:3px;background:var(--panel2);border:1px solid var(--line);font:700 12px var(--body)}
-.qty button[aria-pressed=true]{color:var(--gold);border-color:var(--gold)}
-.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px}.kpi div{background:var(--panel2);border:1px solid var(--line);border-radius:3px;padding:6px 8px;display:flex;flex-direction:column}.kpi span{font-size:11px;color:var(--mute)}.kpi b{font:700 15px var(--body)}
-.ctc{background:var(--panel2);border:1px solid var(--line);border-radius:3px;padding:9px 10px;margin-top:8px;display:flex;flex-direction:column;gap:5px}.ctc.done{border-color:var(--good)}
-.ctc .row{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-.pbar{height:4px;background:#0006;border-radius:2px;overflow:hidden}.pbar i{display:block;height:100%;background:var(--gold)}
-select{background:var(--panel2);color:var(--fg);border:1px solid var(--line);border-radius:3px;padding:4px;font:12.5px var(--body);max-width:130px}
-small{font-size:11px;color:var(--mute)}small.up{color:var(--good)}small.dn{color:var(--bad)}
-@media (max-width:480px){.spc{display:none}}
 .ladder{display:flex;flex-direction:column;gap:5px}
 .ladder div{display:flex;justify-content:space-between;padding:6px 10px;border-radius:3px;background:var(--panel2);border:1px solid var(--line)}
 .ladder .on{border-color:var(--gold);color:var(--gold)}.ladder .lockd{opacity:.5}
@@ -3867,8 +3839,6 @@ small{font-size:11px;color:var(--mute)}small.up{color:var(--good)}small.dn{color
 </style>
 
 <canvas id="gl"></canvas>
-<div id="film" aria-hidden="true"><i class="vig"></i><i class="grade"></i><i class="grain" id="grain"></i></div><div class="bar" id="bt"></div><div class="bar" id="bb"></div>
-<div id="ititle" aria-hidden="true"><b>ӨНДІРІС ҚАЛАСЫ</b><span>1912 жыл · Қазақ даласы</span><small>Өткізу үшін кез келген пернені бас</small></div>
 <div id="cross"></div>
 <div class="hud top">
   <div class="res" id="res"></div>
@@ -3885,13 +3855,13 @@ small{font-size:11px;color:var(--mute)}small.up{color:var(--good)}small.dn{color
 
 <div class="overlay" id="start"><div class="box">
   <h1>Өндіріс Қаласы</h1>
-  <p class="muted">1912 жыл. Қазақ даласына темір жол жетті, Қарағанды көмірі мен Ембі мұнайы нарыққа шықты. Өз зауытыңды сал, цехтың ішіне кіріп жұмысшылармен бірге жүр, шикізатты өңдеп бұйымға айналдыр. Қосшығұловтар мен Мамановтар сияқты қазақ кәсіпкерлері де зауыт салады. Мәзірде нарық бағасын бақыла, тапсырыс орында, зерттеу жаса және бәсекелестермен жарыс.</p>
+  <p class="muted">1912 жыл. Қазақ даласына темір жол жетті, Қарағанды көмірі мен Ембі мұнайы нарыққа шықты. Өз зауытыңды сал, цехтың ішіне кіріп жұмысшылармен бірге жүр, шикізатты өңдеп бұйымға айналдыр. Қосшығұловтар мен Мамановтар сияқты қазақ кәсіпкерлері де зауыт салады.</p>
   <div class="keys" id="keyhelp"></div>
   <button class="btn" id="go">Бастау</button>
 </div></div>
 
 <div class="overlay" id="menu" hidden><div class="box">
-  <div class="tabs" role="tablist"><button role="tab" data-t="market" aria-selected="true">Нарық</button><button role="tab" data-t="prod" aria-selected="false">Өндіріс</button><button role="tab" data-t="ct" aria-selected="false">Тапсырыс</button><button role="tab" data-t="rs" aria-selected="false">Зерттеу</button><button role="tab" data-t="rank" aria-selected="false">Рейтинг</button><button role="tab" data-t="battle" aria-selected="false">Шайқас</button><button role="tab" data-t="mind" aria-selected="false">Сана</button><button role="tab" data-t="hist" aria-selected="false">Тарих</button><button role="tab" data-t="help" aria-selected="false">Басқару</button></div>
+  <div class="tabs" role="tablist"><button role="tab" data-t="market" aria-selected="true">Нарық</button><button role="tab" data-t="battle" aria-selected="false">Шайқас</button><button role="tab" data-t="mind" aria-selected="false">Сана</button><button role="tab" data-t="hist" aria-selected="false">Тарих</button><button role="tab" data-t="help" aria-selected="false">Басқару</button></div>
   <div id="tab"></div>
   <button class="btn alt" id="menuclose">Ойынға оралу</button>
 </div></div>
@@ -3914,8 +3884,7 @@ const CELL=14,GN=4;
 const R={
  coal:{n:"Көмір",p:2,t:0,c:"#80858c"},oil:{n:"Мұнай",p:2,t:0,c:"#8a6fd1"},cuore:{n:"Мыс кені",p:3,t:0,c:"#4fa890"},
  metal:{n:"Шойын",p:6,t:1,c:"#9fb0c0"},copper:{n:"Мыс",p:8,t:1,c:"#c8794a"},chem:{n:"Керосин",p:6,t:1,c:"#d9c06a"},
- part:{n:"Бөлшек",p:18,t:2,c:"#6fa0d0"},prod:{n:"Бұйым",p:60,t:3,c:"#d6a94a"},
- cable:{n:"Кабель",p:14,t:2,c:"#d98c5f"},tools:{n:"Құрал-сайман",p:38,t:3,c:"#8fb7a6"},engine:{n:"Қозғалтқыш",p:70,t:3,c:"#b87fd0"},car:{n:"Автомобиль",p:260,t:3,c:"#e0c36a"}};
+ part:{n:"Бөлшек",p:18,t:2,c:"#6fa0d0"},prod:{n:"Бұйым",p:60,t:3,c:"#d6a94a"}};
 const RK=Object.keys(R);
 const B={
  coal:{n:"Қарағанды шахтасы",s:"Шахта",cost:60,out:{coal:1},en:1,rank:0,d:"Көмір өндіреді.",h:"Көмір кенін Аппақ Байжанов тапқан (1833, бір дерек бойынша). Алғашқы шахталар 1856 жылы ашылған."},
@@ -3926,13 +3895,13 @@ const B={
  steel:{n:"Құю-болат цехы",s:"Құю цехы",cost:250,inp:{coal:1.5},out:{metal:.75},en:2,rank:0,d:"Көмір → шойын (кен Оралдан келеді)."},
  smelt:{n:"Мыс қорыту зауыты",s:"Қорыту",cost:350,inp:{cuore:1.5,coal:.4},out:{copper:.75},en:2,rank:1,d:"Мыс кені + көмір → мыс."},
  chem:{n:"Керосин зауыты",s:"Керосин",cost:350,inp:{oil:1.5},out:{chem:.75},en:2,rank:0,d:"Мұнай → керосин."},
- machine:{n:"Механикалық цех",s:"Механ. цех",cost:600,inp:{metal:1},out:{part:.5},en:3,rank:1,d:"Шойын → станок бөлшегі, не мыс → кабель.",alt:[{n:"Станок бөлшегі",inp:{metal:1},out:{part:.5}},{n:"Кабель",inp:{copper:.6},out:{cable:.8}}]},
- assembly:{n:"Құрастыру цехы",s:"Құрастыру",cost:1200,inp:{part:.4,chem:.4,copper:.15},out:{prod:.4},en:4,rank:2,d:"Бөлшек + керосин + мыс → бұйым, не кабель + бөлшек → құрал-сайман.",alt:[{n:"Бұйым",inp:{part:.4,chem:.4,copper:.15},out:{prod:.4}},{n:"Құрал-сайман",inp:{cable:.5,part:.2},out:{tools:.5}}]},
+ machine:{n:"Механикалық цех",s:"Механ. цех",cost:600,inp:{metal:1},out:{part:.5},en:3,rank:1,d:"Шойын → станок бөлшегі."},
+ assembly:{n:"Құрастыру цехы",s:"Құрастыру",cost:1200,inp:{part:.4,chem:.4,copper:.15},out:{prod:.4},en:4,rank:2,d:"Бөлшек + керосин + мыс → бұйым."},
  store:{n:"Қойма",s:"Қойма",cost:120,rank:0,d:"Сыйымдылық +250."},
  academy:{n:"Техникалық училище",s:"Училище",cost:500,rank:1,d:"Өнімділік +10%, шайқаста күш."},
  safety:{n:"Өрт сөндіру бөлімі",s:"Өрт бөлімі",cost:400,rank:1,d:"Қорғаныс мұнараларына +20% күш."},
- kossh:{n:"Қосшығұлов автозауыты",s:"Қосшығұлов",cost:2200,inp:{part:.5,chem:.3,copper:.2},out:{prod:.7},en:5,rank:3,d:"Бұйым не автомобиль шығарады. Балама тарих.",alt:[{n:"Бұйым",inp:{part:.5,chem:.3,copper:.2},out:{prod:.7}},{n:"Автомобиль",inp:{engine:.4,part:.3,cable:.2},out:{car:.25}}],h:"Бір дерекке сәйкес, Ақмоладағы «Қосшығұлов және ұлдары» кәсіпорнын (1895) құрған әулеттің ұлы Құрманғали 1913 жылы Германиямен автозауыт келісімін жасаған; құрылысты Opel инженерлері бастаған, бірақ соғыс тоқтатқан."},
- maman:{n:"Маманов зауыты",s:"Маманов",cost:1400,inp:{metal:1.2,copper:.2},out:{part:1},en:4,rank:3,d:"Машина жасау: бөлшек не қозғалтқыш. Шартты әулет.",alt:[{n:"Бөлшек",inp:{metal:1.2,copper:.2},out:{part:1}},{n:"Қозғалтқыш",inp:{part:.6,copper:.3,chem:.2},out:{engine:.35}}],h:"Мамановтар туралы нақты тарихи дерек таба алмадым. Бұл ойындағы шартты (балама тарих) қазақ кәсіпкер әулеті."}
+ kossh:{n:"Қосшығұлов автозауыты",s:"Қосшығұлов",cost:2200,inp:{part:.5,chem:.3,copper:.2},out:{prod:.7},en:5,rank:3,d:"Автомобиль шығарады. Балама тарих.",h:"Бір дерекке сәйкес, Ақмоладағы «Қосшығұлов және ұлдары» кәсіпорнын (1895) құрған әулеттің ұлы Құрманғали 1913 жылы Германиямен автозауыт келісімін жасаған; құрылысты Opel инженерлері бастаған, бірақ соғыс тоқтатқан."},
+ maman:{n:"Маманов зауыты",s:"Маманов",cost:1400,inp:{metal:1.2,copper:.2},out:{part:1},en:4,rank:3,d:"Машина жасау. Шартты әулет.",h:"Мамановтар туралы нақты тарихи дерек таба алмадым. Бұл ойындағы шартты (балама тарих) қазақ кәсіпкер әулеті."}
 };
 const BK=Object.keys(B);
 const RANKS=[["Шикізат иесі",0],["Өндіруші",40],["Өңдеуші",120],["Өнеркәсіпші",260],["Индустриалист",450]];
@@ -3950,10 +3919,10 @@ const ENM={
 };
 
 /* ================= state ================= */
-function fresh(){const r={};RK.forEach(k=>r[k]=0);return{money:450,res:r,b:[],xp:0,built:{},sold:[0,0,0,0],decN:0,play:0,bl:1,saved:Date.now(),mk:{},ct:[],ctN:0,rs:{d:[],a:null},rep:0,ful:0,best:99}}
+function fresh(){const r={};RK.forEach(k=>r[k]=0);return{money:450,res:r,b:[],xp:0,built:{},sold:[0,0,0,0],decN:0,play:0,bl:1,saved:Date.now()}}
 let S=fresh();
 try{const o=JSON.parse(localStorage.getItem("ondiris3d-v2")||"null");if(o&&Array.isArray(o.b)){S=Object.assign(fresh(),o);S.res=Object.assign(fresh().res,o.res)}}catch(e){}
-function save(){S.saved=Date.now();S.b=blds.map(b=>({x:b.gx,z:b.gz,type:b.type,lvl:b.lvl,rec:b.rec||0}));try{localStorage.setItem("ondiris3d-v2",JSON.stringify(S))}catch(e){}}
+function save(){S.saved=Date.now();S.b=blds.map(b=>({x:b.gx,z:b.gz,type:b.type,lvl:b.lvl}));try{localStorage.setItem("ondiris3d-v2",JSON.stringify(S))}catch(e){}}
 const rankOf=()=>{let r=0;RANKS.forEach((x,i)=>{if(S.xp>=x[1])r=i});return r};
 const lvm=l=>1+.6*(l-1);
 const fmt=n=>{n=Math.floor(n);return n>=10000?(n/1000).toFixed(1)+"к":String(n)};
@@ -3963,64 +3932,19 @@ function addXp(n){if(n<=0)return;const r0=rankOf();S.xp+=n;const r1=rankOf();if(
 /* ================= three setup ================= */
 let renderer;
 try{renderer=new THREE.WebGLRenderer({canvas:$("gl"),antialias:!TOUCH,powerPreference:"high-performance"})}catch(e){$("err").hidden=false;$("start").hidden=true;return}
-const QL=[{n:"Төмен",sh:0,fx:0,ev:0},{n:"Орташа",sh:1024,fx:1,ev:3},{n:"Жоғары",sh:2048,fx:1,ev:2},{n:"Ультра 4K",sh:4096,fx:1,ev:2}];
-let qi=TOUCH?1:2,qAuto=true,CINE={fx:true,bars:false},intro=null;
-try{const v=localStorage.getItem("ondiris3d-q");if(v!==null&&QL[+v]){qi=+v;qAuto=false}const c=JSON.parse(localStorage.getItem("ondiris3d-cine")||"null");if(c)CINE=Object.assign(CINE,c)}catch(e){}
-const prFor=()=>{const d=window.devicePixelRatio||1;if(qi===0)return 1;if(qi===3)return Math.max(1,Math.min(3,3840/window.innerWidth));return Math.min(d,qi===1?1.5:2)};
-renderer.setPixelRatio(prFor());
-renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.shadowMap.autoUpdate=false;
+renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,TOUCH?1.5:2));
 const scene=new THREE.Scene();
-const HORIZON=0xe8c494;scene.background=new THREE.Color(HORIZON);scene.fog=new THREE.Fog(HORIZON,70,560);
-const cam=new THREE.PerspectiveCamera(66,1,.1,800);cam.rotation.order="YXZ";
-scene.add(new THREE.HemisphereLight(0xcfdcea,0x8a7350,.85));
-const sun=new THREE.DirectionalLight(0xffd5a1,1.05);sun.position.set(-85,62,58);scene.add(sun);scene.add(sun.target);
-{const c=sun.shadow.camera;c.left=-118;c.right=118;c.top=118;c.bottom=-118;c.near=20;c.far=320;c.updateProjectionMatrix();sun.shadow.bias=-.0006;sun.shadow.normalBias=.35}
-function resize(){const w=window.innerWidth,h=window.innerHeight;renderer.setPixelRatio(prFor());renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+scene.background=new THREE.Color(0xc6bca4);scene.fog=new THREE.Fog(0xbdb299,55,300);
+const cam=new THREE.PerspectiveCamera(72,1,.1,800);cam.rotation.order="YXZ";
+scene.add(new THREE.HemisphereLight(0xefe2c4,0x6a5a40,.95));
+const sun=new THREE.DirectionalLight(0xffe0b0,.8);sun.position.set(60,90,40);scene.add(sun);
+function resize(){const w=window.innerWidth,h=window.innerHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
 window.addEventListener("resize",resize);resize();
 
-/* golden-hour sky dome with sun glow, matched to the fog colour */
-const SKY=new THREE.Mesh(new THREE.SphereGeometry(700,32,16),new THREE.ShaderMaterial({side:THREE.BackSide,depthWrite:false,fog:false,uniforms:{sunDir:{value:new THREE.Vector3(-85,62,58).normalize()}},
- vertexShader:"varying vec3 vP;void main(){vP=normalize(position);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}",
- fragmentShader:"varying vec3 vP;uniform vec3 sunDir;void main(){vec3 d=normalize(vP);float h=clamp(d.y,-.1,1.);vec3 hor=vec3(.91,.77,.58),zen=vec3(.36,.52,.72);vec3 c=mix(hor,zen,pow(max(h,0.),.55));float s=max(dot(d,sunDir),0.);c+=vec3(1.,.78,.45)*pow(s,6.)*.38+vec3(1.,.92,.74)*pow(s,260.)*1.3;gl_FragColor=vec4(c,1.);}"}));
-SKY.renderOrder=-1;SKY.frustumCulled=false;SKY.userData.nosh=true;scene.add(SKY);
-
-/* floating dust in the light */
-const DUST_N=TOUCH?120:320,dg=new THREE.BufferGeometry(),dpos=new Float32Array(DUST_N*3);
-for(let i=0;i<DUST_N*3;i+=3){dpos[i]=(Math.random()-.5)*56;dpos[i+1]=Math.random()*10;dpos[i+2]=(Math.random()-.5)*56+10}
-dg.setAttribute("position",new THREE.BufferAttribute(dpos,3));
-const dust=new THREE.Points(dg,new THREE.PointsMaterial({color:0xffe6b8,size:.1,transparent:true,opacity:.5,depthWrite:false,blending:THREE.AdditiveBlending,fog:false}));dust.frustumCulled=false;scene.add(dust);
-
-function shadowize(root){root.traverse(m=>{if(m.isMesh&&!m.userData.nosh){const t=m.material&&m.material.transparent,pl=m.geometry&&m.geometry.type==="PlaneGeometry";m.castShadow=!t&&!pl;m.receiveShadow=!t}})}
-let shc=0;
-function fxUpdate(dt,t){
-  SKY.position.copy(cam.position);const q=QL[qi];
-  if(q.sh>0&&++shc>=q.ev){shc=0;renderer.shadowMap.needsUpdate=true}
-  dust.visible=q.fx>0;
-  if(q.fx>0){const a=dg.attributes.position.array,cx=cam.position.x,cy=cam.position.y,cz=cam.position.z;
-    for(let i=0;i<DUST_N;i++){const j=i*3;a[j]+=(.25+Math.sin(t*.3+i)*.15)*dt;a[j+1]+=Math.sin(t*.5+i*1.7)*.07*dt;a[j+2]+=.1*dt;
-      a[j]=cx+((a[j]-cx+28)%56+56)%56-28;a[j+2]=cz+((a[j+2]-cz+28)%56+56)%56-28;a[j+1]=cy-8+((a[j+1]-cy+8)%18+18)%18}
-    dg.attributes.position.needsUpdate=true}}
-function applyQuality(save){
-  const q=QL[qi],on=q.sh>0;resize();
-  if(renderer.shadowMap.enabled!==on){renderer.shadowMap.enabled=on;scene.traverse(o=>{const m=o.material;if(m)(Array.isArray(m)?m:[m]).forEach(x=>{x.needsUpdate=true})})}
-  sun.castShadow=on;if(typeof shadowMat!=="undefined")shadowMat.visible=!on;
-  if(on&&sun.shadow.mapSize.x!==q.sh){sun.shadow.mapSize.set(q.sh,q.sh);if(sun.shadow.map){sun.shadow.map.dispose();sun.shadow.map=null}}
-  renderer.shadowMap.needsUpdate=true;
-  document.body.classList.toggle("fx-off",!(q.fx&&CINE.fx));document.body.classList.toggle("cine",!!(CINE.bars||intro));
-  if(save){try{localStorage.setItem("ondiris3d-q",String(qi));localStorage.setItem("ondiris3d-cine",JSON.stringify(CINE))}catch(e){}}}
-function setQ(i,manual){qi=Math.max(0,Math.min(3,i));if(manual)qAuto=false;applyQuality(true)}
-
-/* detail map: fine plaster/soot grain shared by every surface (1 tile = 2 m) */
-const DETAIL=(()=>{const cv=document.createElement("canvas");cv.width=cv.height=128;const x=cv.getContext("2d"),im=x.createImageData(128,128);
-  for(let i=0;i<128;i++)for(let j=0;j<128;j++){const k=(i*128+j)*4,n=Math.random(),s=Math.sin(j*.35+Math.sin(i*.07)*3)*.5+.5,v=Math.round(236+n*14-s*10-(Math.random()<.02?18:0));im.data[k]=im.data[k+1]=im.data[k+2]=v;im.data[k+3]=255}
-  x.putImageData(im,0,0);const t=new THREE.CanvasTexture(cv);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.anisotropy=4;return t})();
-function boxUV(g,a){const uv=g.attributes&&g.attributes.uv;if(!uv)return g;const d=[[a[2],a[1]],[a[2],a[1]],[a[0],a[2]],[a[0],a[2]],[a[0],a[1]],[a[0],a[1]]];
-  for(let f=0;f<6;f++)for(let v=0;v<4;v++){const i=f*4+v;uv.setXY(i,uv.getX(i)*d[f][0]/2,uv.getY(i)*d[f][1]/2)}return g}
-
 const gcache=new Map();
-function G(k,a){const key=k+a.join();let g=gcache.get(key);if(!g){g=k==="b"?boxUV(new THREE.BoxGeometry(a[0],a[1],a[2]),a):k==="c"?new THREE.CylinderGeometry(a[0],a[1],a[2],a[3]):k==="s"?new THREE.SphereGeometry(a[0],a[1],a[2]):new THREE.ConeGeometry(a[0],a[1],a[2]);gcache.set(key,g)}return g}
+function G(k,a){const key=k+a.join();let g=gcache.get(key);if(!g){g=k==="b"?new THREE.BoxGeometry(a[0],a[1],a[2]):k==="c"?new THREE.CylinderGeometry(a[0],a[1],a[2],a[3]):k==="s"?new THREE.SphereGeometry(a[0],a[1],a[2]):new THREE.ConeGeometry(a[0],a[1],a[2]);gcache.set(key,g)}return g}
 const matC={};
-function mat(c,e){const k=c+"|"+(e||0);return matC[k]||(matC[k]=new THREE.MeshLambertMaterial(e?{color:c,emissive:e,map:DETAIL}:{color:c,map:DETAIL}))}
+function mat(c,e){const k=c+"|"+(e||0);return matC[k]||(matC[k]=new THREE.MeshLambertMaterial(e?{color:c,emissive:e}:{color:c}))}
 function mesh(p,g,c,x,y,z,e){const m=new THREE.Mesh(g,mat(c,e));m.position.set(x,y,z);p.add(m);return m}
 const box=(p,w,h,d,c,x,y,z,e)=>mesh(p,G("b",[w,h,d]),c,x,y,z,e);
 const cyl=(p,rt,rb,h,c,x,y,z,seg,e)=>mesh(p,G("c",[rt,rb,h,seg||14]),c,x,y,z,e);
@@ -4031,8 +3955,7 @@ const cone=(p,r,h,c,x,y,z,seg,e)=>mesh(p,G("k",[r,h,seg||10]),c,x,y,z,e);
 const BR=0x9b4a35,BRD=0x74362a,BRL=0xb35d44,STONE=0xcbbf9f,IRON=0x2f3337,ROOF=0x4f4740,WOOD=0x7b5b39,WOODD=0x58412a,SOOT=0x35322f,BRASS=0xc9a24a,STUCCO=0xd9cfa8,OCHRE=0xd8c28a;
 
 /* ---- world ---- */
-const gtex=DETAIL.clone();gtex.repeat.set(600,600);gtex.needsUpdate=true;
-const ground=new THREE.Mesh(new THREE.PlaneGeometry(1800,1800),new THREE.MeshLambertMaterial({color:0xa59468,map:gtex}));ground.rotation.x=-Math.PI/2;scene.add(ground);
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(1800,1800),mat(0xa59468));ground.rotation.x=-Math.PI/2;scene.add(ground);
 const plot=new THREE.Mesh(new THREE.PlaneGeometry(CELL*9+10,CELL*9+10),mat(0x4a443b));plot.rotation.x=-Math.PI/2;plot.position.y=.03;scene.add(plot);
 for(let i=-GN;i<=GN;i++)for(let j=-GN;j<=GN;j++){const p=new THREE.Mesh(new THREE.PlaneGeometry(CELL-2.4,CELL-2.4),mat(0x5b544a));p.rotation.x=-Math.PI/2;p.position.set(i*CELL,.05,j*CELL);scene.add(p)}
 for(let i=-5;i<=4;i++)for(let j=-5;j<=4;j++){ // gas lamps at road crossings
@@ -4254,7 +4177,7 @@ const SHIRT=[0xe8e2d0,0xb34a3a,0x4a6fa5,0x6d8a52,0xcfc4a8,0x8a5a3a],CHAP=[0x2f4a
 const DRESS=[0x6a3a4a,0x3a5a6a,0x5a6a3a,0x7a5a3a,0x4a3a5a,0x8a4a3a],TROUS=[0x2a2622,0x3a342c,0x25282d];
 const rnd=a=>a[(Math.random()*a.length)|0];
 const shadowMat=new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.28,depthWrite:false});
-function makeHumanSimple(kind,tool,carry){
+function makeHuman(kind,tool,carry){
   const fem=kind==="rusw"||kind==="kazw",kz=kind==="kaz"||kind==="kazw";
   const g=new THREE.Group(),root=new THREE.Group();g.add(root);
   const H=(fem?.93:1)*(.95+Math.random()*.1),Wd=.95+Math.random()*.12;root.scale.set(Wd,H,Wd);
@@ -4313,125 +4236,10 @@ function makeHumanSimple(kind,tool,carry){
   const lL=leg(-1),lR=leg(1);
   g.userData={rig:{pelvis,chest,head,shL:aL.s,shR:aR.s,elL:aL.el,elR:aR.el,hipL:lL.h,hipR:lR.h,knL:lL.kn,knR:lR.kn,det,tool:toolMesh,carry:!!carry}};
   return g}
-/* ---- realistic humans: anatomical parts merged into a few vertex-coloured meshes, cached per variant ---- */
-const HQ=TOUCH?.55:1,sg=(n,m)=>Math.max(m,Math.round(n*HQ));
-const _m4=new THREE.Matrix4(),_q=new THREE.Quaternion(),_eu=new THREE.Euler(),_v3=new THREE.Vector3(),_s3=new THREE.Vector3(),_col=new THREE.Color();
-function prim(k,a,col,x,y,z,sx,sy,sz,rx,ry,rz){
-  let g;
-  if(k==="s")g=new THREE.SphereGeometry(a[0],sg(a[1],8),sg(a[2],6),a[3],a[4],a[5],a[6]);
-  else if(k==="c")g=new THREE.CylinderGeometry(a[0],a[1],a[2],sg(a[3],8),1,a[4],a[5],a[6]);
-  else if(k==="k")g=new THREE.ConeGeometry(a[0],a[1],sg(a[2],7));
-  else g=new THREE.BoxGeometry(a[0],a[1],a[2]);
-  g=g.toNonIndexed();
-  _eu.set(rx||0,ry||0,rz||0);_q.setFromEuler(_eu);_v3.set(x||0,y||0,z||0);_s3.set(sx===undefined?1:sx,sy===undefined?1:sy,sz===undefined?1:sz);_m4.compose(_v3,_q,_s3);g.applyMatrix4(_m4);
-  const n=g.attributes.position.count,c=new Float32Array(n*3);_col.setHex(col);for(let i=0;i<n;i++){c[i*3]=_col.r;c[i*3+1]=_col.g;c[i*3+2]=_col.b}
-  g.setAttribute("color",new THREE.BufferAttribute(c,3));return g}
-function mergeG(list){let n=0;for(const g of list)n+=g.attributes.position.count;
-  const Pp=new Float32Array(n*3),N=new Float32Array(n*3),C=new Float32Array(n*3);let o=0;
-  for(const g of list){const a=g.attributes;Pp.set(a.position.array,o*3);N.set(a.normal.array,o*3);C.set(a.color.array,o*3);o+=a.position.count;g.dispose()}
-  const m=new THREE.BufferGeometry();m.setAttribute("position",new THREE.BufferAttribute(Pp,3));m.setAttribute("normal",new THREE.BufferAttribute(N,3));m.setAttribute("color",new THREE.BufferAttribute(C,3));m.computeBoundingSphere();return m}
-const mixc=(a,b,t)=>(((a>>16&255)*(1-t)+(b>>16&255)*t)|0)<<16|(((a>>8&255)*(1-t)+(b>>8&255)*t)|0)<<8|(((a&255)*(1-t)+(b&255)*t)|0);
-function hrng(s){let a=s>>>0;return()=>{a=(a+0x6D2B79F5)|0;let t=Math.imul(a^(a>>>15),1|a);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296}}
-function hseed(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
-const HMAT=new THREE.MeshPhongMaterial({vertexColors:true,shininess:12,specular:0x1c1612,emissive:0x120905});
-const pmC={};const pmat=c=>pmC[c]||(pmC[c]=new THREE.MeshPhongMaterial({color:c,shininess:14,specular:0x201812,emissive:0x140a06}));
-const EYE=[0x3a2a1c,0x4a3a22,0x5a6f8a,0x6a7a5a,0x2a1f16],EYE_K=[0x2a1a10,0x33220f,0x3a2a1c];
-const HPARTS=new Map(),PI=Math.PI;
-function humanParts(kind,hm,vi){
-  const key=kind+vi+(hm?"h":"");let Q=HPARTS.get(key);if(Q)return Q;
-  const r=hrng(hseed(key)),pk=a=>a[(r()*a.length)|0];
-  const fem=kind==="rusw"||kind==="kazw",nm=kind==="kaz2"||kind==="kaz3"||kind==="eur",kz=kind==="kaz"||kind==="kazw"||kind==="kaz2"||kind==="kaz3",boss=kind==="boss";
-  let skin=pk(kz?SK_K:SK_R),hairC=kz?pk(HAIR_K):pk(HAIR),old=r()<.35,trs=pk(TROUS),boot=0x1a1512,eye=pk(kz?EYE_K:EYE);
-  let top;if(kind==="kaz")top=pk(CHAP);else if(boss)top=0x2b2a2e;else if(kind==="rus")top=pk(SHIRT);else top=pk(DRESS);
-  {const FX={kaz2:{skin:0xd9a574,hair:0x1c140f,top:0x1d2433,trs:0x2b2b2e,eye:0x2a1a10},kaz3:{skin:0xd0a070,hair:0x2a2622,top:0x2e3236,trs:0x23252b,eye:0x2a1a10},eur:{skin:0xe6b998,hair:0x4a3322,top:0x1b2a4a,trs:0x1b2a4a,eye:0x5a3a22}}[kind];
-   if(FX){skin=FX.skin;hairC=FX.hair;top=FX.top;trs=FX.trs;eye=FX.eye;old=false}}
-  const rolled=(kind==="rus"&&r()<.6)||kind==="kaz2",sleeve=rolled?skin:top,scarf=pk([0xb34a3a,0x4a6fa5,0xd9cfa8,0x7a4a6a,0x5d7a4a]);
-  const lip=mixc(skin,0xa8554a,.5),shade=mixc(skin,0x000000,.35),legC=fem?top:trs,wd=kind==="kaz"?1.3:1;
-  const beard=!fem&&!nm&&r()<(kz?.25:.45),bald=!fem&&old&&r()<.3,gray=old&&r()<.6,hc=gray?0x8c8c88:hairC;
-  /* pelvis, belt, skirts, apron */
-  const hp=[prim("s",[.17,18,12],legC,0,-.03,0,1.08,.78,.84),prim("c",[.17,.16,.18,18],fem?top:trs,0,.02,0),prim("c",[.19,.19,.045,18],kind==="kaz"?0xb8943a:nm?0x141414:0x3a2a1a,0,.07,0),prim("b",[.055,.042,.014],nm?0xbfc3c8:BRASS,0,.07,.19)];
-  if(fem)hp.push(prim("c",[.16,.31,.88,22],top,0,-.45,0),prim("c",[.311,.312,.06,22],mixc(top,0,.35),0,-.86,0));
-  else if(kind==="kaz")hp.push(prim("c",[.2,.29,.58,20],top,0,-.3,0));
-  else if(boss)hp.push(prim("c",[.2,.27,.5,20],top,0,-.27,0));
-  else if(kind==="rus")hp.push(prim("c",[.2,.23,.22,18],top,0,-.1,0));
-  else if(kind==="kaz3"||kind==="eur")hp.push(prim("c",[.2,.225,.3,18],top,0,-.14,0),prim("b",[.09,.025,.012],top,-.1,-.1,.225),prim("b",[.09,.025,.012],top,.1,-.1,.225));
-  if(hm&&!fem)hp.push(prim("b",[.34,.55,.022],0x6a4a2a,0,-.2,.25),prim("b",[.05,.14,.012],0x4a3320,0,.1,.205));
-  /* torso, neck, collar, clothing details */
-  const sx=fem?.17:.215,tp=[prim("s",[.2,20,14],top,0,.19,0,fem?.88:kind==="kaz2"?1.14:kind==="kaz3"?.98:1.05,.95,.78),prim("c",[.17,.165,.16,16],top,0,.05,0,fem?.9:1,1,.8)];
-  for(const s of[-1,1]){tp.push(prim("s",[.078,12,10],top,s*sx,.29,0),prim("s",[.07,10,8],top,s*.095,.335,-.01,1,.6,1))}
-  tp.push(prim("c",[.052,.06,.13,12],skin,0,.39,0));if(!fem)tp.push(prim("s",[.012,8,6],skin,0,.385,.052));
-  tp.push(prim("c",[.07,.078,.04,16],boss?0xf0ece0:kind==="kaz"?mixc(top,0,.3):top,0,.35,0));
-  if(fem)tp.push(prim("s",[.07,10,8],top,-.065,.22,.14,1,1,.8),prim("s",[.07,10,8],top,.065,.22,.14,1,1,.8));
-  if(kind==="rus"){tp.push(prim("b",[.026,.3,.01],0xe6dcc0,.05,.19,.178,1,1,1,0,0,.12));for(let i=0;i<3;i++)tp.push(prim("s",[.01,6,5],0x8a6a3a,.04+i*.014,.28-i*.07,.19));tp.push(prim("c",[.078,.08,.012,16],0xb34a3a,0,.37,0));
-    if(!hm)for(const s of[-1,1])tp.push(prim("b",[.026,.4,.012],0x3a2a1a,s*.085,.18,.19))}
-  if(boss){tp.push(prim("b",[.17,.3,.02],0xf0ece0,0,.17,.185),prim("b",[.07,.28,.012],0x1e1d20,-.085,.15,.192),prim("b",[.07,.28,.012],0x1e1d20,.085,.15,.192),prim("b",[.03,.15,.012],0x8a1f1f,0,.18,.205),prim("b",[.05,.016,.012],BRASS,.08,.1,.2,1,1,1,0,0,.4))}
-  if(kind==="kaz")tp.push(prim("b",[.25,.05,.03],0xd9c27a,0,.31,.17),prim("c",[.205,.2,.05,18],0xb8943a,0,.02,0,1.04,1,.9));
-  if(kind==="kazw")tp.push(prim("c",[.16,.27,.34,18],0xf0ece0,0,.17,-.02),prim("s",[.016,8,6],BRASS,0,.3,.18));
-  if(kind==="rusw")tp.push(prim("b",[.24,.4,.02],0xe6dcc0,0,.12,.17));
-  if(kind==="kaz2"){tp.push(prim("b",[.034,.3,.01],mixc(top,0,.2),0,.19,.178));for(let i=0;i<5;i++)tp.push(prim("s",[.009,6,5],0x0d121c,0,.3-i*.055,.186));tp.push(prim("b",[.05,.06,.01],skin,0,.345,.176),prim("b",[.045,.03,.012],mixc(top,0xffffff,.06),-.04,.355,.18,1,1,1,0,0,.6),prim("b",[.045,.03,.012],mixc(top,0xffffff,.06),.04,.355,.18,1,1,1,0,0,-.6))}
-  if(kind==="kaz3"){tp.push(prim("b",[.17,.3,.012],0x1b2238,0,.17,.188),prim("b",[.05,.07,.01],skin,0,.335,.19),prim("b",[.04,.035,.012],0xf2eee4,-.035,.35,.192,1,1,1,0,0,.5),prim("b",[.04,.035,.012],0xf2eee4,.035,.35,.192,1,1,1,0,0,-.5),prim("b",[.05,.3,.014],mixc(top,0xffffff,.06),-.1,.18,.198,1,1,1,0,0,.12),prim("b",[.05,.3,.014],mixc(top,0xffffff,.06),.1,.18,.198,1,1,1,0,0,-.12),prim("s",[.012,6,5],0x111111,.02,.06,.2),prim("s",[.012,6,5],0x111111,.02,.12,.2))}
-  if(kind==="eur"){tp.push(prim("b",[.13,.3,.02],0xf5f2ea,0,.17,.19),prim("b",[.03,.18,.012],0x1e2f55,0,.16,.205),prim("s",[.02,8,6],0x1e2f55,0,.285,.205),prim("b",[.05,.28,.014],mixc(top,0xffffff,.07),-.085,.18,.2,1,1,1,0,0,.26),prim("b",[.05,.28,.014],mixc(top,0xffffff,.07),.085,.18,.2,1,1,1,0,0,-.26),prim("s",[.011,6,5],0x0a0f1a,0,.08,.205),prim("s",[.011,6,5],0x0a0f1a,0,.02,.205),prim("b",[.04,.02,.01],0xf5f2ea,-.11,.12,.2))}
-  /* arms with hands and fingers */
-  const ua=[prim("c",[.057*wd,.047*wd,.3,14],top,0,-.15,0),prim("s",[.06*wd,12,10],top,0,0,0)];
-  const fore=sd=>{const f=[prim("c",[.046*(rolled?1:wd),.034,.27,14],sleeve,0,-.135,0),prim("s",[.047,12,10],rolled?skin:top,0,0,0)];
-    if(!rolled&&kind!=="kaz")f.push(prim("c",[.04,.04,.025,12],0xf0ece0,0,-.265,0));
-    if(rolled&&kind==="kaz2")f.push(prim("c",[.054,.05,.06,14],top,0,-.07,0));
-    f.push(prim("c",[.03,.028,.05,10],skin,0,-.295,0),prim("b",[.082,.085,.03],skin,0,-.345,0));
-    [.07,.078,.073,.058].forEach((L,i)=>f.push(prim("c",[.009,.0085,L,6],skin,-.03+i*.02,-.3875-L/2+.02,.012,1,1,1,.28)));
-    f.push(prim("c",[.011,.01,.055,6],skin,-sd*.05,-.335,.012,1,1,1,0,0,-sd*.7));return f};
-  /* legs and boots */
-  const th=[prim("c",[.085,.066,.46,16],legC,0,-.23,0),prim("s",[.088,12,10],legC,0,0,0)];
-  const sc=kind==="kaz3"?0x4a3426:0x0e0e0e;
-  const sn=nm?[prim("c",[.062,.05,.42,14],legC,0,-.21,0),prim("s",[.063,12,10],legC,0,0,0),prim("s",[.052,12,10],sc,0,-.41,.06,1,.7,2.3),prim("s",[.048,10,8],sc,0,-.405,.155,1,.7,1),prim("b",[.085,.05,.06],sc,0,-.415,-.03),prim("b",[.095,.02,.29],0x120e0b,0,-.435,.06)].concat(kind==="kaz3"?[0,1,2].map(i=>prim("b",[.07,.006,.012],0xf2eee4,0,-.378,.06+i*.035)):[]):
-   [prim("c",[.062,.05,.42,14],legC,0,-.21,0),prim("s",[.063,12,10],legC,0,0,0),prim("c",[.06,.07,.27,16],boot,0,-.15,0),prim("s",[.058,10,8],boot,0,-.12,-.025,1,1.5,.9),
-    prim("s",[.055,12,10],boot,0,-.405,.065,1,.75,2.5),prim("s",[.05,10,8],boot,0,-.4,.17,1,.7,1),prim("b",[.09,.05,.07],boot,0,-.415,-.03),prim("b",[.1,.022,.31],0x0e0b09,0,-.435,.06)];
-  /* head: skull, jaw, face features, ears, hair, headwear */
-  const ey=(kind==="kaz2"||kind==="kaz3")?.66:.8,hx=kind==="kaz3"?.96:kind==="kaz2"?1.04:1,hy=kind==="kaz3"?1.22:1.16,er=kind==="kaz3"?.027:.022;
-  const hd=[prim("s",[.1,24,18],skin,0,.11,0,hx,hy,1.06),prim("s",[.08,18,12],skin,0,.05,.03,kind==="kaz2"?1.07:hx,.82,1),prim("s",[.032,10,8],skin,0,.012,.08,1.2,.8,.9)];
-  for(const s of[-1,1])hd.push(prim("s",[.032,10,8],skin,s*.062,.088,.068,1,.8,.7),prim("s",[.0185,12,10],0xf2eee4,s*.04,.125,.097,1,ey,.75),prim("s",[.0105,10,8],eye,s*.04,.125,.1055,1,ey/.8*.92,.5),prim("s",[.0052,8,6],0x0a0806,s*.04,.125,.1105,1,1,.5),
-    prim("b",[.046,.009,.012],hc,s*.04,.152,.094,1,1,1,0,0,-s*.12),prim("s",[.022,10,8],skin,s*hx*.098,.105,0,.55*er/.022,1.1*er/.022,.8),prim("s",[.012,8,6],shade,s*.1,.105,.004,.4,.8,.6),prim("s",[.008,6,5],shade,s*.011,.082,.108));
-  hd.push(prim("b",[.016,.045,.02],skin,0,.114,.1,1,1,1,.25),prim("s",[.015,10,8],skin,0,.088,.113,1,.9,1.1),prim("s",[.02,10,8],lip,0,.058,.105,1.7,.45,.7),prim("s",[.021,10,8],lip,0,.044,.105,1.45,.55,.7),prim("b",[.04,.004,.006],shade,0,.052,.109));
-  if(fem){hd.push(prim("s",[.105,20,14],hc,0,.15,-.02,1.04,1,1.08),prim("c",[.095,.085,.28,12],hc,0,-.02,-.08));
-    if(kind==="rusw")hd.push(prim("s",[.116,22,16,PI/2+.75,PI*2-1.5,0,PI*.78],scarf,0,.125,-.012,1.03,1.12,1.1),prim("s",[.045,10,8],scarf,0,.07,-.108),prim("s",[.05,10,8],scarf,-.075,.045,-.02,.8,1,1),prim("s",[.05,10,8],scarf,.075,.045,-.02,.8,1,1));
-    else hd.push(prim("s",[.12,22,16,PI/2+.75,PI*2-1.5,0,PI*.8],0xf0ece0,0,.125,-.014,1.04,1.13,1.12),prim("c",[.12,.19,.24,18,true,.9,PI*2-1.8],0xf0ece0,0,-.01,-.02),prim("c",[.104,.104,.022,18],0xb8943a,0,.185,-.005))}
-  else{if(kind==="kaz2")hd.push(prim("s",[.07,14,10],hc,0,.2,.03,1.25,.55,1.15),prim("s",[.075,12,8],mixc(skin,hc,.22),0,.025,.052,1.05,.75,.85));
-    if(kind==="kaz3")hd.push(prim("s",[.03,8,6],0x8c8c88,-.09,.15,0,.6,1.2,1),prim("s",[.03,8,6],0x8c8c88,.09,.15,0,.6,1.2,1),prim("b",[.012,.006,.006],shade,-.024,.054,.107,1,1,1,0,0,.5),prim("b",[.012,.006,.006],shade,.024,.054,.107,1,1,1,0,0,-.5));
-    if(kind==="eur")hd.push(prim("s",[.07,14,10],hc,-.04,.2,.03,1.35,.7,1.2),prim("s",[.05,10,8],hc,.05,.205,.0,1,.7,1.1),prim("s",[.045,10,8],hc,-.085,.17,-.01,1,1,1));
-    if(!bald)hd.push(prim("s",[.105,22,14],hc,0,.15,-.02,1.03,.92,1.1));hd.push(prim("s",[.09,14,10],hc,0,.075,-.05,1,.7,.8),prim("b",[.012,.05,.03],hc,-.098,.115,.04),prim("b",[.012,.05,.03],hc,.098,.115,.04));
-    if(beard)hd.push(prim("s",[.065,14,10],hc,0,.012,.062,1,.9,.75));
-    if(!nm&&(beard||r()<.4))hd.push(prim("b",[.07,.014,.02],hc,0,.07,.105),prim("s",[.012,6,5],hc,-.036,.066,.104),prim("s",[.012,6,5],hc,.036,.066,.104));
-    if(kind==="rus")hd.push(prim("c",[.113,.118,.06,18],0x2a2622,0,.2,0),prim("b",[.15,.012,.07],0x1a1612,0,.17,.105,1,1,1,.1),prim("s",[.01,6,5],0x2a2622,0,.232,0));
-    else if(kind==="kaz")hd.push(prim("c",[.096,.108,.075,18],0xf0ecdc,0,.205,0),prim("c",[.1,.1,.02,18],0xb8943a,0,.17,0));
-    else if(boss)hd.push(prim("c",[.1,.1,.22,18],0x1a1a1a,0,.3,0),prim("c",[.155,.155,.012,20],0x1a1a1a,0,.2,0),prim("c",[.101,.101,.03,18],0x6a1f1f,0,.225,0))}
-  Q={hips:mergeG(hp),torso:mergeG(tp),ua:mergeG(ua),foreL:mergeG(fore(-1)),foreR:mergeG(fore(1)),thigh:mergeG(th),shin:mergeG(sn),head:mergeG(hd),skin};HPARTS.set(key,Q);return Q}
-function makeHumanReal(kind,tool,carry){
-  const fem=kind==="rusw"||kind==="kazw",Q=humanParts(kind,tool==="hammer",(Math.random()*3)|0);
-  const g=new THREE.Group(),root=new THREE.Group();g.add(root);
-  const H=(fem?.93:1)*(.95+Math.random()*.1),Wd=.95+Math.random()*.12;root.scale.set(Wd,H,Wd);
-  const M=geo=>new THREE.Mesh(geo,HMAT),L=(p,geo,c,x,y,z)=>{const m=new THREE.Mesh(geo,mat(c));m.position.set(x,y,z);p.add(m);return m};
-  const sh=new THREE.Mesh(G("c",[.5,.5,.02,14]),shadowMat);sh.position.y=.02;sh.userData.nosh=true;g.add(sh);
-  const pelvis=new THREE.Group();pelvis.position.y=.95;root.add(pelvis);pelvis.add(M(Q.hips));
-  const chest=new THREE.Group();chest.position.y=.24;pelvis.add(chest);chest.add(M(Q.torso));
-  const head=new THREE.Group();head.position.set(0,.43,0);chest.add(head);head.add(M(Q.head));
-  const det=new THREE.Group();head.add(det);
-  const lids=[];for(const s of[-1,1]){const l=new THREE.Mesh(G("s",[.0188,10,8]),pmat(Q.skin));l.position.set(s*.04,.141,.097);l.scale.set(1,.05,.8);head.add(l);lids.push(l)}
-  const arm=sx=>{const s=new THREE.Group();s.position.set(sx*(fem?.185:.225),.3,0);chest.add(s);s.add(M(Q.ua));const el=new THREE.Group();el.position.y=-.3;s.add(el);el.add(M(sx<0?Q.foreL:Q.foreR));const hand=new THREE.Group();hand.position.y=-.29;el.add(hand);return{s,el,hand}};
-  const aL=arm(-1),aR=arm(1);
-  let toolMesh=null;
-  if(tool){toolMesh=new THREE.Group();aR.hand.add(toolMesh);toolMesh.rotation.x=1.3;L(toolMesh,G("c",[.014,.014,.8,6]),0x6a4a2a,0,-.2,0);
-    if(tool==="pick")L(toolMesh,G("b",[.34,.04,.04]),0x3a3d40,0,-.6,0);else L(toolMesh,G("b",[.14,.1,.1]),0x3a3d40,0,-.6,0)}
-  if(carry)L(chest,G("b",[.4,.28,.32]),0xb88a4a,0,.1,.3);
-  const leg=sx=>{const h=new THREE.Group();h.position.set(sx*(fem?.085:.095),0,0);pelvis.add(h);h.add(M(Q.thigh));const kn=new THREE.Group();kn.position.y=-.46;h.add(kn);kn.add(M(Q.shin));return{h,kn}};
-  const lL=leg(-1),lR=leg(1);
-  g.userData={rig:{pelvis,chest,head,shL:aL.s,shR:aR.s,elL:aL.el,elR:aR.el,hipL:lL.h,hipR:lR.h,knL:lL.kn,knR:lR.kn,det,tool:toolMesh,carry:!!carry,lids}};
-  return g}
-function makeHuman(kind,tool,carry){try{return makeHumanReal(kind,tool,carry)}catch(e){console.warn("human fallback:",e);return makeHumanSimple({kaz2:"kaz",kaz3:"kaz",eur:"boss"}[kind]||kind,tool,carry)}}
-
 const workers=[];
 function roleFor(own,i){const t=own.type;
-  const kz3=()=>rnd(["kaz2","kaz3","kaz","kaz2"]);
-  const kind=(t==="coal"||t==="cu"||t==="oil")?(i%2?"rus":kz3()):(i%3===1?kz3():"rus");
-  if(i===0&&(t==="assembly"||t==="kossh"||t==="academy"||t==="hub"||t==="maman"))return{kind:Math.random()<.65?"eur":"boss"};
+  const kind=(t==="coal"||t==="cu"||t==="oil")?(i%2?"rus":"kaz"):(i%3===1?"kaz":"rus");
+  if(i===0&&(t==="assembly"||t==="kossh"||t==="academy"||t==="hub"||t==="maman"))return{kind:"boss"};
   if(t==="academy"&&i===1)return{kind:"rusw"};if(t==="store"&&i===1)return{kind:"kazw"};if(t==="hub"&&i===1)return{kind:"rusw"};
   const tool=(t==="coal"||t==="cu")?"pick":(t==="steel"||t==="machine"||t==="assembly"||t==="kossh"||t==="maman"||t==="smelt"||t==="oil"||t==="power")?"hammer":null;
   return{kind,tool,carry:t==="store"&&i!==1}}
@@ -4439,15 +4247,15 @@ function spawnWorker(own,i){
   const r0=roleFor(own,i),g=makeHuman(r0.kind,r0.tool,r0.carry);
   const w={g,own,tx:0,tz:0,wait:Math.random()*2,ph:Math.random()*6,sp:1.1+Math.random()*.5,ped:false,tool:!!r0.tool,carry:!!r0.carry,yaw:Math.random()*6.28};
   const r=own.region;g.position.set(own.cx+r.ox+(Math.random()-.5)*r.rx,0,own.cz+r.oz+(Math.random()-.5)*r.rz);
-  pickTarget(w);scene.add(g);shadowize(g);own.workers.push(w);workers.push(w);return w}
+  pickTarget(w);scene.add(g);own.workers.push(w);workers.push(w);return w}
 function pickTarget(w){
   if(w.ped){const p=w.g.position,sx=Math.floor(p.x/CELL)*CELL+CELL/2,sz=Math.floor(p.z/CELL)*CELL+CELL/2,m=(((Math.random()*9)|0)-5)*CELL+CELL/2;
     if(Math.random()<.5){w.tx=sx;w.tz=m}else{w.tz=sz;w.tx=m}return}
   const r=w.own.region;w.tx=w.own.cx+r.ox+(Math.random()*2-1)*r.rx;w.tz=w.own.cz+r.oz+(Math.random()*2-1)*r.rz}
 function wantWorkers(own){const t=own.type;return t==="hub"?2:t==="boiler"?1:Math.min(TOUCH?3:5,1+own.lvl+(t==="academy"||t==="assembly"||t==="kossh"?1:0))}
 function syncWorkers(own){while(own.workers.length<wantWorkers(own))spawnWorker(own,own.workers.length)}
-["rus","kaz2","kaz","rusw","kazw","kaz3","rus","eur","rusw","kaz2"].slice(0,TOUCH?6:10).forEach(kind=>{const g=makeHuman(kind,null,false);const w={g,own:null,tx:0,tz:0,wait:Math.random()*2,ph:Math.random()*6,sp:1.15+Math.random()*.3,ped:true,tool:false,carry:false,yaw:Math.random()*6.28};
-  g.position.set((((Math.random()*9)|0)-5)*CELL+CELL/2,0,(((Math.random()*9)|0)-5)*CELL+CELL/2);pickTarget(w);scene.add(g);shadowize(g);workers.push(w)});
+["rus","rus","kaz","rusw","kazw","rus","kaz","boss","rusw","kaz"].slice(0,TOUCH?6:10).forEach(kind=>{const g=makeHuman(kind,null,false);const w={g,own:null,tx:0,tz:0,wait:Math.random()*2,ph:Math.random()*6,sp:1.15+Math.random()*.3,ped:true,tool:false,carry:false,yaw:Math.random()*6.28};
+  g.position.set((((Math.random()*9)|0)-5)*CELL+CELL/2,0,(((Math.random()*9)|0)-5)*CELL+CELL/2);pickTarget(w);scene.add(g);workers.push(w)});
 function animHuman(w,dt,t,moving,working){
   const u=w.g.userData.rig,f=Math.min(1,dt*10),E=(o,v)=>{o.rotation.x+=(v-o.rotation.x)*f};
   let hl=0,hr=0,kl=0,kr=0,sl=.03,sr=-.03,el=-.12,er=-.12,pelY=.95,pelRy=0,chRy=0,chRx=.02,hdY=0;
@@ -4458,11 +4266,8 @@ function animHuman(w,dt,t,moving,working){
   else{sl=.04+Math.sin(t*.8+w.ph)*.03;sr=-sl;hdY=Math.sin(t*.4+w.ph)*.45;pelRy=Math.sin(t*.6+w.ph)*.05;chRy=-pelRy*.6;if(u.carry){sl=sr=-.95;el=er=-.75}}
   E(u.hipL,hl);E(u.hipR,hr);E(u.knL,kl);E(u.knR,kr);E(u.shL,sl);E(u.shR,sr);E(u.elL,el);E(u.elR,er);E(u.chest,chRx);
   u.pelvis.position.y+=(pelY-u.pelvis.position.y)*f;
-  u.pelvis.rotation.y+=(pelRy-u.pelvis.rotation.y)*f;u.chest.rotation.y+=(chRy-u.chest.rotation.y)*f;if(w.look!==undefined)hdY=w.look;u.head.rotation.y+=(hdY-u.head.rotation.y)*f;
-  u.chest.scale.y=1+Math.sin(t*1.7+w.ph)*.008;
-  if(u.lids){w.bk=(w.bk===undefined?Math.random()*3:w.bk)-dt;if(w.bk<=0&&!(w.bl>0)){w.bl=.16;w.bk=2.2+Math.random()*4}
-    let cl=0;if(w.bl>0){w.bl-=dt;cl=Math.sin(Math.max(0,w.bl)/.16*Math.PI)}
-    u.lids.forEach(l=>{l.scale.y=.05+cl*.95;l.position.y=.141-cl*.016})}}
+  u.pelvis.rotation.y+=(pelRy-u.pelvis.rotation.y)*f;u.chest.rotation.y+=(chRy-u.chest.rotation.y)*f;u.head.rotation.y+=(hdY-u.head.rotation.y)*f;
+  u.chest.scale.y=1+Math.sin(t*1.7+w.ph)*.008}
 function updateWorkers(dt,t){
   const cx=cam.position.x,cz=cam.position.z;
   for(const w of workers){
@@ -4475,7 +4280,7 @@ function updateWorkers(dt,t){
       let da=Math.atan2(dx,dz)-w.yaw;da=Math.atan2(Math.sin(da),Math.cos(da));w.yaw+=da*Math.min(1,dt*6);moving=true}
     w.g.rotation.y=w.yaw;
     if(!w.g.visible)continue;
-    const u=w.g.userData.rig;u.det.visible=cd<26;{let a=Math.atan2(cam.position.x-p.x,cam.position.z-p.z)-w.yaw;a=Math.atan2(Math.sin(a),Math.cos(a));w.look=cd<8&&Math.abs(a)<2?Math.max(-.9,Math.min(.9,a)):undefined}
+    const u=w.g.userData.rig;u.det.visible=cd<26;
     if(cd<80){const working=!moving&&!w.ped&&w.own&&w.own.on&&w.tool;animHuman(w,dt,t,moving,working)}
   }
 }
@@ -4496,182 +4301,36 @@ function updateCamels(dt){for(const c of camels){const p=c.g.position;const dx=c
 const blds=[],cellMap=new Map(),key=(x,z)=>x+","+z;
 const hub=makeBuilding("hub",0,0);hub.gx=0;hub.gz=0;cellMap.set(key(0,0),hub);syncWorkers(hub);
 function placeBuilding(type,x,z,lvl){
-  const own=makeBuilding(type,x*CELL,z*CELL);own.lvl=lvl||1;own.gx=x;own.gz=z;blds.push(own);cellMap.set(key(x,z),own);shadowize(own.g);refreshLabel(own);syncWorkers(own);return own}
+  const own=makeBuilding(type,x*CELL,z*CELL);own.lvl=lvl||1;own.gx=x;own.gz=z;blds.push(own);cellMap.set(key(x,z),own);refreshLabel(own);syncWorkers(own);return own}
 function refreshLabel(own){if(own.label)own.label.userData.set(B[own.type].n,own.lvl+" деңгей")}
 function removeBuilding(own){
   scene.remove(own.g);own.cols.forEach(c=>{const i=colliders.indexOf(c);if(i>=0)colliders.splice(i,1)});
   own.workers.forEach(w=>{scene.remove(w.g);const i=workers.indexOf(w);if(i>=0)workers.splice(i,1)});
   blds.splice(blds.indexOf(own),1);cellMap.delete(key(own.gx,own.gz))}
-/* ================= Sim-style economy layer: market, recipes, contracts, research, ranking ================= */
-const LIQ=[600,260,120,70];
-const BASEK=["coal","oil","cuore","metal","copper","chem","part","prod"];
-const TECH=[
- {id:"steam",n:"Бу қысымын арттыру",d:"Барлық цехтың өнімділігі +12%.",c:300,t:60,r:0},
- {id:"rail",n:"Теміржол қоймасы",d:"Әр ресурстың қойма сыйымдылығы +250.",c:500,t:90,r:0},
- {id:"trade",n:"Сауда үйі",d:"Сатып алу мен сату айырмасы екі есе азаяды, нарық тереңдігі +30%.",c:700,t:90,r:0},
- {id:"org",n:"Еңбекті ұйымдастыру",d:"Жалақы шығыны −30%.",c:800,t:100,r:1},
- {id:"belt",n:"Конвейер желісі",d:"Механикалық, құрастыру, Маманов және Қосшығұлов цехтарының өнімі +20%.",c:900,t:120,r:1},
- {id:"elec",n:"Электрлендіру",d:"Қазандық пен бу стансасының қуаты +25%.",c:1500,t:150,r:2}];
-const tx=id=>S.rs.d.includes(id);
-const BELT=new Set(["machine","assembly","kossh","maman"]);
-const recOf=b=>{const d=B[b.type];return d.alt?(d.alt[b.rec||0]||d.alt[0]):d};
-const wageOf=b=>{const d=B[b.type];return d.cost*((d.out||d.inp||d.sup)?.0012:.0006)*lvm(b.lvl)*(tx("org")?.7:1)};
-let noWage=false;
-const F={prod:0,cons:0,wage:0};
-
-/* --- market --- */
-const px=k=>R[k].p*S.mk[k].f;
-const liq=k=>LIQ[R[k].t]*(tx("trade")?1.3:1);
-const spS=()=>tx("trade")?.02:.04,spB=()=>tx("trade")?.03:.06;
-function mkInit(){RK.forEach(k=>{if(!S.mk[k])S.mk[k]={f:1,h:[],ev:0,et:0};if(!S.mk[k].h.length)for(let i=0;i<24;i++)S.mk[k].h.push(+(R[k].p*(1+.02*Math.sin(i*.9+RK.indexOf(k)))).toFixed(2))})}
-const evLog=[];let evT=50,hT=0;
-const EVS=[["coal",1,"Қатты қыс: көмірге сұраныс өсті"],["coal",-1,"Жаңа шахталар ашылды: көмір арзандады"],["oil",1,"Бакуден мұнай жеткізу тоқтады: мұнай қымбаттады"],["oil",-1,"Мұнай артық өндірілді: баға түсті"],["copper",1,"Телеграф желісіне мыс көп керек: мыс қымбаттады"],["cuore",-1,"Кен артық шықты: мыс кенінің бағасы түсті"],["metal",1,"Теміржол құрылысы: шойынға сұраныс өсті"],["chem",1,"Шамдар үшін керосин тапшы"],["part",1,"Зауыттарға бөлшек жетіспейді"],["prod",-1,"Шетел бұйымдары көбейді: баға түсті"],["prod",1,"Жәрмеңкеде бұйымға сұраныс өсті"],["cable",1,"Электр желісіне кабель керек"],["tools",1,"Құрал-сайманға мемлекеттік тапсырыс"],["engine",1,"Қозғалтқыштарға сұраныс өсті"],["car",1,"Автомобильге сән келді: сұраныс өсті"]];
-function marketStep(dt){
-  for(let i=0;i<RK.length;i++){const k=RK[i],m=S.mk[k];
-    if(m.et>0){m.et-=dt;if(m.et<=0){m.ev=0;m.et=0}}
-    const tgt=1+m.ev+.1*Math.sin(S.play/90+i*1.7);
-    m.f+=(tgt-m.f)*Math.min(1,dt*.02)+(Math.random()-.5)*.014*Math.sqrt(dt)*(1+R[k].t*.2);
-    m.f=Math.max(.35,Math.min(3,m.f))}
-  hT+=dt;if(hT>=4){hT=0;RK.forEach(k=>{const h=S.mk[k].h;h.push(+px(k).toFixed(2));if(h.length>48)h.shift()})}
-  evT-=dt;if(evT<=0){evT=70+Math.random()*80;const e=EVS[(Math.random()*EVS.length)|0],m=S.mk[e[0]];
-    m.ev=e[1]*(.3+Math.random()*.25);m.et=90+Math.random()*60;evLog.unshift({k:e[0],s:e[1],t:e[2]});if(evLog.length>4)evLog.pop();
-    if(!bt&&started)toast((e[1]>0?"▲ ":"▼ ")+e[2])}}
-function trade(k,side,q){
-  const m=S.mk[k],L=liq(k),p=R[k].p*m.f;
-  if(side==="sell"){q=Math.min(q,Math.floor(S.res[k]));if(q<1)return 0;
-    const ef=Math.exp(-q/L*.5),v=q*p*(1+ef)/2*(1-spS());S.res[k]-=q;S.money+=v;m.f=Math.max(.35,m.f*ef);
-    S.sold[R[k].t]+=v;if(R[k].t>=1)addXp(Math.floor(v/(R[k].t===1?40:R[k].t===2?30:20)));return v}
-  q=Math.min(q,Math.floor(CAP-S.res[k]));
-  const cost=n=>{const ef=Math.exp(n/L*.5);return n*p*(1+ef)/2*(1+spB())};
-  while(q>0&&cost(q)>S.money)q-=Math.max(1,Math.floor(q*.05));
-  if(q<1)return 0;const c=cost(q);S.money-=c;S.res[k]+=q;m.f=Math.min(3,m.f*Math.exp(q/L*.5));return -c}
-
-/* --- contracts --- */
-const WHO=["Орынбор әскери бөлімі","Ақмола сауда үйі","Сібір теміржолы басқармасы","Семей жәрмеңкесі","Петропавл көпесі","Қосшығұлов саудасы","Омбы мануфактурасы","Бакы мұнай серіктестігі"];
-let ctT=8;
-function newContract(){
-  const r=rankOf(),maxT=Math.min(3,1+r),ks=RK.filter(k=>R[k].t<=maxT&&R[k].t>=(r>=2?1:0));
-  const k=ks[(Math.random()*ks.length)|0],t=R[k].t,base=[40,20,10,5][t]*(1+r*.25);
-  const q=Math.max(2,Math.round(base*(.6+Math.random()*.8))),pr=+(R[k].p*(1.18+Math.random()*.4)).toFixed(1),T=170+Math.random()*190;
-  return{id:++S.ctN,k,q,pr,t:T,t0:T,who:WHO[(Math.random()*WHO.length)|0]}}
-function ctStep(dt){
-  for(let i=S.ct.length-1;i>=0;i--){const c=S.ct[i];c.t-=dt;if(c.t<=0){S.ct.splice(i,1);toast("Тапсырыс мерзімі өтті: "+R[c.k].n)}}
-  ctT-=dt;if(ctT<=0){ctT=35+Math.random()*25;if(S.ct.length<4&&started){S.ct.push(newContract());if(!bt)toast("Жаңа тапсырыс: "+R[S.ct[S.ct.length-1].k].n)}}}
-function fulfil(id){const i=S.ct.findIndex(c=>c.id===id);if(i<0)return;const c=S.ct[i];if(S.res[c.k]<c.q){toast("Қоймада жеткіліксіз");return}
-  S.res[c.k]-=c.q;const v=c.q*c.pr;S.money+=v;S.sold[R[c.k].t]+=v;addXp(4+R[c.k].t*4+Math.floor(v/200));S.rep++;S.ful++;S.ct.splice(i,1);toast("Тапсырыс орындалды: +"+fmt(v)+CUR);SFX.coin();save()}
-
-/* --- research --- */
-function techTick(){const a=S.rs.a;if(a&&Date.now()>=a.end){S.rs.d.push(a.id);S.rs.a=null;const t=TECH.find(x=>x.id===a.id);toast("Зерттеу аяқталды: "+t.n);addXp(10);SFX.rank();save()}}
-function startTech(id){const t=TECH.find(x=>x.id===id);if(!t||S.rs.a||tx(id)||rankOf()<t.r||S.money<t.c)return;
-  S.money-=t.c;S.rs.a={id,end:Date.now()+t.t/(1+.1*mods().ac)*1000};SFX.up();save()}
-
-/* --- ranking --- */
-const RIV=[["Орал–Сібір сауда үйі",1500,.9],["Волга құю компаниясы",3000,1.3],["Семей сауда үйі",5200,1.8],["Орынбор тау-кен қоғамы",8000,2.2],["Омбы мануфактурасы",12000,2.8],["Бакы мұнай серіктестігі",18000,3.4],["Петербург машина зауыты",26000,4.2]];
-const nwPlayer=()=>{let v=S.money;RK.forEach(k=>v+=S.res[k]*px(k)*.97);blds.forEach(b=>v+=B[b.type].cost*(1+.8*(b.lvl-1))*.5);return v};
-const nwRiv=i=>RIV[i][1]+RIV[i][2]*S.play+250*Math.sin(S.play/200+i);
-function board(){const a=RIV.map((r,i)=>({n:r[0],v:nwRiv(i)}));a.push({n:"Сіздің кәсіпорын",v:nwPlayer(),me:1});a.sort((x,y)=>y.v-x.v);return a}
-function rankCheck(){const p=board().findIndex(x=>x.me)+1;if(p<S.best){if(S.best<99){addXp(8*(S.best-p));toast("Рейтинг: "+p+"-орын");SFX.good()}S.best=p}}
-
-/* --- menu tabs --- */
-let mq=10;
-const qlab=q=>q>=1e9?"Барлығы":String(q);
-const spark=(h,col)=>{if(!h||h.length<2)return"";const mn=Math.min(...h),mx=Math.max(...h),r=(mx-mn)||1;return`<svg class="spk" viewBox="0 0 56 18" width="56" height="18" aria-hidden="true"><polyline fill="none" stroke="${col}" stroke-width="1.6" points="${h.map((v,i)=>(i/(h.length-1)*56).toFixed(1)+","+(16-(v-mn)/r*14).toFixed(1)).join(" ")}"/></svg>`};
-const chg=k=>(S.mk[k].f-1)*100;
-const pc=c=>{const r=Math.round(c);return(r>0?"+":"")+r+"%"};
-const why=b=>{const d=B[b.type];if(d.sup)return b.on?["Жағып тұр","up"]:["Көмір жоқ","dn"];if(!recOf(b).out)return["Қызмет етеді",""];if(b.on)return E.eff<.999?["Баяу: қуат тапшы","dn"]:["Жұмыс істейді","up"];if(b.why===3)return["Қуат жоқ","dn"];if(b.why===2)return["Қойма толы","dn"];if(b.why===1)return["Шикізат жоқ","dn"];return["Күтуде",""]};
-const profitMin=b=>{const rc=recOf(b);if(!rc.out)return -wageOf(b)*60;const s=lvm(b.lvl)*mods().prod*(tx("belt")&&BELT.has(b.type)?1.2:1);let v=0;for(const k in rc.out)v+=rc.out[k]*px(k);if(rc.inp)for(const k in rc.inp)v-=rc.inp[k]*px(k);return (v*s-wageOf(b))*60};
-const sgn=v=>(v>=0?"+":"−")+fmt(Math.abs(v));
-function econTab(t,tb){
-  if(tb==="market"){
-    let h=`<div class="evl">${evLog.length?evLog.map(e=>`<div class="${e.s>0?"up":"dn"}">${e.s>0?"▲":"▼"} ${e.t}</div>`).join(""):'<div class="muted">Нарықта әзірше ірі жаңалық жоқ.</div>'}</div>
-    <div class="qty"><span class="muted">Көлемі:</span>${[1,10,100,1e9].map(q=>`<button data-q="${q}" aria-pressed="${mq===q}">${qlab(q)}</button>`).join("")}</div>
-    <table><tr><th>Тауар</th><th class="r">Қорда</th><th class="r">Баға</th><th class="spc"></th><th></th></tr>`;
-    RK.forEach(k=>{const c=chg(k);h+=`<tr><td><i class="dot" style="background:${R[k].c}"></i>${R[k].n}</td><td class="r" id="s-${k}">${fmt(S.res[k])}</td><td class="r"><b id="p-${k}">${px(k).toFixed(1)}</b><br><small id="d-${k}" class="${c>=0?"up":"dn"}">${pc(c)}</small></td><td class="spc" id="sp-${k}">${spark(S.mk[k].h,c>=0?"#7fb069":"#d1624a")}</td><td class="r"><button class="btn alt sm" data-b="${k}">Ал</button> <button class="btn alt sm" data-s="${k}">Сат</button></td></tr>`});
-    h+=`</table><button class="btn" id="sellall" style="margin-top:10px;width:100%">Қорды түгел сату</button>
-    <p class="muted" style="margin-top:8px">Баға сұраныс пен ұсынысқа қарай ауытқиды. Көп сатсаң баға түседі, көп алсаң көтеріледі, ал алу мен сату бағасының арасында айырма бар. Бір тауарды ғана сатпа: бағасы түскенде басқасына ауыс. Сатып алу арқылы жетіспейтін шикізатты толтыруға болады.</p>`;
-    t.innerHTML=h;
-    t.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{mq=+b.dataset.q;t.querySelectorAll("[data-q]").forEach(x=>x.setAttribute("aria-pressed",+x.dataset.q===mq))});
-    t.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{const v=trade(b.dataset.s,"sell",mq);if(v){toast("+"+fmt(v)+CUR);SFX.coin()}renderTab();save()});
-    t.querySelectorAll("[data-b]").forEach(b=>b.onclick=()=>{const v=trade(b.dataset.b,"buy",mq);if(v){toast("−"+fmt(-v)+CUR+" · "+R[b.dataset.b].n+" алынды");SFX.coin()}else toast(S.money<px(b.dataset.b)?"Ақша жетпейді":"Қойма толы");renderTab();save()});
-    $("sellall").onclick=()=>{let v=0;RK.forEach(k=>v+=trade(k,"sell",1e9));if(v){toast("Сатылды: +"+fmt(v)+CUR);SFX.coin()}renderTab();save()};
-    return true}
-  if(tb==="prod"){
-    const pm=blds.reduce((a,b)=>a+profitMin(b),0);
-    let h=`<div class="kpi"><div><span>Таза табыс / мин</span><b class="${pm>=0?"up":"dn"}" id="k-pm">${sgn(pm)}${CUR}</b></div><div><span>Жалақы / мин</span><b id="k-wg">${fmt(E.wage*60)}${CUR}</b></div><div><span>Қуат</span><b class="${E.eff<.999?"dn":""}" id="k-en">${Math.round(E.sup)}/${Math.round(E.dem)}</b></div></div>`;
-    if(!blds.length)h+='<p class="muted">Әзірше цех жоқ. Жерге қарап цех сал, сонда мұнда басқару пайда болады.</p>';
-    else{h+='<table><tr><th>Цех</th><th>Рецепт</th><th class="r">Пайда/мин</th><th></th></tr>';
-      blds.forEach((b,i)=>{const d=B[b.type],w=why(b),rc=recOf(b);
-        const rec=d.alt?`<select data-r="${i}">${d.alt.map((a,j)=>`<option value="${j}" ${(b.rec||0)===j?"selected":""}>${a.n}</option>`).join("")}</select>`:`<span class="muted">${rc.out?Object.keys(rc.out).map(k=>R[k].n).join(", "):d.sup?"Қуат +"+Math.round(d.sup*lvm(b.lvl)):""}</span>`;
-        const c=upCost(b);
-        h+=`<tr><td><b>${d.n}</b><br><small>${b.lvl} деңгей · <span id="st-${i}" class="${w[1]}">${w[0]}</span></small></td><td>${rec}</td><td class="r" id="pf-${i}"><span class="${profitMin(b)>=0?"up":"dn"}">${sgn(profitMin(b))}</span></td><td class="r"><button class="btn alt sm" data-u="${i}" ${b.lvl>=5||S.money<c?"disabled":""}>${b.lvl>=5?"Макс":"↑ "+fmt(c)}</button></td></tr>`});
-      h+='</table>'}
-    h+='<p class="muted" style="margin-top:8px">Рецептерді ауыстыру арқылы цех басқа тауар шығарады. Жалақы тоқтаусыз төленеді: бос тұрған цех шығын әкеледі. Пайда бағаға қарай өзгереді.</p>';
-    t.innerHTML=h;
-    t.querySelectorAll("[data-r]").forEach(s=>s.onchange=()=>{blds[+s.dataset.r].rec=+s.value;save();renderTab()});
-    t.querySelectorAll("[data-u]").forEach(b=>b.onclick=()=>{const o=blds[+b.dataset.u],c=upCost(o);if(o.lvl>=5||S.money<c)return;S.money-=c;o.lvl++;addXp(5*o.lvl);refreshLabel(o);syncWorkers(o);SFX.up();toast("Жақсартылды: "+B[o.type].n+" · "+o.lvl+" деңгей");save();renderTab()});
-    return true}
-  if(tb==="ct"){
-    let h=`<p class="muted">Сенімді жеткізуші болсаң, тапсырыс көбейеді. Орындалған: <b style="color:var(--gold)">${S.ful}</b> · Беделің: <b style="color:var(--gold)">${S.rep}</b></p>`;
-    if(!S.ct.length)h+='<p class="muted" style="margin-top:8px">Жаңа тапсырыс жақын арада келеді.</p>';
-    S.ct.forEach(c=>{const pre=(c.pr/px(c.k)-1)*100;
-      h+=`<div class="ctc"><div class="row"><b>${c.who}</b><span class="muted" id="ct-t-${c.id}">${Math.ceil(c.t)} с</span></div>
-      <div class="row"><span>${c.q} × ${R[c.k].n}, дана бағасы <b>${c.pr}</b></span><b style="color:var(--gold)">${fmt(c.q*c.pr)}${CUR}</b></div>
-      <div class="row"><span class="muted" id="ct-p-${c.id}">Нарықтан ${pre>=0?"+":""}${pre.toFixed(0)}% · қоймада ${fmt(S.res[c.k])}</span><span><button class="btn sm" data-f="${c.id}" id="ct-b-${c.id}" ${S.res[c.k]<c.q?"disabled":""}>Орындау</button> <button class="btn alt sm" data-x="${c.id}">Бас тарту</button></span></div>
-      <div class="pbar"><i id="ct-r-${c.id}" style="width:${Math.max(0,c.t/c.t0*100)}%"></i></div></div>`});
-    t.innerHTML=h;
-    t.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{fulfil(+b.dataset.f);renderTab()});
-    t.querySelectorAll("[data-x]").forEach(b=>b.onclick=()=>{const i=S.ct.findIndex(c=>c.id===+b.dataset.x);if(i>=0)S.ct.splice(i,1);renderTab()});
-    return true}
-  if(tb==="rs"){
-    const a=S.rs.a;let h=`<p class="muted">Зерттеу ақшаға жасалады және уақыт алады. Бір мезгілде біреуі ғана. Училище уақытты қысқартады.</p>`;
-    TECH.forEach(x=>{const done=tx(x.id),act=a&&a.id===x.id,lock=rankOf()<x.r;
-      h+=`<div class="ctc ${done?"done":""}"><div class="row"><b>${x.n}</b><span class="${done?"up":"muted"}">${done?"Дайын ✓":act?"Жүріп жатыр":lock?RANKS[x.r][0]+" дәрежесі керек":fmt(x.c)+CUR+" · "+Math.round(x.t/(1+.1*mods().ac))+" с"}</span></div>
-      <p class="muted">${x.d}</p>${act?`<div class="pbar"><i id="rs-bar" style="width:${Math.min(100,100-(a.end-Date.now())/1000/(x.t/(1+.1*mods().ac))*100)}%"></i></div>`:""}
-      ${done||act?"":`<button class="btn sm" data-t="${x.id}" ${a||lock||S.money<x.c?"disabled":""}>Зерттеуді бастау</button>`}</div>`});
-    t.innerHTML=h;t.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{startTech(b.dataset.t);renderTab()});return true}
-  if(tb==="rank"){
-    const bd=board(),me=bd.findIndex(x=>x.me)+1;
-    t.innerHTML=`<p class="muted">Шартты бәсекелестермен салыстырғанда сенің кәсіпорның: <b style="color:var(--gold)">${me}-орын</b> (барлығы ${bd.length}). Капитал = қолма-қол ақша + қор + цехтардың құны.</p>
-    <div class="ladder" style="margin-top:8px">${bd.map((x,i)=>`<div class="${x.me?"on":""}"><span>${i+1}. ${x.n}</span><span>${fmt(x.v)}${CUR}</span></div>`).join("")}</div>
-    <p class="muted" style="margin-top:8px">Бәсекелестер ойын уақытымен бірге өседі. Оларды озу үшін өндіріс тізбегін толық құр, тапсырыстарды орында, қымбат бұйым шығар.</p>`;return true}
-  return false}
-function liveTab(){
-  if(tab==="market"){RK.forEach(k=>{const c=chg(k),p=$("p-"+k);if(!p)return;p.textContent=px(k).toFixed(1);$("s-"+k).textContent=fmt(S.res[k]);const d=$("d-"+k);d.textContent=pc(c);d.className=c>=0?"up":"dn";$("sp-"+k).innerHTML=spark(S.mk[k].h,c>=0?"#7fb069":"#d1624a")})}
-  else if(tab==="ct"){S.ct.forEach(c=>{const e=$("ct-t-"+c.id);if(!e)return;e.textContent=Math.ceil(c.t)+" с";$("ct-r-"+c.id).style.width=Math.max(0,c.t/c.t0*100)+"%";$("ct-b-"+c.id).disabled=S.res[c.k]<c.q;const pre=(c.pr/px(c.k)-1)*100;$("ct-p-"+c.id).textContent="Нарықтан "+(pre>=0?"+":"")+pre.toFixed(0)+"% · қоймада "+fmt(S.res[c.k])});if(S.ct.some(c=>!$("ct-t-"+c.id)))renderTab()}
-  else if(tab==="rs"){const a=S.rs.a,b=$("rs-bar");if(a&&b){const x=TECH.find(z=>z.id===a.id);b.style.width=Math.min(100,100-(a.end-Date.now())/1000/(x.t/(1+.1*mods().ac))*100)+"%"}else if(!a&&b||a&&!b)renderTab()}
-  else if(tab==="prod"){const pm=blds.reduce((a,b)=>a+profitMin(b),0),k=$("k-pm");if(!k)return;k.textContent=sgn(pm)+CUR;k.className=pm>=0?"up":"dn";$("k-wg").textContent=fmt(E.wage*60)+CUR;$("k-en").textContent=Math.round(E.sup)+"/"+Math.round(E.dem);
-    blds.forEach((b,i)=>{const w=why(b),s=$("st-"+i);if(s){s.textContent=w[0];s.className=w[1]}const p=profitMin(b),f=$("pf-"+i);if(f)f.innerHTML=`<span class="${p>=0?"up":"dn"}">${sgn(p)}</span>`})}
-  else if(tab==="rank")renderTab()}
-
-function mods(){let ac=0,sf=0;blds.forEach(b=>{if(b.type==="academy")ac+=b.lvl;if(b.type==="safety")sf+=b.lvl});return{ac,sf,prod:(1+.1*ac)*(1+.05*rankOf())*(tx("steam")?1.12:1)}}
-function cap(){let c=200+(tx("rail")?250:0);blds.forEach(b=>{if(b.type==="store")c+=250*b.lvl});return c}
+function mods(){let ac=0,sf=0;blds.forEach(b=>{if(b.type==="academy")ac+=b.lvl;if(b.type==="safety")sf+=b.lvl});return{ac,sf,prod:(1+.1*ac)*(1+.05*rankOf())}}
+function cap(){let c=200;blds.forEach(b=>{if(b.type==="store")c+=250*b.lvl});return c}
 const mult=(k,t)=>1+.25*Math.sin(t/60+RK.indexOf(k)*1.7);
 let E={sup:0,dem:0,eff:1},CAP=200;
 function simulate(dt){
-  const m=mods();CAP=cap();let sup=0,dem=0,wage=0;const pw=tx("elec")?1.25:1;
+  const m=mods();CAP=cap();let sup=0,dem=0;
   for(const b of blds){const d=B[b.type];
-    if(d.sup){const need=d.inp.coal*lvm(b.lvl)*dt;if(S.res.coal>=need){S.res.coal-=need;b.on=true;sup+=d.sup*pw*lvm(b.lvl)}else{b.on=false;sup+=d.sup*pw*lvm(b.lvl)*.3}}}
-  for(const b of blds){const d=B[b.type];if(d.en)dem+=d.en*(1+.4*(b.lvl-1));wage+=wageOf(b)}
-  let paid=true;if(!noWage&&wage>0){const w=wage*dt;if(S.money>=w)S.money-=w;else{S.money=0;paid=false}}
-  const eff=(dem>0?Math.min(1,sup/dem):1)*(paid?1:.5);E={sup,dem,eff,paid,wage};
-  F.wage=wage*60;
-  for(const b of blds){const d=B[b.type];if(d.sup)continue;b.on=false;b.full=false;b.why=0;
-    const rc=recOf(b);if(!rc.out)continue;
-    const s=lvm(b.lvl)*m.prod*(tx("belt")&&BELT.has(b.type)?1.2:1)*eff*dt;let f=1;
-    if(!(s>1e-9)){b.why=3;continue}
-    if(rc.inp)for(const k in rc.inp)f=Math.min(f,S.res[k]/(rc.inp[k]*s));
-    for(const k in rc.out){const room=(CAP-S.res[k])/(rc.out[k]*s);if(room<f){f=Math.max(0,room);b.full=true}}
-    if(f<=.001){b.why=b.full?2:1;continue}
-    if(rc.inp)for(const k in rc.inp)S.res[k]-=rc.inp[k]*s*f;
-    for(const k in rc.out)S.res[k]=Math.min(CAP,S.res[k]+rc.out[k]*s*f);
+    if(d.sup){const need=d.inp.coal*lvm(b.lvl)*dt;if(S.res.coal>=need){S.res.coal-=need;b.on=true;sup+=d.sup*lvm(b.lvl)}else{b.on=false;sup+=d.sup*lvm(b.lvl)*.3}}}
+  for(const b of blds){const d=B[b.type];if(d.en)dem+=d.en*(1+.4*(b.lvl-1))}
+  const eff=dem>0?Math.min(1,sup/dem):1;E={sup,dem,eff};
+  for(const b of blds){const d=B[b.type];if(d.sup)continue;b.on=false;b.full=false;
+    if(!d.out)continue;
+    const s=lvm(b.lvl)*m.prod*eff*dt;let f=1;
+    if(d.inp)for(const k in d.inp)f=Math.min(f,S.res[k]/(d.inp[k]*s));
+    for(const k in d.out){const room=(CAP-S.res[k])/(d.out[k]*s);if(room<f){f=Math.max(0,room);b.full=true}}
+    if(f<=.001)continue;
+    if(d.inp)for(const k in d.inp)S.res[k]-=d.inp[k]*s*f;
+    for(const k in d.out)S.res[k]=Math.min(CAP,S.res[k]+d.out[k]*s*f);
     b.on=true}
-  for(const k of RK)if(!isFinite(S.res[k])||S.res[k]<0)S.res[k]=0;
 }
 function offline(){const dt=Math.min((Date.now()-S.saved)/1000,3600);if(dt<20)return;const b0=Object.assign({},S.res);
-  noWage=true;for(let t=0;t<dt;t+=5)simulate(5);noWage=false;marketStep(Math.min(dt,200));const g=RK.reduce((a,k)=>a+(S.res[k]-b0[k])*R[k].p,0);if(g>5)toast("Сен жоқта зауыттар жұмыс істеді: +"+fmt(g)+CUR+" құндылық")}
+  for(let t=0;t<dt;t+=5)simulate(5);const g=RK.reduce((a,k)=>a+(S.res[k]-b0[k])*R[k].p,0);if(g>5)toast("Сен жоқта зауыттар жұмыс істеді: +"+fmt(g)+CUR+" құндылық")}
 const upCost=b=>Math.floor(B[b.type].cost*Math.pow(1.8,b.lvl));
-S.b.forEach(o=>{if(B[o.type]&&Math.abs(o.x)<=GN&&Math.abs(o.z)<=GN&&!cellMap.has(key(o.x,o.z))){const nb=placeBuilding(o.type,o.x,o.z,o.lvl);nb.rec=o.rec||0}});
-mkInit();
+S.b.forEach(o=>{if(B[o.type]&&Math.abs(o.x)<=GN&&Math.abs(o.z)<=GN&&!cellMap.has(key(o.x,o.z)))placeBuilding(o.type,o.x,o.z,o.lvl)});
 offline();
 
 /* ================= player ================= */
@@ -4689,7 +4348,6 @@ function collide(){
   P.x=Math.max(-72,Math.min(72,P.x));P.z=Math.max(-72,Math.min(72,P.z));
 }
 function updatePlayer(dt){
-  if(intro){introStep(dt);return}
   if(menuOpen||!started)return;
   const sp=input.run?8.5:5.2,fx=-Math.sin(P.yaw),fz=-Math.cos(P.yaw),rx=Math.cos(P.yaw),rz=-Math.sin(P.yaw);
   let mx=fx*input.f+rx*input.r,mz=fz*input.f+rz*input.r;const l=Math.hypot(mx,mz);if(l>1){mx/=l;mz/=l}
@@ -4703,18 +4361,17 @@ function lock(){if(TOUCH)return;const el=$("gl");try{const r=el.requestPointerLo
   setTimeout(()=>{if(started&&!menuOpen&&document.pointerLockElement!==el)dragMode=true},400)}
 function setMove(){input.f=(keys.KeyW||keys.ArrowUp?1:0)-(keys.KeyS||keys.ArrowDown?1:0);input.r=(keys.KeyD||keys.ArrowRight?1:0)-(keys.KeyA||keys.ArrowLeft?1:0);input.run=!!(keys.ShiftLeft||keys.ShiftRight)}
 window.addEventListener("keydown",e=>{
-  if(menuOpen||!started||intro){if((e.code==="KeyB"||e.code==="Escape")&&menuOpen&&!modalOpen)closeMenu();return}
+  if(menuOpen||!started){if((e.code==="KeyB"||e.code==="Escape")&&menuOpen&&!modalOpen)closeMenu();return}
   keys[e.code]=true;setMove();
   if(e.code==="KeyB")openMenu();
   else if(e.code==="KeyE")primary();
   else if(e.code==="KeyX")demolish();
   else if(e.code==="KeyQ")deselect();
   else if(e.code==="KeyF"&&!bt)startBattle();
-  else if(e.code==="KeyK"){CINE.bars=!CINE.bars;applyQuality(true);toast("Кино жолақтары: "+(CINE.bars?"қосулы":"өшірулі"))}
   else{const m=/^Digit(\d)$/.exec(e.code);if(m){const i=m[1]==="0"?9:+m[1]-1;pickSlot(i)}if(e.code==="Minus")pickSlot(10);if(e.code==="Equal")pickSlot(11)}
 });
 window.addEventListener("keyup",e=>{keys[e.code]=false;setMove()});
-document.addEventListener("mousemove",e=>{if(menuOpen||!started||intro)return;
+document.addEventListener("mousemove",e=>{if(menuOpen||!started)return;
   if(document.pointerLockElement===$("gl")||(dragMode&&dragging)){dragMoved+=Math.abs(e.movementX)+Math.abs(e.movementY);P.yaw-=e.movementX*.0022;P.pitch=Math.max(-1.4,Math.min(1.4,P.pitch-e.movementY*.0022))}});
 $("gl").addEventListener("mousedown",e=>{
   if(TOUCH||menuOpen||!started)return;
@@ -4905,7 +4562,7 @@ function updateBattle(dt){
 let lastRank=-1;
 function hud(){
   $("h-money").textContent=fmt(S.money)+CUR;
-  RK.forEach(k=>{$("h-"+k).textContent=fmt(S.res[k]);const c=$("c-"+k);c.classList.toggle("full",S.res[k]>=CAP-.5);c.style.display=(BASEK.includes(k)||S.res[k]>=1)?"":"none"});
+  RK.forEach(k=>{$("h-"+k).textContent=fmt(S.res[k]);$("c-"+k).classList.toggle("full",S.res[k]>=CAP-.5)});
   $("h-en").textContent=Math.round(E.sup)+"/"+Math.round(E.dem);$("c-en").classList.toggle("bad",E.eff<.999);
   const r=rankOf();$("rank").textContent=RANKS[r][0];const lo=RANKS[r][1],hi=RANKS[r+1]?RANKS[r+1][1]:lo+1;
   $("mindbar").style.width=(r===4?100:Math.min(100,(S.xp-lo)/(hi-lo)*100))+"%";$("mindtxt").textContent=r===4?S.xp+" ұпай":S.xp+" / "+hi;
@@ -4928,13 +4585,20 @@ function closeMenu(){menuOpen=false;$("menu").hidden=true;if(started)lock()}
 $("menubtn").addEventListener("click",()=>{if(started&&!menuOpen)openMenu()});
 $("menuclose").addEventListener("click",closeMenu);
 document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{tab=b.dataset.t;document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-selected",x===b));renderTab()}));
-const priceNow=px;
+const priceNow=k=>R[k].p*mult(k,S.play);
 function sell(k){const a=Math.floor(S.res[k]);if(a<1)return 0;const v=a*priceNow(k);S.res[k]-=a;S.money+=v;S.sold[R[k].t]+=v;if(R[k].t>=1)addXp(Math.floor(v/(R[k].t===1?40:R[k].t===2?30:20)));return v}
-function keyHelp(){return TOUCH?`<span>Сол жақ</span><span>Джойстик: жүру</span><span>Оң жақ</span><span>Сүйреу: айналаға қарау</span><span>Төменгі панель</span><span>Құрылыс таңда, жерге қарап «Сал» бас</span><span>Ғимаратқа қарау</span><span>«Жақсарту» / «Бұзу»</span><span>Мәзір</span><span>Нарық, өндіріс, тапсырыс, зерттеу, рейтинг</span>`:
-  `<kbd>W A S D</kbd><span>Жүру (Shift: жүгіру)</span><kbd>Тышқан</kbd><span>Айналаға қарау</span><kbd>1–9, 0, −, =</kbd><span>Таңдау (дөңгелек те істейді)</span><kbd>Сол батырма / E</kbd><span>Салу, жақсарту, шайқаста атқылау</span><kbd>X</kbd><span>Бұзу</span><kbd>Q</kbd><span>Таңдауды болдырмау</span><kbd>F</kbd><span>Дағдарыс шайқасын бастау</span><kbd>B</kbd><span>Мәзір</span><kbd>K</kbd><span>Кино жолақтары</span>`}
+function keyHelp(){return TOUCH?`<span>Сол жақ</span><span>Джойстик: жүру</span><span>Оң жақ</span><span>Сүйреу: айналаға қарау</span><span>Төменгі панель</span><span>Құрылыс таңда, жерге қарап «Сал» бас</span><span>Ғимаратқа қарау</span><span>«Жақсарту» / «Бұзу»</span><span>Мәзір</span><span>Нарық, шайқас, сана, тарих</span>`:
+  `<kbd>W A S D</kbd><span>Жүру (Shift: жүгіру)</span><kbd>Тышқан</kbd><span>Айналаға қарау</span><kbd>1–9, 0, −, =</kbd><span>Таңдау (дөңгелек те істейді)</span><kbd>Сол батырма / E</kbd><span>Салу, жақсарту, шайқаста атқылау</span><kbd>X</kbd><span>Бұзу</span><kbd>Q</kbd><span>Таңдауды болдырмау</span><kbd>F</kbd><span>Дағдарыс шайқасын бастау</span><kbd>B</kbd><span>Мәзір</span>`}
 function renderTab(){
   const t=$("tab");
-  if(econTab(t,tab)){  }else if(tab==="battle"){
+  if(tab==="market"){
+    let h='<table><tr><th>Ресурс</th><th class="r">Қорда</th><th class="r">Баға</th><th></th></tr>';
+    RK.forEach(k=>{const p=priceNow(k),up=R[k].p*mult(k,S.play+15)>p;h+=`<tr><td>${R[k].n}</td><td class="r">${fmt(S.res[k])}</td><td class="r ${up?"up":"dn"}">${p.toFixed(1)} ${up?"▲":"▼"}</td><td class="r"><button class="btn alt" style="padding:5px 10px" data-s="${k}" ${S.res[k]<1?"disabled":""}>Сату</button></td></tr>`});
+    h+='</table><button class="btn" id="sellall" style="margin-top:10px;width:100%">Бәрін сату</button><p class="muted" style="margin-top:8px">Көмір 2, шойын 6, бөлшек 18, дайын бұйым 60 рубль. Өңдеген сайын құн өседі: шикізатты сатқан адам құнның аз бөлігін алады.</p>';
+    t.innerHTML=h;
+    t.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{const v=sell(b.dataset.s);if(v){toast("+"+fmt(v)+CUR);SFX.coin()}renderTab();save()});
+    $("sellall").onclick=()=>{let v=0;RK.forEach(k=>v+=sell(k));if(v){toast("Сатылды: +"+fmt(v)+CUR);SFX.coin()}renderTab();save()};
+  }else if(tab==="battle"){
     t.innerHTML=bt?`<h2>Шайқас жүріп жатыр</h2><p class="muted" style="margin:6px 0 10px">Дағдарыс бұлттары контораға қарай ұшып келеді. Шлангпен атқыла, жерге мұнара қой.</p><button class="btn alt" id="forfeit" style="width:100%">Шайқастан шығу</button>`:
     `<h2>Нарық дағдарысы · ${S.bl} деңгей</h2><p class="muted" style="margin:6px 0 10px">Өрт, жүк тапшылығы және баға құлауы сенің контораңа ұшып келеді. Шлангпен өзің атқыла және жерге мұнара қой: су мұнарасы, телеграф бекеті, шығынды баяулататын резерв қоймасы. Колледж шабуылды, өрт бөлімі қорғаныс күшін арттырады. Жеңсең сыйақы мен сана ұпайы береді.</p><button class="btn sky" id="bgo" style="width:100%">Шайқасты бастау</button>`;
     if($("bgo"))$("bgo").onclick=startBattle;if($("forfeit"))$("forfeit").onclick=()=>{clearBattle();closeMenu()};
@@ -4951,7 +4615,7 @@ function renderTab(){
     <p><b>Қосшығұловтар.</b> Ақмоладағы «Қосшығұлов және ұлдары» кондитер фабрикасы 1895 жылы ашылған. Бір дереккөзге сәйкес, Құрманғали 1913 жылы Германиямен автозауыт келісімін жасап, құрылысты Opel инженерлері бастаған, бірақ соғыс пен революция тоқтатқан. Ойындағы зауыт сол жоспардың балама тарихы.</p>
     <p><b>Мамановтар.</b> Бұл әулет туралы нақты тарихи дерек таба алмадым, сондықтан Маманов зауыты ойында шартты (балама тарих) нысан.</p>
     <p class="muted">Ойын тарихи оқулық емес: бағалар мен цифрлар ойын үшін жеңілдетілген. Дереккөздер: mnu.kz (Қосшығұловтар), informburo.kz (Қазақстан мұнайының тарихы), eurasia.travel (Қарағанды тарихы).</p></div>`;
-  }else{t.innerHTML=`<div class="keys">${keyHelp()}</div><p class="muted" style="margin-top:12px">Сурет сапасы. Ультра 4K: 3840 пиксель кеңдікте, нақты көлеңкемен. Құрылғы баяу болса, ойын сапаны өзі төмендетеді.</p><div class="qty">${QL.map((q,i)=>`<button data-ql="${i}" aria-pressed="${i===qi}">${q.n}</button>`).join("")}</div><div class="qty"><button id="fxb" aria-pressed="${CINE.fx}">Кино әсері</button><button id="barb" aria-pressed="${CINE.bars}">Кино жолақтары</button></div><p class="muted" style="margin-top:12px">Дыбыс деңгейі</p><input type="range" id="volr" min="0" max="100" value="${Math.round(vol*100)}" style="width:100%;accent-color:#d6a94a">`;$("volr").oninput=e=>{vol=e.target.value/100;setVol();saveSnd();initAudio()};t.querySelectorAll("[data-ql]").forEach(b=>b.onclick=()=>{setQ(+b.dataset.ql,true);renderTab()});$("fxb").onclick=()=>{CINE.fx=!CINE.fx;applyQuality(true);renderTab()};$("barb").onclick=()=>{CINE.bars=!CINE.bars;applyQuality(true);renderTab()}}}
+  }else{t.innerHTML=`<div class="keys">${keyHelp()}</div><p class="muted" style="margin-top:12px">Дыбыс деңгейі</p><input type="range" id="volr" min="0" max="100" value="${Math.round(vol*100)}" style="width:100%;accent-color:#d6a94a">`;$("volr").oninput=e=>{vol=e.target.value/100;setVol();saveSnd();initAudio()}}}
 $("keyhelp").innerHTML=keyHelp();
 
 /* ================= decision cards ================= */
@@ -5096,44 +4760,26 @@ const sb=$("sndbtn");function sbLabel(){sb.textContent=sndOn?"Дыбыс":"Үн�
 sb.addEventListener("click",()=>{sndOn=!sndOn;initAudio();setVol();saveSnd();sbLabel()});sbLabel();
 
 /* ================= start & loop ================= */
-let introDone=false;
-$("go").addEventListener("click",()=>{$("start").hidden=true;started=true;initAudio();lock();if(!introDone){introDone=true;introStart()}});
-/* ---- cinematic intro, grain, bars ---- */
-const INTRO_T=7;
-function introStart(){intro={t:0};document.body.classList.add("intro");document.body.classList.add("cine")}
-function introEnd(){if(!intro)return;intro=null;document.body.classList.remove("intro");document.body.classList.toggle("cine",!!CINE.bars);
-  cam.position.set(P.x,1.7,P.z);cam.rotation.y=P.yaw;cam.rotation.x=P.pitch}
-function introStep(dt){intro.t+=dt;const u=Math.min(1,intro.t/INTRO_T),e=u*u*(3-2*u);
-  const x=46*(1-e)+Math.sin(u*Math.PI)*10,y=26*(1-e)+1.7*e,z=58*(1-e)+P.z*e;
-  cam.position.set(x,y,z);cam.lookAt(0*(1-e),9*(1-e)+1.2*e,-30*e);
-  if(u>=1)introEnd()}
-window.addEventListener("keydown",()=>{if(intro&&intro.t>.8)introEnd()},true);
-document.addEventListener("pointerdown",()=>{if(intro&&intro.t>.8)introEnd()},true);
-(function(){const cv=document.createElement("canvas");cv.width=cv.height=160;const x=cv.getContext("2d"),im=x.createImageData(160,160);
-  for(let i=0;i<160*160;i++){const v=Math.random()*255;im.data[i*4]=im.data[i*4+1]=im.data[i*4+2]=v;im.data[i*4+3]=Math.random()*90}
-  x.putImageData(im,0,0);try{$("grain").style.backgroundImage="url("+cv.toDataURL("image/png")+")"}catch(e){}})();
-
+$("go").addEventListener("click",()=>{$("start").hidden=true;started=true;initAudio();lock()});
 renderBar();
 
-let last=performance.now(),acc=0,saveT=0,decT=100,gvT=0,gvN=0,gvOK=9000;
+let last=performance.now(),acc=0,saveT=0,decT=100;
 function frame(now){
-  const raw=(now-last)/1000,dt=Math.min(.1,raw);last=now;const t=now/1000;
-  gvT+=raw;gvN++;if(gvT>=3){const fps=gvN/gvT;gvT=gvN=0;if(qAuto&&started&&!intro&&!menuOpen&&fps<26&&qi>0&&now>gvOK){qi--;applyQuality(false);gvOK=now+6000;toast("Сурет сапасы автоматты төмендетілді: "+QL[qi].n)}}
-  S.play+=dt;simulate(dt);marketStep(dt);ctStep(dt);techTick();updatePlayer(dt);updateWorkers(dt,t);updateCamels(dt);
+  const dt=Math.min(.1,(now-last)/1000);last=now;const t=now/1000;
+  S.play+=dt;simulate(dt);updatePlayer(dt);updateWorkers(dt,t);updateCamels(dt);
   if(started&&!menuOpen)updateBattle(dt);
   trainS+=6*dt;train.forEach(c=>{const p=railPos(trainS+c.off);c.g.position.set(p.x,0,p.z);c.g.rotation.y=p.yaw});
   puffs0.forEach(m=>{const k=(t*.5+m.userData.o)%1;m.position.set(0,3.8+k*5,2.4);m.scale.setScalar(.5+k*1.4);m.material.opacity=.55*(1-k)});
   for(const b of blds.concat(hub)){
     b.anim.forEach(f=>f(t));
     for(const sm of b.smoke){const on=b.on;sm.puffs.forEach(m=>{m.visible=on;if(!on)return;const k=(t*.22+m.userData.o)%1;m.position.set(sm.x+Math.sin(k*5+m.userData.o*9)*.6+k*2.2,sm.y0+k*9,sm.z);m.scale.setScalar(.8+k*2.6);m.material.opacity=.6*(1-k)})}}
-  updateTarget();audioUpdate();fxUpdate(dt,t);
-  acc+=dt;if(acc>.3){acc=0;hud();if(menuOpen&&!$("menu").hidden)liveTab();rankCheck();lightBar()}
+  updateTarget();audioUpdate();
+  acc+=dt;if(acc>.3){acc=0;hud();if(menuOpen&&!$("menu").hidden&&tab==="market")renderTab();lightBar()}
   saveT+=dt;if(saveT>10){saveT=0;save()}
   if(started&&!menuOpen&&!bt){decT-=dt;if(decT<=0){decT=150;decision()}}
   renderer.render(scene,cam);requestAnimationFrame(frame)}
 window.addEventListener("beforeunload",save);document.addEventListener("visibilitychange",()=>{if(document.hidden)save()});
-window.__game={setQ,Q:()=>({qi,pr:prFor(),shadows:renderer.shadowMap.enabled,intro:!!intro,hum:workers.length,parts:HPARTS.size}),skip:()=>introEnd(),humans:()=>workers,trade,px,board,newContract,fulfil,startTech,mk:()=>S.mk,ct:()=>S.ct,rs:()=>S.rs,econTab,recOf,tabSet:v=>{tab=v},renderTab,nwPlayer,E:()=>E,F,audio:()=>({st:AC&&AC.state,ev:evN,drones:Object.keys(drones)}),S:()=>S,P,place:(t,x,z)=>placeBuilding(t,x,z,1),blds,enemies,towers,battle:()=>bt,startBattle,fire,cam};
-applyQuality();shadowize(scene);
+window.__game={audio:()=>({st:AC&&AC.state,ev:evN,drones:Object.keys(drones)}),S:()=>S,P,place:(t,x,z)=>placeBuilding(t,x,z,1),blds,enemies,towers,battle:()=>bt,startBattle,fire,cam};
 hud();requestAnimationFrame(t=>{last=t;frame(t)});
 })();
 <\/script>
