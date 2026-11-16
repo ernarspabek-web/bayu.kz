@@ -5902,7 +5902,26 @@ show=function(id){if(id!=='cashflow'&&frame)unload();const was=inited.cashflow;_
 })();
 </script>
 
-<style id="fixcss">.flinks{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px}
+<style id="fixcss">@media (min-width:900px){
+ .hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);column-gap:clamp(24px,4vw,56px);align-items:center;align-content:center;min-height:340px}
+ .hero>*{grid-column:1}
+ .hero>canvas{grid-column:auto}
+ .hero>.heroart{grid-column:2;grid-row:1/span 4;align-self:center}
+ .hero .cta{align-self:start}
+}
+.heroart{display:none;position:relative;z-index:1}
+@media (min-width:900px){.heroart{display:block}}
+.heroart svg{width:100%;height:auto;max-height:320px;display:block}
+.heroart .gl{fill:var(--surface);stroke:var(--line)}
+.heroart .hb{fill:var(--accent);transform-box:fill-box;transform-origin:bottom;animation:hgrow .9s cubic-bezier(.2,.7,.2,1) both}
+.heroart .hb.g{fill:var(--gold)}
+.heroart .ln{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.heroart .dt{fill:var(--surface);stroke:var(--gold);stroke-width:3}
+.heroart .pl{fill:var(--surface);stroke:var(--line)}
+.heroart text{font:700 13px var(--f-body);fill:var(--ink)}
+.heroart .cn{fill:var(--gold)}.heroart .cnt{font:700 22px var(--f-display);fill:var(--accent-ink)}
+@keyframes hgrow{from{transform:scaleY(.05)}to{transform:scaleY(1)}}
+@media (prefers-reduced-motion:reduce){.heroart .hb{animation:none}}.flinks{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px}
 .flinks .linkbtn,footer .linkbtn{min-height:44px;padding:10px 4px;display:inline-flex;align-items:center}
 .fcontact{margin:6px 0 0;color:var(--muted);font-size:.88rem}
 .legalb p{margin:0 0 10px;line-height:1.55}
@@ -6020,5 +6039,17 @@ new MutationObserver(syncH).observe(q('main'),{attributes:true,subtree:true,attr
 }catch(err){try{console.warn('fixpack',err)}catch(_){}}})();
 </script><script id="navfix">(function(){try{const X=(k,r,e)=>LANG==='ru'?r:LANG==='en'?e:k;
 ['qarjy','lab','map','qaz','check','comm','isl'].forEach(id=>{const v=document.getElementById('v-'+id);if(!v)return;const b=document.createElement('button');b.type='button';b.className='btn ghost sm jback';b.dataset.go='start';b.textContent='← '+X('Менің жолым','Мой путь','My path');v.insertBefore(b,v.firstChild)});
-const st=document.createElement('style');st.textContent='.jback{align-self:flex-start}body.onhome:not(.authed) .acct{display:none}';document.body.classList.toggle('authed',!!SESS);const hv=document.getElementById('v-home');const sync=()=>document.body.classList.toggle('onhome',!hv.hidden);sync();new MutationObserver(sync).observe(hv,{attributes:true,attributeFilter:['hidden']});document.head.appendChild(st)}catch(e){}})();</script></body></html>
+const st=document.createElement('style');st.textContent='.jback{align-self:flex-start}body.onhome:not(.authed) .acct{display:none}';document.body.classList.toggle('authed',!!SESS);const hv=document.getElementById('v-home');const sync=()=>document.body.classList.toggle('onhome',!hv.hidden);sync();new MutationObserver(sync).observe(hv,{attributes:true,attributeFilter:['hidden']});document.head.appendChild(st)}catch(e){}})();</script><script id="heroart">(function(){try{const h=document.querySelector('#v-home .hero');if(!h)return;const X=(k,r,e)=>LANG==='ru'?r:LANG==='en'?e:k;
+const bars=[[40,70],[100,100],[160,128],[220,166],[280,206]];
+const a=document.createElement('div');a.className='heroart';a.setAttribute('aria-hidden','true');
+a.innerHTML='<svg viewBox="0 0 380 310" role="presentation"><rect class="gl" x="10" y="20" width="360" height="270" rx="22"/>'
++[70,120,170,220].map(y=>'<line x1="34" x2="346" y1="'+(y+20)+'" y2="'+(y+20)+'" stroke="var(--line)" stroke-dasharray="3 6"/>').join('')
++bars.map((b,i)=>'<rect class="hb'+(i%2?' g':'')+'" style="animation-delay:'+(i*.12)+'s" x="'+(b[0]+4)+'" y="'+(262-b[1])+'" width="40" height="'+b[1]+'" rx="9"/>').join('')
++'<path class="ln" d="M64 168 L124 140 L184 118 L244 84 L304 50"/>'
++[[64,168],[124,140],[184,118],[244,84],[304,50]].map(p=>'<circle class="dt" cx="'+p[0]+'" cy="'+p[1]+'" r="6"/>').join('')
++'<circle class="cn" cx="322" cy="38" r="22"/><text class="cnt" x="322" y="46" text-anchor="middle">₸</text>'
++'<g><rect class="pl" x="0" y="196" width="118" height="30" rx="15"/><text x="59" y="216" text-anchor="middle">'+X('Бюджет','Бюджет','Budget')+'</text></g>'
++'<g><rect class="pl" x="262" y="226" width="118" height="30" rx="15"/><text x="321" y="246" text-anchor="middle">'+X('Инвестиция','Инвестиции','Investing')+'</text></g>'
++'<g><rect class="pl" x="112" y="274" width="118" height="30" rx="15"/><text x="171" y="294" text-anchor="middle">'+X('Білім','Знания','Learning')+'</text></g></svg>';
+h.appendChild(a)}catch(e){}})();</script></body></html>
 </body></html>
