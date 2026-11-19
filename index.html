@@ -6117,7 +6117,30 @@ const qh=document.querySelector('#v-qarjy .head');if(qh){const p=document.create
 const sg=document.getElementById('sGo');if(sg&&CFG.email){const b=document.createElement('button');b.type='button';b.className='btn ghost';b.textContent=X('Поштамен жіберу','Отправить по почте','Send by email');b.style.marginLeft='8px';
  b.onclick=()=>{const t=(document.getElementById('s-text')||{}).value||'';const n=(document.getElementById('s-name')||{}).value||'';location.href='mailto:'+CFG.email+'?subject='+encodeURIComponent('BAYU ұсыныс')+'&body='+encodeURIComponent(t+(n?'\n\n'+n:''))};sg.after(b)}
 }catch(err){try{console.warn('fixpack2',err)}catch(_){}}})();
-</script><script id="lp">(function(){try{
+</script><style id="lpfont">
+/* лендинг слайдтары: ірі, көзге жайлы мәтін */
+.lp .sl h3{font-size:clamp(1.6rem,4vw,2.3rem);line-height:1.2;margin-bottom:10px}
+.lp .sl p{font-size:clamp(1.15rem,2.6vw,1.35rem);line-height:1.6;color:var(--ink);max-width:60ch}
+.lp .bn{gap:12px;margin:6px 0 0}
+.lp .bn li{font-size:clamp(1.15rem,2.6vw,1.35rem);line-height:1.55;gap:12px}
+.lp .bn li::before{font-size:1.2em}
+.lp .sl .im{font-size:clamp(1.1rem,2.4vw,1.25rem);line-height:1.6;color:var(--muted);margin-top:16px}
+.lp .sl .rs{font-size:clamp(1.15rem,2.6vw,1.35rem);line-height:1.55;padding:14px 16px;border-radius:12px;margin-top:16px}
+.lp .aa{font-size:1rem;line-height:1.5;margin-top:14px}
+.lp .kicker{font-size:.95rem}
+.lp .ar{min-width:52px;min-height:52px;font-size:1.5rem}
+.lp .dots button{width:14px;height:14px}.lp .dots button[aria-current="true"]{width:34px}
+.lp .sl{padding:clamp(18px,4vw,36px)}
+@media(max-width:560px){.lp .sl h3{font-size:1.6rem}.lp .sl p,.lp .bn li,.lp .sl .rs{font-size:1.15rem}.lp .sl .im{font-size:1.1rem}}
+.lp .sl h3{font-size:clamp(1.8rem,4.4vw,2.6rem)!important}
+.lp .sl p,.lp .bn li,.lp .sl .rs{font-size:clamp(1.25rem,2.8vw,1.5rem)!important;line-height:1.65!important}
+.lp .sl .im{font-size:clamp(1.2rem,2.6vw,1.4rem)!important;line-height:1.65!important}
+.lp .aa{font-size:1.1rem!important}
+.lp .kicker{font-size:1rem!important}
+.lp h2{font-size:clamp(1.9rem,5.4vw,3.3rem)!important;line-height:1.2!important}
+.lp .sl{gap:clamp(18px,4vw,44px)}
+@media(max-width:560px){.lp .sl h3{font-size:1.8rem!important}.lp .sl p,.lp .bn li,.lp .sl .rs{font-size:1.25rem!important}.lp .sl .im{font-size:1.2rem!important}.lp h2{font-size:2rem!important}}
+</style><script id="lp">(function(){try{
 const X=(k,r,e)=>LANG==='ru'?r:LANG==='en'?e:k;
 const home=document.getElementById('v-home');if(!home||document.getElementById('lp1'))return;
 const E=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -6237,5 +6260,157 @@ if(note){const u=document.createElement('ul');u.className='aaC';
 const sl=[...document.querySelectorAll('.lp .sl')].find(a=>/Islamic Economic KZ/.test(a.querySelector('h3')?.textContent||''));
 if(sl&&!sl.querySelector('.aa')){const s=document.createElement('small');s.className='aa';s.textContent=X('Скрининг AAOIFI ережелеріне сәйкес жасалған','Скрининг выполнен по правилам AAOIFI','Screening follows AAOIFI rules');const rs=sl.querySelector('.rs');(rs||sl.querySelector('ul')).after(s)}
 }catch(e){try{console.warn('aa',e)}catch(_){}}})();
-</script></body></html>
+</script><script id="pathsrc">(function(){try{
+const X=(k,r,e)=>LANG==='ru'?r:LANG==='en'?e:k;
+const home=document.getElementById('v-home');if(!home||document.getElementById('path'))return;
+const E=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const T=(k,r,e)=>E(X(k,r,e));
+const OPEN=T('Ашу','Открыть','Open');
+const st=document.createElement('style');st.textContent=`
+.pth{gap:clamp(34px,6vw,72px)}
+.pth .pn{display:flex;flex-direction:column;gap:clamp(14px,2.4vw,22px)}
+.pth h2.big{font-size:clamp(2rem,5vw,3.2rem)!important;max-width:22ch!important;line-height:1.12!important}
+.pth h3.m{font:700 clamp(1.7rem,4.6vw,2.7rem)/1.15 var(--f-display);margin:0;max-width:24ch;color:var(--ink)}
+.pth .lead{font-size:clamp(1.2rem,2.8vw,1.5rem);line-height:1.65;color:var(--ink);margin:0;max-width:56ch}
+.pth .sm2{font-size:1rem;line-height:1.6;color:var(--muted);margin:0;max-width:70ch}
+.pth .cta{display:flex;gap:12px;flex-wrap:wrap}
+.pth .btn{min-height:52px;font-size:1.1rem;padding:12px 24px;border-radius:12px}
+.pth .btn.big{background:linear-gradient(100deg,var(--g1),var(--g2));border-color:transparent;color:var(--accent-ink,#fff);box-shadow:0 0 22px -6px var(--glowc)}
+.pth .split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(18px,4vw,48px);align-items:center}
+@media(max-width:820px){.pth .split{grid-template-columns:1fr}}
+.pth .sc{border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,34px);background:linear-gradient(160deg,color-mix(in srgb,var(--g2) 14%,var(--surface)),var(--surface));box-shadow:var(--sh);display:flex;flex-direction:column;gap:8px;cursor:default}
+.pth .sc b{font:700 clamp(2.6rem,6vw,4rem)/1.05 var(--f-display);white-space:nowrap;background:linear-gradient(100deg,var(--g1),var(--g2),var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.pth .sc span{font-size:clamp(1.15rem,2.6vw,1.4rem);line-height:1.5;color:var(--ink)}
+.pth .sc small{font-size:.95rem;color:var(--muted)}
+.pth .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}
+.pth .stats .sc b{font-size:clamp(2.4rem,6vw,3.4rem)}
+.pth .stp{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px}
+.pth .s{border:1px solid var(--line);border-radius:20px;padding:22px;background:var(--surface);box-shadow:var(--sh);display:flex;flex-direction:column;gap:10px}
+.pth .s .ic{font-size:2.8rem;line-height:1;width:76px;height:76px;display:grid;place-items:center;border-radius:20px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid var(--line)}
+.pth .s h4{font:700 clamp(1.35rem,3vw,1.7rem)/1.2 var(--f-display);margin:0}
+.pth .s p{font-size:1.15rem;line-height:1.6;margin:0;color:var(--ink)}
+.pth .s .n{font:700 .95rem var(--f-num);color:var(--gold)}
+.pth .ph{justify-self:center;width:min(100%,330px);border:10px solid #1d2b27;border-radius:38px;background:var(--bg);padding:18px 14px 14px;box-shadow:0 24px 50px -20px rgba(0,0,0,.5),0 0 30px -8px var(--glowc);display:flex;flex-direction:column;gap:10px;cursor:default;transform:rotate(-2.5deg)}
+.pth .ph .tp{font-weight:700;font-size:.95rem;color:var(--muted)}
+.pth .ph .row2{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:11px 13px;font-size:1.05rem}
+.pth .ph .row2 b{font:600 .95rem var(--f-num);background:color-mix(in srgb,var(--g2) 28%,var(--surface));border-radius:99px;padding:3px 10px;white-space:nowrap}
+.pth .ph .ready{background:linear-gradient(100deg,var(--g1),var(--g2));color:#fff;border-radius:14px;padding:12px 14px;font-weight:700;display:flex;justify-content:space-between;gap:8px}
+.pth .calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
+.pth .calc>div{border:1px solid var(--line);border-radius:18px;padding:20px;background:var(--surface);box-shadow:var(--sh);display:flex;flex-direction:column;gap:6px;cursor:default}
+.pth .calc small{font-size:1rem;color:var(--muted);font-weight:700}
+.pth .calc b{font:700 clamp(1.8rem,4.4vw,2.4rem)/1.1 var(--f-display)}
+.pth .calc span{font-size:1.1rem;line-height:1.5}
+.pth .calc .g b{color:var(--good)}.pth .calc .w b{color:var(--bad)}
+.pth .end{border:2px solid var(--gold);border-radius:24px;padding:clamp(22px,5vw,44px);background:radial-gradient(500px 200px at 90% 0,color-mix(in srgb,var(--g3) 22%,transparent),transparent 70%),var(--surface);display:flex;flex-direction:column;gap:14px;align-items:flex-start;box-shadow:0 0 34px -10px var(--glowc)}
+.pth .src{font-size:.95rem;color:var(--muted);line-height:1.7}.pth .src a{margin-right:10px}
+@media(max-width:560px){.pth .ph{transform:none}}`;
+document.head.appendChild(st);
+const sec=document.createElement('section');sec.id='path';sec.className='lp pth';sec.setAttribute('aria-label',T('Ақша туралы уайымсыз өмір','Жизнь без денежной тревоги','Life without money worry'));
+sec.innerHTML=`
+<div class="pn"><span class="kicker">${T('Қарыздан капиталға','От долгов к капиталу','From debt to capital')}</span>
+<div class="split"><div class="pn">
+<h2 class="big">${T('Ақша туралы уайымдаудан шаршадыңыз ба? Сіз жалғыз емессіз.','Устали переживать о деньгах? Вы не одиноки.','Tired of worrying about money? You are not alone.')}</h2>
+<p class="lead">${T('Ақшаны нашар басқару мінездің кемшілігі емес. Бұл дағдының жетіспеушілігі, ал дағдыны үйренуге болады. BAYU сізге бюджет құруды, қарыздан шығуды және инвестициялауды қадам-қадаммен үйретеді.','Плохое управление деньгами — не недостаток характера. Это пробел в навыках, а навыки можно освоить. BAYU шаг за шагом учит бюджету, выходу из долгов и инвестированию.','Poor money management is not a character flaw. It is a skills gap, and skills can be learned. BAYU teaches budgeting, getting out of debt and investing, step by step.')}</p>
+<div class="cta"><button type="button" class="btn big" data-go="start">${T('Бастау','Начать','Start')}</button><button type="button" class="btn ghost" data-go="qarjy">${OPEN}: Qarjy AI</button></div></div>
+<div class="sc" role="group" aria-label="${T('Қазақстандағы қарыз','Долги в Казахстане','Debt in Kazakhstan')}"><b>26,7 ${T('трлн ₸','трлн ₸','trn ₸')}</b><span>${T('қазақстандықтардың банктерге қарызы. Оның 17,7 трлн ₸-і тұтынушылық несие.','долг казахстанцев перед банками. Из них 17,7 трлн ₸ — потребительские кредиты.','owed by Kazakhstanis to banks. Of this, 17.7 trn ₸ is consumer loans.')}</span><small>${T('01.10.2026, ARRFR деректері (zakon.kz)','на 01.10.2026, данные АРРФР (zakon.kz)','as of 1 Oct 2026, ARRFR data (zakon.kz)')}</small></div></div></div>
+
+<div class="pn"><h3 class="m">${T('Қазақстандағы ақша жағдайы','Деньги в Казахстане сегодня','Money in Kazakhstan today')}</h3>
+<div class="stats">
+<div class="sc"><b>9,3%</b><span>${T('жылдық инфляция (қыркүйек 2026). Ұлттық банктің мақсаты: 2028 жылы 5%.','годовая инфляция (сентябрь 2026). Цель Нацбанка: 5% в 2028 году.','annual inflation (Sept 2026). National Bank target: 5% in 2028.')}</span><small>${T('Дереккөз: Ұлттық банк','Источник: Нацбанк','Source: National Bank')}</small></div>
+<div class="sc"><b>15,75%</b><span>${T('базалық мөлшерлеме. Несие мен салым ставкалары соған байланысты.','базовая ставка. От неё зависят ставки по кредитам и депозитам.','base rate. Loan and deposit rates follow it.')}</span><small>${T('23.10.2026, Ұлттық банк','23.10.2026, Нацбанк','23 Oct 2026, National Bank')}</small></div>
+<div class="sc"><b>4,6%</b><span>${T('жеке тұлғалардың несиесі 90 күннен астам мерзімі өткен.','кредитов физлиц просрочены более 90 дней.','of personal loans are overdue by more than 90 days.')}</span><small>${T('01.10.2026, zakon.kz','на 01.10.2026, zakon.kz','1 Oct 2026, zakon.kz')}</small></div>
+<div class="sc"><b>20 ${T('млн ₸','млн ₸','m ₸')}</b><span>${T('КФГД кепілдігінің ең жоғары шегі: бір банктегі бір салымшыға.','максимум гарантии КФГД на одного вкладчика в одном банке.','maximum KDIF guarantee per depositor per bank.')}</span><small>${T('finance.kz, шекті kdif.kz-тен тексеріңіз','finance.kz, лимит проверьте на kdif.kz','finance.kz, verify the cap on kdif.kz')}</small></div>
+</div>
+<p class="sm2">${T('Инфляция 9,3% болса, жылына осыдан аз табыс беретін жинақтың сатып алу қабілеті төмендейді.','Если инфляция 9,3%, накопления с доходностью ниже этой теряют покупательную способность.','With inflation at 9.3%, savings that earn less than that lose buying power.')}</p></div>
+
+<div class="pn"><h3 class="m">${T('Бастау үшін 3 қадам жеткілікті','Для старта достаточно трёх шагов','Three steps are enough to start')}</h3>
+<div class="stp">
+<div class="s"><div class="ic" aria-hidden="true">🚪</div><span class="n">1</span><h4>${T('BAYU-ға қосылыңыз','Присоединяйтесь к BAYU','Join BAYU')}</h4><p>${T('Кіріп, өз қаржыңыздың қазіргі жағдайын жазыңыз: кіріс, шығыс, қарыз.','Войдите и запишите текущее положение: доходы, расходы, долги.','Sign in and write down where you stand: income, spending, debts.')}</p></div>
+<div class="s"><div class="ic" aria-hidden="true">🗺️</div><span class="n">2</span><h4>${T('Жоспар құрыңыз','Составьте план','Make a plan')}</h4><p>${T('Өзіңізден сұраңыз: «Бұл ақша не үшін?» Ақшаны жұмсамай тұрып, икемді жоспар құрыңыз.','Спросите себя: «Для чего эти деньги?» Составьте гибкий план до того, как тратить.','Ask: “What is this money for?” Build a flexible plan before you spend.')}</p></div>
+<div class="s"><div class="ic" aria-hidden="true">🌱</div><span class="n">3</span><h4>${T('Қарызды жауып, өсіре бастаңыз','Закройте долги и начните расти','Clear debt and start growing')}</h4><p>${T('Қарыз жабылған соң, сол төлемді инвестицияға бағыттаңыз. Алдымен InvestLab-та ақшасыз сынап көріңіз.','Когда долг закрыт, направьте тот же платёж в инвестиции. Сначала попробуйте в InvestLab без денег.','Once debt is gone, redirect that payment to investing. Try it in InvestLab first with no real money.')}</p></div>
+</div></div>
+
+<div class="pn"><div class="split">
+<div class="pn"><h3 class="m">${T('Әр теңге өз міндетін біледі','Каждый тенге знает своё дело','Every tenge knows its job')}</h3>
+<p class="lead">${T('Табыс түскен күні бөліп шығыңыз: қажет шығын, қарыз, қор, инвестиция. Тізімде тек «қанша қалды» емес, «не үшін қалды» көрінеді.','В день получения дохода распределите его: обязательные траты, долг, резерв, инвестиции. Видно не только «сколько осталось», но и «на что».','On payday, split income into needs, debt, reserve and investing. You see not only how much is left but what for.')}</p>
+<div class="cta"><button type="button" class="btn" data-go="qarjy">${OPEN}: Qarjy AI</button><button type="button" class="btn ghost" data-go="map">${OPEN}: Financial Map</button></div></div>
+<div class="ph" role="img" aria-label="${T('Бюджет үлгісі','Пример бюджета','Budget example')}"><div class="tp">${T('Мысал: 400 000 ₸ табыс','Пример: доход 400 000 ₸','Example: income 400,000 ₸')}</div>
+<div class="row2"><span>🏠 ${T('Тұрғын үй','Жильё','Housing')}</span><b>140 000 ₸</b></div>
+<div class="row2"><span>🛒 ${T('Азық-түлік','Продукты','Groceries')}</span><b>90 000 ₸</b></div>
+<div class="row2"><span>💳 ${T('Қарыз төлемі','Платёж по долгу','Debt payment')}</span><b>80 000 ₸</b></div>
+<div class="row2"><span>🛟 ${T('Қор','Резерв','Reserve')}</span><b>50 000 ₸</b></div>
+<div class="row2"><span>📈 ${T('Инвестиция','Инвестиции','Investing')}</span><b>40 000 ₸</b></div>
+<div class="ready"><span>${T('Бөлінбеген','Не распределено','Unassigned')}</span><span>0 ₸</span></div></div></div></div>
+
+<div class="pn"><h3 class="m">${T('Мысал есеп: қарыздан инвесторға','Пример расчёта: от долга к инвестору','Worked example: from debt to investor')}</h3>
+<p class="sm2">${T('Бұл ойдан құрастырылған есеп, нақты адамның тарихы емес және болжам да емес. Ставкалар түсіндіру үшін алынды.','Это условный расчёт, не история реального человека и не прогноз. Ставки взяты для иллюстрации.','This is a hypothetical calculation, not a real person’s story and not a forecast. Rates are illustrative.')}</p>
+<div class="calc">
+<div><small>${T('1-кезең. Қарыз','Этап 1. Долг','Stage 1. Debt')}</small><b>1 000 000 ₸</b><span>${T('жылдық 25% несие, ай сайын 50 000 ₸ төленеді','кредит под 25% годовых, платёж 50 000 ₸ в месяц','a loan at 25% a year, paying 50,000 ₸ a month')}</span></div>
+<div class="w"><small>${T('Жабылу мерзімі','Срок погашения','Payoff time')}</small><b>27 ${T('ай','мес.','months')}</b><span>${T('Артық төлем шамамен 307 000 ₸','Переплата около 307 000 ₸','Overpayment about 307,000 ₸')}</span></div>
+<div><small>${T('2-кезең. Сол 50 000 ₸ инвестицияға','Этап 2. Те же 50 000 ₸ в инвестиции','Stage 2. The same 50,000 ₸ invested')}</small><b>36 ${T('ай','мес.','months')}</b><span>${T('Жиналған жарна: 1 800 000 ₸','Внесено: 1 800 000 ₸','Contributed: 1,800,000 ₸')}</span></div>
+<div class="g"><small>${T('Жорамал 12% жылдық табыспен','При условных 12% годовых','At an assumed 12% a year')}</small><b>≈ 2 153 800 ₸</b><span>${T('Табыс кепілдік емес, нарыққа байланысты өзгереді','Доходность не гарантирована и зависит от рынка','Returns are not guaranteed and depend on the market')}</span></div>
+</div></div>
+
+<div class="end"><h3 class="m">${T('Бүгін бір қадам жасаңыз','Сделайте шаг сегодня','Take one step today')}</h3>
+<p class="lead">${T('Қарызыңызды тізімдеп, бір ай бюджетін жазудан бастаңыз. Қалғанын BAYU көрсетеді.','Начните со списка долгов и бюджета на один месяц. Остальное подскажет BAYU.','Start with a list of your debts and one month of budget. BAYU will guide the rest.')}</p>
+<div class="cta"><button type="button" class="btn big" data-go="start">${T('Бастау','Начать','Start')}</button><button type="button" class="btn ghost" data-go="lab">${OPEN}: InvestLab</button></div>
+<p class="src">${T('Дереккөздер:','Источники:','Sources:')} <a href="https://nationalbank.kz/ru/news/press-relizy/20503" target="_blank" rel="noopener noreferrer">${T('Ұлттық банк','Нацбанк','National Bank')}</a><a href="https://www.zakon.kz/finansy/6537456-dolgi-kazakhstantsev-po-kreditam-dostigli-267-trillionov-tenge.html" target="_blank" rel="noopener noreferrer">zakon.kz</a><a href="https://finance.kz/articles/garantiya-kfgd-po-depozitam" target="_blank" rel="noopener noreferrer">finance.kz</a><br>${T('Көрсеткіштер көрсетілген күнге берілген. Бұл білім беру материалы, инвестициялық кеңес емес. Бөлімнің стилі бюджет қолданбаларының үздік тәжірибесіне негізделген, бірақ олармен байланысымыз жоқ.','Показатели даны на указанные даты. Это образовательный материал, а не инвестиционная рекомендация. Стиль раздела основан на лучших практиках бюджетных приложений, но мы с ними не связаны.','Figures are as of the stated dates. This is educational material, not investment advice. The style draws on best practice from budgeting apps, but we are not affiliated with them.')}</p></div>`;
+const after=document.getElementById('lp2');(after&&after.parentNode===home)?after.after(sec):home.appendChild(sec);
+}catch(e){try{console.warn('path',e)}catch(_){}}})();
+</script><script id="flowsrc">(function(){try{
+const home=document.getElementById('v-home');if(!home||document.getElementById('flowcss'))return;
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const st=document.createElement('style');st.id='flowcss';st.textContent=`
+html:has(#v-home:not([hidden])){overflow-x:clip}
+body:has(#v-home:not([hidden])){overflow-x:clip}
+#v-home:not([hidden]){gap:0!important}
+#v-home .hero,#v-home #startBox,#v-home .lp{width:100vw;margin:0 calc(50% - 50vw)!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding-inline:max(16px,calc((100vw - 1080px)/2))!important;
+ background:radial-gradient(640px 240px at 80% 38%,color-mix(in srgb,var(--g2) 15%,transparent),transparent 100%),radial-gradient(560px 220px at 10% 66%,color-mix(in srgb,var(--g3) 12%,transparent),transparent 100%)!important}
+#v-home .lp::before{display:none!important}
+#v-home .hero{min-height:calc(100svh - 56px - var(--sbh,170px));justify-content:center;padding-block:clamp(24px,5vw,56px)!important}
+#v-home #startBox{padding-block:8px 28px!important;background:none!important}
+#v-home .lp{min-height:0;justify-content:center;padding-block:clamp(36px,7vw,84px)!important}
+#v-home #path{min-height:0;display:block;padding-block:0!important;background:none!important;gap:0}
+#v-home #path>.pn,#v-home #path>.end{min-height:0;justify-content:center;width:100vw;margin:0 calc(50% - 50vw)!important;padding-inline:max(16px,calc((100vw - 1080px)/2));padding-block:clamp(36px,7vw,84px);box-sizing:border-box;
+ background:radial-gradient(640px 240px at 80% 38%,color-mix(in srgb,var(--g2) 13%,transparent),transparent 100%),radial-gradient(560px 220px at 10% 66%,color-mix(in srgb,var(--g3) 10%,transparent),transparent 100%)}
+#v-home #path>.end{border:0;border-radius:0;box-shadow:none;align-items:flex-start;display:flex}
+#v-home #path>.pn{display:flex}
+#v-home #path>.pn.first{padding-top:clamp(28px,6vw,64px)}
+@media(prefers-reduced-motion:no-preference){
+ #v-home .rev{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+ #v-home .rev.in{opacity:1;transform:none}}`;
+document.head.appendChild(st);
+const sb=document.getElementById('startBox');
+const fit=()=>{if(sb)document.documentElement.style.setProperty('--sbh',Math.round(sb.getBoundingClientRect().height)+'px')};
+fit();addEventListener('resize',fit);setTimeout(fit,400);setTimeout(fit,1500);
+/* жұмсақ пайда болу */
+if(!rm&&'IntersectionObserver'in window){
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+ const targets=[];
+ home.querySelectorAll('.hero > *, #startBox > *, .lp > *, #path > .pn > *, #path > .end > *').forEach(n=>{if(n.id==='rain'||n.tagName==='CANVAS')return;targets.push(n)});
+ targets.forEach((n,i)=>{n.classList.add('rev');io.observe(n)});
+ setTimeout(()=>targets.forEach(n=>{const r=n.getBoundingClientRect();if(r.top<innerHeight)n.classList.add('in')}),50);
+}
+}catch(e){try{console.warn('flow',e)}catch(_){}}})();
+</script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Nunito:wght@500;600;700&family=Merriweather:wght@700&family=Rubik:wght@600;700&display=swap">
+<style id="homefonts">
+/* басты бет: ерекше, бірақ оқуға жайлы қаріптер. Әр қаріптің артында қор (fallback) бар */
+#v-home .lp h2,#v-home .pth h2.big,#v-home #startBox h3{font-family:'Montserrat','PT Sans',system-ui,sans-serif!important;font-weight:800;letter-spacing:-.01em;line-height:1.18}
+#v-home .lp .kicker,#v-home .pth .kicker,#v-home .hero .kicker{font-family:'Montserrat','PT Sans',sans-serif;font-weight:700;letter-spacing:.14em}
+#v-home .pth h3.m{font-family:'Montserrat','PT Sans',sans-serif!important;font-weight:700;letter-spacing:-.005em}
+#v-home .lp .sl h3,#v-home .pth .s h4,#v-home .pth .r h4{font-family:'Merriweather','PT Serif',Georgia,serif!important;font-weight:700;line-height:1.25}
+#v-home .lp .sl p,#v-home .lp .bn li,#v-home .lp .sl .im,#v-home .lp .sl .rs,#v-home .pth .lead,#v-home .pth .s p,#v-home .pth .sm2,#v-home .pth .calc span,#v-home .pth .sc span,#v-home .hero p{font-family:'Nunito','PT Sans',system-ui,sans-serif!important;font-weight:600;letter-spacing:.005em}
+#v-home .lp .sl .rs{font-weight:700}
+#v-home .lp .sl .im{font-weight:500}
+#v-home .pth .sc b,#v-home .pth .calc b,#v-home .pth .ph .row2 b{font-family:'Rubik','PT Sans',sans-serif!important;font-weight:700;letter-spacing:-.01em}
+#v-home .pth .calc small,#v-home .pth .sc small,#v-home .pth .src{font-family:'Nunito','PT Sans',sans-serif;font-weight:600}
+#v-home #startBox .sg b,#v-home #startBox .sg strong{font-family:'Montserrat','PT Sans',sans-serif;font-weight:700}
+#v-home .btn{font-family:'Montserrat','PT Sans',sans-serif;font-weight:700;letter-spacing:.01em}
+</style>
+<style id="topgap">
+main:has(#v-home:not([hidden])){padding-top:0!important}
+#v-home:not([hidden]){margin-top:0}
+#v-home .hero{min-height:0!important;justify-content:flex-start!important;padding-block:clamp(14px,2.5vw,28px) clamp(18px,3vw,34px)!important}
+</style>
+</body></html>
 </body></html>
