@@ -2463,7 +2463,7 @@ $('#sugForm').onsubmit=async e=>{
 };
 
 renderAuthUI();drawJourney();
-{let rv=null;try{const wn=(window.name||'').split('|');if(wn[0].indexOf('baiu:')===0&&wn[1]&&Date.now()-(+wn[2]||0)<30000)rv=wn[1];window.name=wn[0]}catch(e){}try{if(rv)throw 0;const o=JSON.parse(sessionStorage.getItem('baiu.rv')||localStorage.getItem('baiu.rv')||'null');if(o&&Date.now()-o.t<20000)rv=o.v}catch(e){}try{sessionStorage.removeItem('baiu.rv');localStorage.removeItem('baiu.rv')}catch(e){}try{if(!rv)rv=new URLSearchParams(location.search).get('v')}catch(e){}show(rv&&document.getElementById('v-'+rv)?rv:(location.hash||'#home').slice(1))}
+{let rv=null;try{const wn=(window.name||'').split('|');if(wn[0].indexOf('baiu:')===0&&wn[1]&&Date.now()-(+wn[2]||0)<30000)rv=wn[1];window.name=wn[0]}catch(e){}try{if(rv)throw 0;const o=JSON.parse(sessionStorage.getItem('baiu.rv')||localStorage.getItem('baiu.rv')||'null');if(o&&Date.now()-o.t<20000)rv=o.v}catch(e){}try{sessionStorage.removeItem('baiu.rv');localStorage.removeItem('baiu.rv')}catch(e){}try{if(!rv){const hs=(location.hash||'').slice(1);rv=(hs&&document.getElementById('v-'+hs))?hs:new URLSearchParams(location.search).get('v')}}catch(e){}show(rv&&document.getElementById('v-'+rv)?rv:(location.hash||'#home').slice(1));try{const u=new URL(location.href);if(u.searchParams.has('v')){u.searchParams.delete('v');history.replaceState(null,'',u.pathname+u.search+u.hash)}}catch(e){}}
 
 /* ---------- BAYU: жауып тұрған доллар мен алтын ---------- */
 (function(){
@@ -3804,6 +3804,7 @@ INIT.vc=render;
 .od .odbox{position:relative;margin-top:10px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#000;height:calc(100vh - 190px);height:calc(100dvh - 190px);min-height:460px}
 .od iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
 .od .note{margin:8px 0 0}
+@media(max-width:700px){.od .head h2{display:none}.od .odbox{height:calc(100vh - 150px);height:calc(100dvh - 150px);min-height:340px;margin-top:6px}}
 .fabbtn.odbig{flex:1 1 100%;justify-content:center;font-size:1.2rem;padding:13px 22px;border-width:2px;border-color:var(--gold);box-shadow:0 0 0 4px color-mix(in srgb,var(--gold) 22%,transparent),0 6px 20px color-mix(in srgb,var(--gold) 25%,transparent);letter-spacing:.01em}
 .fabbtn.odbig:hover{box-shadow:0 0 0 5px color-mix(in srgb,var(--gold) 35%,transparent),0 8px 26px color-mix(in srgb,var(--gold) 35%,transparent)}
 .od .kicker{font-size:1.05rem}
@@ -3858,6 +3859,8 @@ canvas#lc{width:100%;height:220px;background:rgba(255,255,255,.03);border:1px so
 .stg{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}.stg div{flex:1;min-width:200px;padding:10px 14px;border:1px solid var(--ln);background:rgba(255,255,255,.03)}.stg div.on{border-color:var(--ac);background:rgba(255,159,28,.1)}.stg small{color:var(--mu)}
 .note{color:var(--mu);font-size:14px;line-height:1.45;margin:6px 0}
 #start{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at 30% 20%,rgba(255,159,28,.18),transparent 55%),linear-gradient(160deg,#0d1218,#06080b)}#start[hidden]{display:none}
+#start{overflow-y:auto;-webkit-overflow-scrolling:touch;align-items:flex-start}#sw{margin:auto}.stk{position:sticky;bottom:0;z-index:2;padding:12px 0 6px;background:linear-gradient(rgba(13,18,24,0),#0d1218 35%)}
+@media(max-width:700px),(max-height:640px){#start{padding:10px}#sw{padding:16px 16px 8px}#sw p{font-size:15px;line-height:1.45;margin:8px 0}#sw ul{font-size:14px;line-height:1.45;margin:8px 0 12px}.go{font-size:19px;padding:12px 24px}}
 #sw{width:min(760px,100%);padding:30px 34px}#sw h1{margin:0;font-size:clamp(34px,6vw,64px);letter-spacing:.06em;line-height:1;font-weight:700}#sw h1 em{color:var(--ac);font-style:normal}
 #sw p{color:#c3ccd5;font-size:17px;line-height:1.5;margin:12px 0}#sw ul{margin:10px 0 18px;padding-left:20px;color:#c3ccd5;font-size:16px;line-height:1.6}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row select{font:inherit;font-size:16px;padding:9px 12px;background:#161a20;color:#fff;border:1px solid var(--ln)}
@@ -3882,7 +3885,7 @@ canvas#lc{width:100%;height:220px;background:rgba(255,255,255,.03);border:1px so
  <div id="topc" class="pn"><div><small>Күн</small><b id="hd">1</b></div><div><small>Уақыт</small><b id="hc">06:00</b></div><div class="lv"><small>Деңгей</small><b id="hs">Шағын бизнес</b><div id="bar"><i id="bi"></i></div></div><div><small>Жылдамдық</small><b id="hx">×1</b></div></div>
  <div id="feed"></div>
  <div id="stat" class="pn"><div><div class="k">Қолма-қол ақша</div><div class="cash"><span id="hc1">0</span><em>₸</em></div></div><div><div class="k">Таза байлық</div><div class="s2" id="hn">0</div></div><div><div class="k">Бүгінгі нәтиже</div><div class="pl" id="hp">0</div></div></div>
- <div id="stock" class="pn"><div><small>Шикізат</small><b id="s_raw">0</b></div><div><small>Бөлшек</small><b id="s_part">0</b></div><div><small>Агрегат</small><b id="s_prod">0</b></div><div><small>Станок</small><b id="s_mach">0</b></div></div>
+ <div id="stock" class="pn"><div><small>Шикізат</small><b id="s_raw">0</b></div><div><small>Жарт. фабрикат</small><b id="s_part">0</b></div><div><small>Дайын тауар</small><b id="s_prod">0</b></div><div><small>Өнер. өнім</small><b id="s_mach">0</b></div></div>
  <div id="cross"></div><div id="prompt" hidden></div><div id="prog" hidden><i></i></div>
  <div id="keys">WASD жүру · Shift жүгіру · E әрекет · F көлік · B мәзір · P кідірту · 1/2/3 жылдамдық</div>
 </div>
@@ -3891,10 +3894,10 @@ canvas#lc{width:100%;height:220px;background:rgba(255,255,255,.03);border:1px so
 <button data-t="market">Нарық</button><button data-t="prod">Өндіріс</button><button data-t="ledger">Бухгалтерия</button><button data-t="city">Қала</button><button data-t="set">Баптау</button><button class="x" id="mx">✕ Жабу (Esc)</button></div><div id="mbody"></div></div></div>
 <div id="toast"></div>
 <div id="start"><div id="sw" class="pn"><h1>ӨНДІРІС <em>ҚАЛАСЫ</em></h1>
-<p>Кішкентай гараждан бастаңыз, шағын цех пен орта фабрика салыңыз, ірі зауыт иесі болыңыз. Кіріс-шығысыңызды бухгалтерияда жүргізіңіз, көлік алыңыз, үй салыңыз.</p>
-<ul><li>Бірінші адамнан көрінетін индустриалды моно қала: гараж, цехтар, фабрикалар, зауыттар</li><li>Нақты экономика: шикізат → бөлшек → агрегат → станок, нарық бағасы, жалақы, салық, несие</li><li>Деңгейлер: Шағын бизнес → Орта бизнес → Ірі өнеркәсіп</li></ul>
+<p>Кішкентай гараждан бастаңыз, шағын зауыттардан бастап орта және ірі зауыттар салыңыз: жүн-текстиль, тері, метал, баспа машинасы, мұнай өңдеу. Кіріс-шығысыңызды бухгалтерияда жүргізіңіз, көлік алыңыз, үй салыңыз.</p>
+<ul><li>Бірінші адамнан көрінетін индустриалды моно қала: гараж, жартылай фабрикат, тыңайтқыш, жүн-текстиль, тері, метал, баспа машинасы және мұнай өңдеу зауыттары (ішіне кіріп жұмыс істеуге болады)</li><li>Нақты экономика: шикізат → жартылай фабрикат → дайын тауар → өнеркәсіп өнімі, нарық бағасы, жалақы, салық, несие</li><li>Деңгейлер: Шағын бизнес → Орта бизнес → Ірі өнеркәсіп</li></ul>
 <div class="row" style="margin-bottom:16px"><span style="color:var(--mu)">Графика:</span><select id="q"><option value="0">Төмен</option><option value="1">Орта</option><option value="2">Жоғары</option><option value="3">4K (ең жоғары)</option></select></div>
-<div class="row"><button class="go" id="go">Ойынды бастау</button><button class="go sec" id="newg" hidden>Жаңа ойын</button></div>
+<div class="row stk"><button class="go" id="go">Ойынды бастау</button><button class="go sec" id="newg" hidden>Жаңа ойын</button></div>
 <p style="font-size:13px;color:var(--mu)">Ойын оқу мақсатында жасалған. Сақтау осы браузерде ғана. WebGL қолдайтын құрылғы керек.</p></div></div>
 <div id="end" hidden><div class="pn"><h2>Құттықтаймыз!</h2><p id="et" style="font-size:19px;line-height:1.5"></p><button class="go" id="ec">Ойынды жалғастыру</button></div></div>
 <div id="ld" hidden>ҚАЛА ЖҮКТЕЛУДЕ…</div><div id="err"></div>
@@ -3910,7 +3913,7 @@ function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15
 const LS='bayu_city_v1',LQ='bayu_city_q';
 const DAYLEN=14;
 const IT=['raw','part','prod','mach'];
-const IN={raw:'Металл шикізат',part:'Бөлшек',prod:'Агрегат',mach:'Станок'};
+const IN={raw:'Шикізат',part:'Жартылай фабрикат',prod:'Дайын тауар',mach:'Өнеркәсіп өнімі'};
 const IC={raw:'⛓',part:'⚙',prod:'🧰',mach:'🏭'};
 const BASE={raw:6000,part:17000,prod:48000,mach:230000};
 const DEPTH={raw:400,part:150,prod:70,mach:25};
@@ -3918,14 +3921,14 @@ const RECIPE={part:{raw:2},prod:{part:2},mach:{prod:2,raw:4}};
 const ST=[0,8e6,60e6];
 const STN=['Шағын бизнес','Орта бизнес','Ірі өнеркәсіп'];
 const BD=[
- {id:'garage',name:'Гараж-шеберхана',tier:0,cost:0,maxW:2,out:'part',rate:5,wage:18000,util:3500,kind:'garage'},
- {id:'m1',name:'Шағын цех №1',tier:1,cost:1200000,maxW:4,out:'part',rate:6,wage:18000,util:9000,kind:'mini'},
- {id:'m2',name:'Шағын цех №2',tier:1,cost:1500000,maxW:5,out:'part',rate:6,wage:18000,util:10000,kind:'mini'},
- {id:'a1',name:'Агрегат құрастыру фабрикасы',tier:2,cost:14e6,maxW:12,out:'prod',rate:4,wage:20000,util:55000,kind:'assembly'},
- {id:'a2',name:'Тетік және агрегат фабрикасы',tier:2,cost:17e6,maxW:14,out:'prod',rate:4,wage:20000,util:62000,kind:'assembly'},
- {id:'s1',name:'Металлургия комбинаты',tier:3,cost:60e6,maxW:25,out:'part',rate:16,wage:22000,util:180000,kind:'steel'},
- {id:'w1',name:'Станок жасау зауыты',tier:3,cost:95e6,maxW:25,out:'mach',rate:2.5,wage:24000,util:260000,kind:'plant'},
- {id:'w2',name:'Ауыр техника зауыты',tier:3,cost:130e6,maxW:35,out:'mach',rate:2.5,wage:24000,util:340000,kind:'plant'}
+ {id:'garage',name:'Гараж-шеберхана',sn:'ГАРАЖ',tier:0,cost:0,maxW:2,out:'part',rate:5,wage:18000,util:3500,kind:'garage'},
+ {id:'m1',name:'Жартылай фабрикат зауыты',sn:'ЖАРТЫЛАЙ ФАБРИКАТ',ri:'Шикізат қапшықтары',ro:'Жартылай фабрикат',tier:1,cost:1200000,maxW:4,out:'part',rate:6,wage:18000,util:9000,kind:'semi'},
+ {id:'m2',name:'Органикалық тыңайтқыш зауыты',sn:'ТЫҢАЙТҚЫШ ЗАУЫТЫ',ri:'Құс қиы мен мал қиы',ro:'Органикалық тыңайтқыш',tier:1,cost:1500000,maxW:5,out:'part',rate:6,wage:18000,util:10000,kind:'fert'},
+ {id:'a1',name:'Жүн-текстиль зауыты',sn:'ЖҮН-ТЕКСТИЛЬ',ri:'Қой жүні',ro:'Мата мен жіп',tier:2,cost:14e6,maxW:12,out:'prod',rate:4,wage:20000,util:55000,kind:'textile'},
+ {id:'a2',name:'Тері өңдеу зауыты',sn:'ТЕРІ ӨҢДЕУ',ri:'Шикі тері',ro:'Былғары',tier:2,cost:17e6,maxW:14,out:'prod',rate:4,wage:20000,util:62000,kind:'leather'},
+ {id:'s1',name:'Көлік және метал зауыты',sn:'КӨЛІК · МЕТАЛ',ri:'Кен мен металл сынығы',ro:'Прокат және көлік',tier:3,cost:60e6,maxW:25,out:'part',rate:16,wage:22000,util:180000,kind:'metal'},
+ {id:'w1',name:'Баспа машинасы зауыты',sn:'БАСПА МАШИНАСЫ',ri:'Болат пен тетіктер',ro:'Баспа машинасы',tier:3,cost:95e6,maxW:25,out:'mach',rate:2.5,wage:24000,util:260000,kind:'printm'},
+ {id:'w2',name:'Мұнай өңдеу зауыты',sn:'МҰНАЙ ӨҢДЕУ',ri:'Шикі мұнай',ro:'Бензин мен дизель',tier:3,cost:130e6,maxW:35,out:'mach',rate:2.5,wage:24000,util:340000,kind:'oil'}
 ];
 const BDM={};BD.forEach(d=>BDM[d.id]=d);
 const CARS=[
@@ -3938,7 +3941,7 @@ const TIPS=[
  'Маржа = (баға − шығын) / баға. Тек сатылым емес, қалған пайызға қараңыз.',
  'Пайда бар, ақша жоқ болуы мүмкін: ақша ағыны (cash flow) жалақы төлеуді шешеді.',
  'Өнім көп шығарсаңыз бағасы түседі: нарық сұранысын санап өндіріңіз.',
- 'Шикізаттан бөлшек, бөлшектен агрегат, агрегаттан станок: қосылған құн өскен сайын маржа өседі.',
+ 'Шикізаттан жартылай фабрикат, одан дайын тауар, одан өнеркәсіп өнімі: қосылған құн өскен сайын маржа өседі.',
  'Инвестиция өзін өтеу мерзімі (payback) = құрылыс құны / тәуліктік таза пайда.',
  'Несие жылдам өсуге көмектеседі, бірақ пайыз күн сайын шығын жазады.',
  'Бухгалтерия: кіріс, операциялық шығын және инвестицияны бөлек санаңыз.',
@@ -4013,8 +4016,8 @@ function canBuild(d){const b=S.b[d.id];if(b&&b.own)return'own';
  if(d.tier===3&&S.stage<2)return'Ірі өнеркәсіп деңгейі керек (60 млн ₸ байлық)';
  if(S.cash<d.cost)return'Ақша жетпейді: '+F(d.cost-S.cash)+' керек';return''}
 function build(id){const d=BDM[id];const c=canBuild(d);if(c)return c;
- add('cap','Құрылыс: '+d.name,d.cost);S.b[id]={own:1,w:0,pr:0,made:0,st:'idle',bt:0};
- feed('Құрылыс басталды: '+d.name,'lv');if(window.__built)window.__built(id);saveGame();return''}
+ add('cap','Құрылыс: '+d.name,d.cost);S.b[id]={own:1,w:Math.min(2,d.maxW||2),pr:0,made:0,st:'idle',bt:1};
+ feed('Зауыт сатып алынды: '+d.name+'. Ішіне кіріп, жұмысшы жалдаңыз','lv');if(window.__built)window.__built(id);saveGame();return''}
 function hire(id,n){const d=BDM[id],b=S.b[id];if(!b||!b.own)return;b.w=clamp(b.w+n,0,d.maxW);if(window.__workers)window.__workers(id)}
 function buyCar(id){const c=CARS.find(x=>x.id===id);if(!c)return'';if(S.cars.includes(id))return'Бұл көлік бар';
  if(S.stage<1)return'Көлік дүкені «Орта бизнес» деңгейінде ашылады';if(S.cash<c.price)return'Ақша жетпейді: '+F(c.price-S.cash)+' керек';
@@ -4025,15 +4028,15 @@ function buyHouse(){if(S.house)return'Үй бар';if(S.stage<2)return'Үй са
 function loan(n){if(n>0){const lim=Math.max(3e6,netWorth()*0.5);if(S.debt+n>lim)return'Несие лимиті: '+F(lim);S.debt+=n;S.cash+=n;add('inc','Несие алу',0);S.led.recent.unshift({d:S.day,k:'inc',c:'Несие алу (міндеттеме)',a:n});return''}
  const p=Math.min(-n,S.debt,S.cash);if(p<1)return'Қайтаруға ақша жоқ';S.debt-=p;S.cash-=p;S.led.recent.unshift({d:S.day,k:'cap',c:'Несие қайтару',a:p});return''}
 const OBJ=[
- {t:'Верстакта E басып 3 бөлшек жаса',ok:()=>S.crafted>=3,pr:()=>Math.min(3,S.crafted)+'/3'},
+ {t:'Верстакта E басып 3 жартылай фабрикат жаса',ok:()=>S.crafted>=3,pr:()=>Math.min(3,S.crafted)+'/3'},
  {t:'Компьютерден (Нарық) шикізат сатып ал',ok:()=>!!S.fl.bought},
  {t:'Гаражға жұмысшы жалда (Өндіріс мәзірі)',ok:()=>S.b.garage.w>=1},
- {t:'Шағын цех сал: 1,2 млн ₸',ok:()=>!!((S.b.m1&&S.b.m1.own)||(S.b.m2&&S.b.m2.own))},
+ {t:'Шағын зауыт сал (жартылай фабрикат немесе тыңайтқыш): 1,2 млн ₸',ok:()=>!!((S.b.m1&&S.b.m1.own)||(S.b.m2&&S.b.m2.own))},
  {t:'Таза байлық 8 млн ₸: Орта бизнес',ok:()=>S.stage>=1,pr:()=>F(Math.min(netWorth(),8e6))+' / 8 млн ₸'},
- {t:'Орта фабрика сал',ok:()=>!!((S.b.a1&&S.b.a1.own)||(S.b.a2&&S.b.a2.own))},
+ {t:'Орта зауыт сал (жүн-текстиль немесе тері өңдеу)',ok:()=>!!((S.b.a1&&S.b.a1.own)||(S.b.a2&&S.b.a2.own))},
  {t:'Көлік дүкенінен көлік ал',ok:()=>S.cars.length>0},
  {t:'Таза байлық 60 млн ₸: Ірі өнеркәсіп',ok:()=>S.stage>=2,pr:()=>F(Math.min(netWorth(),60e6))+' / 60 млн ₸'},
- {t:'Ірі зауыт сал',ok:()=>!!((S.b.s1&&S.b.s1.own)||(S.b.w1&&S.b.w1.own)||(S.b.w2&&S.b.w2.own))},
+ {t:'Ірі зауыт сал (метал, баспа машинасы немесе мұнай)',ok:()=>!!((S.b.s1&&S.b.s1.own)||(S.b.w1&&S.b.w1.own)||(S.b.w2&&S.b.w2.own))},
  {t:'Өз үйіңді сал',ok:()=>!!S.house}
 ];
 function curObj(){for(let i=0;i<OBJ.length;i++)if(!OBJ[i].ok())return{i,o:OBJ[i]};return null}
@@ -4042,7 +4045,7 @@ function curObj(){for(let i=0;i<OBJ.length;i++)if(!OBJ[i].ok())return{i,o:OBJ[i]
 let renderer,scene,camera,sun,hemi,ptl,ANISO=4,TS=1024,QL=2,worldReady=false;
 const QS=[{n:'Төмен',sh:1024,ts:512,shadow:false},{n:'Орта',sh:2048,ts:1024,shadow:true},{n:'Жоғары',sh:4096,ts:2048,shadow:true},{n:'4K',sh:4096,ts:2048,shadow:true}];
 function qPR(i){const dpr=window.devicePixelRatio||1;if(i===0)return Math.min(dpr,0.8);if(i===1)return Math.min(dpr,1);if(i===2)return clamp(Math.max(dpr,2),2,2.5);return clamp(3840/Math.max(320,innerWidth),2,3)}
-const T={},M={},ANIM=[],COL=[],IP=[],EMIT=[],BLD={},LOT={};
+const T={},M={},ANIM=[],COL=[],IP=[],EMIT=[],BLD={},LOT={},SALE={};
 const R7=rng(7);
 function ctex(w,h,draw,rep,noSrgb){const c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');draw(g,w,h);
  const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;if(rep)t.repeat.set(rep[0],rep[1]);t.anisotropy=ANISO;if(!noSrgb)t.encoding=THREE.sRGBEncoding;t.userData={c:c,g:g};return t}
@@ -4137,7 +4140,8 @@ const PL={garage:{x:-18,z:-10,f:1,W:16,D:14,H:5.4},m1:{x:16,z:-10,f:1,W:22,D:16,
  a1:{x:90,z:-6,f:1,W:44,D:30,H:11},a2:{x:-90,z:-6,f:1,W:44,D:30,H:11},
  s1:{x:0,z:96,f:-1,W:56,D:40,H:16},w1:{x:90,z:96,f:-1,W:56,D:38,H:14},w2:{x:-90,z:96,f:-1,W:60,D:42,H:15}};
 const DEAL={x:-90,z:-96,W:40,D:22,H:7},HOUSEP={x:180,z:-186,W:22,D:14},PITCH=90;
-const act=id=>{const b=S.b[id];return(b&&b.own&&b.bt>=1&&b.w>0&&b.st==='ok')?1:0};
+let MAN=null;
+const act=id=>{const b=S.b[id];if(MAN===id)return 1;if(b&&b.own&&(b.st==='noin'||b.st==='cash'))return 0;return 1};
 let crafting=0;
 const wpos=(pl,lx,lz)=>[pl.x+pl.f*lx,pl.z+pl.f*lz];
 function mt(o){return new THREE.MeshStandardMaterial(o)}
@@ -4175,19 +4179,28 @@ function forklift(g,x,z,r){const gr=new THREE.Group();gr.position.set(x,0,z);gr.
  box(gr,1.1,.8,2,M.yellow,0,.7,0,2);box(gr,1.1,.1,.9,M.dark,0,1.5,-.2,2);for(const sx of[-.5,.5])box(gr,.06,1.8,.06,M.dark,sx,1.0,-.9,1);
  box(gr,.08,1.9,.08,M.steel,-.4,1.1,1.1,1);box(gr,.08,1.9,.08,M.steel,.4,1.1,1.1,1);box(gr,.9,.06,.7,M.steel,0,.3,1.45,1);
  for(const [sx,sz] of[[-.55,.6],[.55,.6],[-.55,-.6],[.55,-.6]])cyl(gr,.3,.3,.2,M.rubber,sx,.3,sz,12).rotation.z=Math.PI/2}
-function worker(g,col){const gr=new THREE.Group();const vest=mt({color:col||0xff7a12,roughness:.7});
- const lg=cyl(gr,.12,.1,.85,M.cloth,0,.42,0,10,false);void lg;const tor=cyl(gr,.24,.2,.62,vest,0,1.12,0,12,false);
+function worker(g,col){const gr=new THREE.Group();const vest=mt({color:col||0xff7a12,roughness:.7});const L={};
+ for(const s of[-1,1]){const lg=new THREE.Group();lg.position.set(s*.1,.88,0);gr.add(lg);cyl(lg,.1,.08,.86,M.cloth,0,-.43,0,8,false);L[s<0?'ll':'lr']=lg;
+  const ar=new THREE.Group();ar.position.set(s*.3,1.4,0);gr.add(ar);cyl(ar,.06,.05,.6,M.cloth,0,-.3,0,8,false);L[s<0?'al':'ar']=ar}
+ cyl(gr,.24,.2,.62,vest,0,1.12,0,12,false);
  const hd=new THREE.Mesh(new THREE.SphereGeometry(.14,14,10),M.skin);hd.position.y=1.6;gr.add(hd);
  const hm=new THREE.Mesh(new THREE.SphereGeometry(.17,14,8,0,Math.PI*2,0,Math.PI/2),M.helm);hm.position.y=1.63;gr.add(hm);
- for(const s of[-1,1]){const arm=cyl(gr,.06,.06,.6,M.cloth,s*.3,1.1,.05,8,false);arm.rotation.x=.3}void tor;gr.castShadow=true;return gr}
+ const cr=new THREE.Mesh(new THREE.BoxGeometry(.55,.36,.42),pm(0xb98b55,.8,0));cr.position.set(0,1.18,.5);cr.visible=false;gr.add(cr);
+ gr.userData.L=L;gr.userData.carry=cr;gr.castShadow=true;return gr}
+function stepW(w,t,mv,carry){const L=w.userData.L;if(!L)return;const s=mv?Math.sin(t*7+(w.userData.ph||0)):0;L.ll.rotation.x=s*.7;L.lr.rotation.x=-s*.7;
+ if(carry){L.al.rotation.x=L.ar.rotation.x=-1.25}else{L.al.rotation.x=-s*.6;L.ar.rotation.x=s*.6}w.userData.carry.visible=!!carry;w.position.y=.1+(mv?Math.abs(s)*.03:0)}
 function makeWorkers(id,g,pts){const b=BLD[id];b.workers=[];const rn=rng(id.length*77+pts.length);
- for(let i=0;i<8;i++){const w=worker(g,[0xff7a12,0xf4c20d,0x2e9bd6][i%3]);const p=pts[i%pts.length];w.position.set(p[0]+(rn()-.5)*1.4,.1,p[1]+(rn()-.5)*1.4);w.rotation.y=rn()*6.28;w.userData.ph=rn()*6;w.visible=false;g.add(w);b.workers.push(w)}
- ANIM.push((t)=>{const a=act(id);for(const w of b.workers)if(w.visible){w.position.y=.1+(a?Math.abs(Math.sin(t*3+w.userData.ph))*.04:0);w.rotation.y+=a?Math.sin(t+w.userData.ph)*.004:0}})}
+ for(let i=0;i<8;i++){const w=worker(g,[0xff7a12,0xf4c20d,0x2e9bd6][i%3]);const p=pts[i%pts.length];w.position.set(p[0]+(rn()-.5)*1.4,.1,p[1]+(rn()-.5)*1.4);w.rotation.y=rn()*6.28;w.userData.ph=rn()*6;w.userData.hx=w.position.x;w.userData.hz=w.position.z;w.userData.ang=rn()*6.28;w.visible=false;g.add(w);b.workers.push(w)}
+ ANIM.push((t)=>{const a=act(id);for(const w of b.workers)if(w.visible){const u=Math.sin(t*.35+w.userData.ph),c=Math.cos(t*.35+w.userData.ph),an=w.userData.ang;
+  if(a){w.position.x=w.userData.hx+Math.sin(an)*u*1.8;w.position.z=w.userData.hz+Math.cos(an)*u*1.8;w.rotation.y=an+(c>0?0:Math.PI)}stepW(w,t,a,false)}})}
 window.__workers=function(id){const b=BLD[id];if(!b||!b.workers)return;const n=S.b[id].w;b.workers.forEach((w,i)=>w.visible=i<n)};
 /* ===== SHELL ===== */
 function shell(id){const d=BDM[id],pl=PL[id],W=pl.W,D=pl.D,H=pl.H,k=d.kind;
  const g=new THREE.Group();g.position.set(pl.x,0,pl.z);g.rotation.y=pl.f===1?0:Math.PI;scene.add(g);
- const cfg={garage:{dw:5.2,dh:4,wm:M.brick,tile:3,acc:M.red},mini:{dw:6,dh:4.6,wm:corrM('#4a6a8c'),tile:3,acc:M.yellow},assembly:{dw:9,dh:6,wm:corrM('#8b9096'),tile:3,acc:M.orange},steel:{dw:12,dh:8,wm:corrM('#6a4f42'),tile:3,acc:M.red},plant:{dw:12,dh:8,wm:corrM('#d3d6d9'),tile:3,acc:M.blue}}[k];
+ const cfg={garage:{dw:5.2,dh:4,wm:M.brick,tile:3,acc:M.red},mini:{dw:6,dh:4.6,wm:corrM('#4a6a8c'),tile:3,acc:M.yellow},assembly:{dw:9,dh:6,wm:corrM('#8b9096'),tile:3,acc:M.orange},steel:{dw:12,dh:8,wm:corrM('#6a4f42'),tile:3,acc:M.red},plant:{dw:12,dh:8,wm:corrM('#d3d6d9'),tile:3,acc:M.blue},
+  semi:{dw:6,dh:4.6,wm:corrM('#4f7aa8'),tile:3,acc:M.yellow,c1:'#2a6fb5',c2:'#143a66'},fert:{dw:6,dh:4.6,wm:corrM('#5c7f45'),tile:3,acc:M.yellow,c1:'#3d8a3a',c2:'#1d4a1c'},
+  textile:{dw:9,dh:6,wm:corrM('#c2b49a'),tile:3,acc:M.orange,c1:'#b5448a',c2:'#5a1f45'},leather:{dw:9,dh:6,wm:corrM('#7d5538'),tile:3,acc:M.red,c1:'#8a5a2a',c2:'#3d230d'},
+  metal:{dw:12,dh:8,wm:corrM('#6a4f42'),tile:3,acc:M.red,c1:'#c5530c',c2:'#7a2d04'},printm:{dw:12,dh:8,wm:corrM('#d3d6d9'),tile:3,acc:M.blue,c1:'#1b5a8c',c2:'#0d2f4a'},oil:{dw:12,dh:8,wm:corrM('#e2e5e8'),tile:3,acc:M.red,c1:'#c0392b',c2:'#6d1b14'}}[k];
  const t=.6,wm=cfg.wm,dw=cfg.dw,dh=cfg.dh,tl=cfg.tile;
  box(g,W,.12,D,M.floor,0,.06,0,5,false);
  box(g,W,H,t,wm,0,H/2,-D/2+t/2,tl);colL(pl,0,-D/2+t/2,W,t,id);
@@ -4200,7 +4213,7 @@ function shell(id){const d=BDM[id],pl=PL[id],W=pl.W,D=pl.D,H=pl.H,k=d.kind;
  if(k!=='garage'){const wy=H*.62,wh=Math.min(2,H*.16),n=Math.floor(D/6);for(let i=0;i<n;i++){const z=-D/2+3+i*(D-6)/Math.max(1,n-1);box(g,.1,wh,3.6,wl,-W/2-.02,wy,z,1,false);box(g,.1,wh,3.6,wl,W/2+.02,wy,z,1,false)}
   const m=Math.floor(W/8);for(let i=0;i<m;i++)box(g,3.6,wh,.1,wl,-W/2+4+i*(W-8)/Math.max(1,m-1),wy,-D/2-.02,1,false)}
  else{box(g,.1,1.3,2.6,wl,-W/2-.02,3.2,-2,1,false);box(g,.1,1.3,2.6,wl,W/2+.02,3.2,-2,1,false)}
- const sh=Math.min(2.6,H-dh-.5);sign(g,clamp(W*.5,6,16),sh,d.name.length>16?d.name.split(' ').slice(0,2).join(' '):d.name,'BAYU · '+STN[Math.max(0,d.tier-1)||0],'#c5530c','#7a2d04',0,dh+(H-dh)/2,D/2+.2);
+ const sh=Math.min(2.6,H-dh-.5);sign(g,clamp(W*.5,6,16),sh,d.sn||d.name,'BAYU · '+STN[Math.max(0,d.tier-1)||0],cfg.c1||'#c5530c',cfg.c2||'#7a2d04',0,dh+(H-dh)/2,D/2+.2);
  const lx=Math.floor(W/7),lz=Math.floor(D/9);for(let i=0;i<lx;i++)for(let j=0;j<lz;j++)box(g,3,.12,.35,M.led,-W/2+W*(i+.5)/lx,H-.35,-D/2+D*(j+.5)/lz,1,false);
  BLD[id]={g,d,pl,workers:[]};g.visible=false;return g}
 function lot(id){const d=BDM[id],pl=PL[id],W=pl.W,D=pl.D,H=pl.H;const g=new THREE.Group();g.position.set(pl.x,0,pl.z);g.rotation.y=pl.f===1?0:Math.PI;scene.add(g);
@@ -4213,8 +4226,8 @@ function lot(id){const d=BDM[id],pl=PL[id],W=pl.W,D=pl.D,H=pl.H;const g=new THRE
  for(const [x,z] of[[-W/2,D/2+1.5],[W/2-4,D/2+1.2],[0,D/2+1.8]]){const c=new THREE.Mesh(new THREE.CylinderGeometry(.03,.22,.6,10),M.orange);c.position.set(x,.4,z);g.add(c)}
  for(let i=0;i<3;i++)cyl(g,.28,.28,.85,i%2?M.blue:M.red,-W/2+1+i*.7,.5,-D/2+1,12);
  LOT[id]=g;const [x,z]=wpos(pl,0,D/2+4);
- IP.push({x,z,r:7,on:()=>!(S.b[id]&&S.b[id].own),label:()=>'Құрылыс алаңы: '+d.name+' · '+F(d.cost),act:()=>window.__menu('prod',id)})}
-function termIP(id,lx,lz,label,tab){const pl=PL[id],[x,z]=wpos(pl,lx,lz);IP.push({x,z,r:2.6,on:()=>{const b=S.b[id];return b&&b.own&&b.bt>=1},label:()=>label,act:()=>window.__menu(tab||'prod',id)})}
+ IP.push({x,z,r:7,on:()=>!(S.b[id]&&S.b[id].own),label:()=>'Сатылады: '+d.name+' · '+F(d.cost)+' [E]',act:()=>window.__menu('prod',id)})}
+function termIP(id,lx,lz,label,tab){const pl=PL[id],[x,z]=wpos(pl,lx,lz);IP.push({x,z,r:3.4,on:()=>!(S.b[id]&&S.b[id].own),label:()=>'Зауыт сатылады · '+F(BDM[id].cost)+' · [E] сатып алу мәзірі',act:()=>window.__menu('prod',id)});IP.push({x,z,r:2.6,on:()=>{const b=S.b[id];return b&&b.own&&b.bt>=1},label:()=>label,act:()=>window.__menu(tab||'prod',id)})}
 function screenTex(){const t=ctex(256,160,(g,w,h)=>{g.fillStyle='#08121c';g.fillRect(0,0,w,h)},null);return t}
 let screenT=null;
 function drawScreen(){if(!screenT)return;const g=screenT.userData.g,w=256,h=160;g.fillStyle='#071722';g.fillRect(0,0,w,h);g.fillStyle='#ff9f1c';g.font='700 22px sans-serif';g.fillText('BAYU · БУХГАЛТЕРИЯ',10,26);
@@ -4252,7 +4265,7 @@ function fitGarage(){const id='garage',g=shell(id),pl=PL[id];const W=pl.W,D=pl.D
  for(const [x,z] of[[-W/2-1.6,D/2-1.5],[-W/2-1.1,D/2-.4]]){const b=cyl(g,.3,.3,.9,M.red,x,.5,z,14);void b}
  const hang=new THREE.Mesh(new THREE.BoxGeometry(.6,.4,.6),M.wood);hang.position.set(W/2+1.2,.25,D/2+.2);g.add(hang);
  const [bx,bz]=wpos(pl,-W/2+3.4,-3.2+1.6);
- IP.push({x:bx,z:bz,r:2.4,hold:true,label:()=>'Басып тұрыңыз [E]: бөлшек жасау (2 шикізат → 1 бөлшек)',act:()=>window.__craft()});
+ IP.push({x:bx,z:bz,r:2.4,hold:true,label:()=>'Басып тұрыңыз [E]: жартылай фабрикат жасау (2 шикізат → 1)',act:()=>window.__craft()});
  const [dx,dz]=wpos(pl,W/2-2.4,1.4);
  IP.push({x:dx,z:dz,r:2.6,label:()=>'[E] Компьютер: бухгалтерия және нарық',act:()=>window.__menu('market')});
  const [ox,oz]=wpos(pl,0,3);IP.push({x:ox,z:oz,r:3,label:()=>'[B] Мәзір: өндіріс, бухгалтерия, қала',act:()=>window.__menu('prod')});
@@ -4287,6 +4300,157 @@ function fitPlant(id){const g=shell(id),pl=PL[id],W=pl.W,D=pl.D,H=pl.H;g.visible
  for(let i=0;i<3;i++)lathe(g,-2+i*6,D/2-4,Math.PI);crane(g,id,W,D,H);forklift(g,W/2-5,D/2-8,-1);
  makeWorkers(id,g,[[-14,-8],[-6,-8],[6,-8],[14,-8],[-14,0],[0,0],[14,0],[0,8]]);termIP(id,W/2-3,D/2-2.5,'[E] «'+BDM[id].name+'»: басқару','prod');
  addEmit(pl.x+pl.f*(W/2-8),H+5,pl.z-pl.f*(D/2-6),1.4);return g}
+
+/* ===== v2: АТАУЛЫ ЗАУЫТТАР: ішкі жабдықтар, шикізат пен дайын өнім тасымалы ===== */
+const PMc={};
+function pm(c,r,m){const k=c+'|'+r+'|'+m;return PMc[k]||(PMc[k]=mt({color:c,roughness:r==null?.6:r,metalness:m==null?.15:m}))}
+let RMc=null;
+function rm(){if(RMc)return RMc;const d=T.rib.clone();d.needsUpdate=true;d.wrapS=d.wrapT=THREE.RepeatWrapping;d.repeat.set(3,1);RMc=mt({map:d,roughness:.5,metalness:.8});return RMc}
+function spinG(g,id,rt,h,mat,x,y,z,ax,sp,seg){const w=new THREE.Group();w.position.set(x,y,z);g.add(w);const c=cyl(w,rt,rt,h,mat,0,0,0,seg||18);if(ax==='x')c.rotation.z=Math.PI/2;else if(ax==='z')c.rotation.x=Math.PI/2;
+ ANIM.push((t,dt)=>{w.rotation[ax]+=dt*sp*(act(id)?1:.05)});return w}
+function loom(g,id,x,z){const gr=new THREE.Group();gr.position.set(x,0,z);g.add(gr);
+ for(const sx of[-1.3,1.3])for(const sz of[-.7,.7])box(gr,.14,2.4,.14,M.steel,sx,1.2,sz,1,false);
+ box(gr,2.9,.16,1.7,M.dark,0,2.4,0,1,false);box(gr,2.9,.16,1.7,M.dark,0,.35,0,1,false);
+ box(gr,2.5,1.5,.03,pm(0xece2c8,.95,0),0,1.4,-.1,1,false);
+ const h1=box(gr,2.5,1.2,.05,M.steel,0,1.4,.2,1,false),h2=box(gr,2.5,1.2,.05,M.steel,0,1.4,.3,1,false);
+ const sh=box(gr,.5,.12,.14,M.orange,0,1.0,.1,1,false);
+ spinG(gr,id,.3,2.6,pm(0xcfb48a,.95,0),0,.75,.7,'x',3);box(gr,.5,.7,.5,M.blue,1.0,.35,-1.0,2);
+ ANIM.push((t)=>{const a=act(id);sh.position.x=a?Math.sin(t*8)*1.1:0;h1.position.y=1.4+(a?Math.sin(t*8)*.12:0);h2.position.y=1.4-(a?Math.sin(t*8)*.12:0)})}
+function spinFrame(g,id,x,z){const gr=new THREE.Group();gr.position.set(x,0,z);g.add(gr);
+ box(gr,5.4,.9,1.4,M.blue,0,.45,0,3);box(gr,5.4,.15,1.6,M.steel,0,.97,0,2);box(gr,5.4,.1,.1,M.steel,0,2.4,-.5,1,false);
+ for(let i=0;i<8;i++){const b=new THREE.Group();b.position.set(-2.3+i*.66,1.5,0);gr.add(b);cyl(b,.07,.17,.7,pm(0xf3ecd8,.9,0),0,0,0,10);box(b,.02,.02,.5,M.steel,0,.2,.15,1,false);box(gr,.02,.9,.02,pm(0xf3ecd8,.9,0),-2.3+i*.66,1.9,-.4,1,false);ANIM.push((t,dt)=>{b.rotation.y+=dt*(act(id)?14:.3)})}}
+function card(g,id,x,z){box(g,3,1.5,1.7,M.blue,x,.75,z,3);spinG(g,id,.62,2.6,pm(0xd9c9a0,.95,0),x,1.75,z,'x',2.2,18);box(g,.4,.3,.4,M.ledG,x+1.2,1.7,z+.9,1,false)}
+function drum(g,id,x,z,r,len,sp){box(g,len+.8,.3,r*2+.6,M.dark,x,.15,z,2);for(const sx of[-1,1])box(g,.3,r*1.6+.6,.3,M.steel,x+sx*len*.4,r*.8+.5,z,1,false);
+ spinG(g,id,r,len,rm(),x,r+.6,z,'x',sp||1.2,24);box(g,.5,.4,.5,M.ledG,x,r*2+.9,z+r+.3,1,false)}
+function hideRack(g,id,x,z,n){box(g,n*1.1+.6,.12,.12,M.steel,x,3.2,z,1,false);const hs=[];for(let i=0;i<n;i++)hs.push(box(g,.9,1.7,.06,pm(i%2?0x8a5a38:0xa8714a,.9,0),x-n*.55+.55+i*1.1,2.2,z,1,false));
+ for(const sx of[-1,1])box(g,.1,3.2,.1,M.steel,x+sx*(n*.55+.2),1.6,z,1,false);ANIM.push((t)=>{const a=act(id);hs.forEach((h,i)=>h.rotation.z=a?Math.sin(t*1.3+i)*.05:0)})}
+function vat(g,x,z,w,d,col){box(g,w,.9,d,M.conc,x,.45,z,3);plane(g,w-.5,d-.5,pm(col,.05,.2),x,.92,z)}
+function printUnit(g,id,x,z){box(g,8.4,.7,2.6,M.dark,x,.35,z,3);
+ for(let i=0;i<3;i++){const ux=x-2.8+i*2.8;box(g,2.4,2.8,2.2,M.blue,ux,2.1,z,3);box(g,2.0,.5,.1,M.led,ux,3.2,z+1.12,1,false);spinG(g,id,.34,2.0,M.steel,ux,1.6,z+1.2,'x',5,16);spinG(g,id,.28,2.0,M.steel,ux,2.6,z+1.2,'x',-5,14)}
+ box(g,2,1.2,2,M.white,x-4.8,1.3,z,2);box(g,2,1.0,2,pm(0xf5d34a,.6,.1),x+4.8,1.2,z,2)}
+function column(g,x,z,h,r){cyl(g,r,r,h,M.tank,x,h/2,z,24);for(let i=1;i<6;i++)cyl(g,r*1.06,r*1.06,.18,M.steel,x,h*i/6,z,24);cyl(g,r*.4,r*.4,3,M.steel,x,h+1.5,z,12);
+ box(g,.12,h,.4,M.steel,x+r+.1,h/2,z,1,false);for(let i=0;i<h/1.4;i++)box(g,.5,.05,.4,M.steel,x+r+.1,.6+i*1.4,z,1,false)}
+function pipeRun(g,id,x0,x1,y,z,col){const L=x1-x0;cyl(g,.22,.22,L,M.pipe,(x0+x1)/2,y,z,10).rotation.z=Math.PI/2;const ds=[];
+ for(let i=0;i<6;i++){const d=new THREE.Mesh(new THREE.SphereGeometry(.14,8,6),pm(col,.3,.1));d.position.set(x0,y+.26,z);g.add(d);ds.push(d)}
+ let ph=0;ANIM.push((t,dt)=>{const a=act(id);if(a)ph+=dt*2.2;ds.forEach((d,i)=>{d.visible=!!a;if(a)d.position.x=x0+((ph+i*L/6)%L)})})}
+function sphereTank(g,x,z,r){const s=new THREE.Mesh(new THREE.SphereGeometry(r,26,18),M.tank);s.position.set(x,r+1.4,z);s.castShadow=true;g.add(s);
+ for(let i=0;i<4;i++){const a=i*Math.PI/2+.8;cyl(g,.14,.14,1.8,M.steel,x+Math.cos(a)*r*.7,.9,z+Math.sin(a)*r*.7,8)}}
+function carShell(g,col){const c=new THREE.Group();box(c,1.9,.55,4.2,pm(col,.35,.6),0,.6,0,1,false);box(c,1.7,.5,2.1,pm(col,.35,.6),0,1.12,-.2,1,false);box(c,1.72,.3,1.9,M.glass,0,1.15,-.2,1,false);g.add(c);return c}
+function carLine(g,id,x,z,len){box(g,len,.2,.3,M.steel,x,5.4,z,2,false);const cs=[],cols=[0xc0392b,0x2a5da8,0xe6e8ea,0x222222];let ph=0;
+ for(let i=0;i<4;i++){const c=carShell(g,cols[i]);c.rotation.y=Math.PI/2;cs.push(c);box(c,.06,3,.06,M.steel,-.6,2.0,0,1,false);box(c,.06,3,.06,M.steel,.6,2.0,0,1,false)}
+ ANIM.push((t,dt)=>{if(act(id))ph+=dt*.05;cs.forEach((c,i)=>c.position.set(x-len/2+3+((ph+i/4)%1)*(len-6),2.5,z))})}
+function manualIP(id,lx,lz,ct){const pl=PL[id],[x,z]=wpos(pl,lx,lz),d=BDM[id];
+ IP.push({x,z,r:2.7,hold:true,fid:id,craftT:ct||2.6,on:()=>{const b=S.b[id];return b&&b.own&&b.bt>=1},
+  label:()=>{const rc=RECIPE[d.out];return'Басып тұрыңыз [E]: қолмен жұмыс · '+Object.keys(rc).map(k=>rc[k]+' '+IN[k]).join(' + ')+' → 1 '+IN[d.out]},craftFn:()=>manualCraft(id)})}
+function manualCraft(id){const d=BDM[id],rc=RECIPE[d.out];for(const k in rc)if(S.stock[k]<rc[k]){toast('Шикізат жетпейді: компьютерден сатып алыңыз');return}
+ for(const k in rc)S.stock[k]-=rc[k];S.stock[d.out]+=1;S.crafted++;sfx(300,.12,'square',.06);feed('+1 '+IN[d.out]+' (қолмен · '+d.sn+')','up')}
+/* жүк түрлері */
+const CG={sack:[.9,.5,.6],bale:[1.0,.7,.8],hide:[1.1,.32,.95],ore:[1.0,.7,.9],crate:[1,.7,.9],machine:[1.1,.95,1.1],roll:[1.1,.76,.76],barrel:[.7,.9,.7]};
+function cargoItem(p,type,col,x,y0,z){const d=CG[type]||CG.crate,m=pm(col,type==='ore'?.95:.7,(type==='machine'||type==='roll'||type==='barrel')?.4:.05);let me;
+ if(type==='roll'){me=cyl(p,.38,.38,1.1,m,x,y0+.38,z,14,false);me.rotation.z=Math.PI/2}else if(type==='barrel')me=cyl(p,.35,.35,.9,m,x,y0+.45,z,14,false);else me=box(p,d[0],d[1],d[2],m,x,y0+d[1]/2,z,1,false);return me}
+function pile(g,x,z,type,col,nx,nz,rows){const d=CG[type]||CG.crate;for(let i=0;i<nx;i++)for(let j=0;j<nz;j++)for(let r=0;r<rows;r++)cargoItem(g,type,col,x+i*(d[0]+.1),r*d[1],z+j*(d[2]+.1))}
+const DCFG={
+ m1:{raw:'R',out:'R',rawT:'sack',rawC:0xd8c9a8,outT:'crate',outC:0x2a5da8,cab:0x2a63a8},
+ m2:{raw:'L',out:'R',rawT:'sack',rawC:0x4a3622,outT:'sack',outC:0x7fae45,cab:0x3d8a3a},
+ a1:{raw:'L',out:'R',rawT:'bale',rawC:0xefe6d0,outT:'roll',outC:0x3a7fc2,cab:0xb5448a},
+ a2:{raw:'L',out:'R',rawT:'hide',rawC:0xb98b6a,outT:'roll',outC:0x7a4b26,cab:0x8a5a2a},
+ s1:{raw:'L',out:'R',rawT:'ore',rawC:0x6b5a4a,outT:'cars',outC:0xc0392b,cab:0xc5530c},
+ w1:{raw:'L',out:'R',rawT:'roll',rawC:0x8a9096,outT:'machine',outC:0x2a5da8,cab:0x1b5a8c},
+ w2:{raw:'L',out:'R',rawT:'barrel',rawC:0x222428,outT:'barrel',outC:0xe8d070,cab:0xc0392b}};
+const ZR={m1:53,m2:21,a1:49,a2:49,s1:49,w1:49,w2:49};
+function dockTruck(cab,type,col){const g=new THREE.Group();box(g,2.4,2.4,2.2,pm(cab,.35,.6),0,1.7,3.8,1,true);box(g,2.2,1,.1,M.glass,0,2.2,4.95,1,false);
+ box(g,2.5,.3,8.4,M.steel,0,1.3,-1.2,2,false);box(g,.08,.5,8.4,M.dark,-1.22,1.6,-1.2,1,false);box(g,.08,.5,8.4,M.dark,1.22,1.6,-1.2,1,false);box(g,2.2,.5,10.4,M.dark,0,.6,.2,2,false);
+ const wheels=[];for(const z of[4,-1,-3]){for(const sx of[-1,1]){const w=new THREE.Group();w.position.set(sx*1.2,.55,z);const t=cyl(w,.55,.55,.4,M.rubber,0,0,0,16);t.rotation.z=Math.PI/2;g.add(w);wheels.push(w)}}
+ const items=[];if(type==='cars'){for(const z of[-3.2,.9]){const c=carMesh(col,z>0?'suv':'sed');c.position.set(0,1.5,z);g.add(c);items.push(c)}}
+ else{const d=CG[type]||CG.crate;for(let l=0;l<2;l++)for(let j=0;j<4;j++)for(let i=0;i<2;i++)items.push(cargoItem(g,type,col,(i-.5)*1.15,1.45+l*d[1],-4.2+j*1.55))}
+ return{g,wheels,items,setN(n){items.forEach((m,i)=>m.visible=i<n)}}}
+function chaikin(p,n){for(let k=0;k<n;k++){const q=[p[0]];for(let i=0;i<p.length-1;i++){const a=p[i],b=p[i+1];q.push([a[0]*.75+b[0]*.25,a[1]*.75+b[1]*.25],[a[0]*.25+b[0]*.75,a[1]*.25+b[1]*.75])}q.push(p[p.length-1]);p=q}return p}
+function mkPath(pts){const p=chaikin(pts,3),cum=[0];for(let i=1;i<p.length;i++)cum.push(cum[i-1]+Math.hypot(p[i][0]-p[i-1][0],p[i][1]-p[i-1][1]));return{p,cum,L:cum[cum.length-1]}}
+function pathAt(P_,s,o){s=clamp(s,0,P_.L);let i=1;while(i<P_.cum.length-1&&P_.cum[i]<s)i++;const a=P_.p[i-1],b=P_.p[i],sg=(P_.cum[i]-P_.cum[i-1])||1,u=(s-P_.cum[i-1])/sg;o.x=a[0]+(b[0]-a[0])*u;o.z=a[1]+(b[1]-a[1])*u;o.h=Math.atan2(b[0]-a[0],b[1]-a[1])}
+const DKB={};
+function shuttle(parent,pl,A,B,act_,col,ph0){const w=worker(parent,col);w.userData.ph=ph0||0;parent.add(w);
+ const dx=B[0]-A[0],dz=B[1]-A[1],L=Math.hypot(dx,dz)||1,hl=Math.atan2(dx,dz),sp=1.7,pause=1.5,f=L/sp,T=2*f+2*pause;let ph=(ph0||0)%T;
+ ANIM.push((t,dt)=>{const on=act_();w.visible=!!on;if(!on)return;ph=(ph+dt)%T;let u,mv=1,carry=false,hd=hl;
+  if(ph<f){u=ph/f;carry=true}else if(ph<f+pause){u=1;mv=0}else if(ph<2*f+pause){u=1-(ph-f-pause)/f;hd=hl+Math.PI}else{u=0;mv=0;hd=hl+Math.PI}
+  const x=A[0]+dx*u,z=A[1]+dz*u;if(pl){const q=wpos(pl,x,z);w.position.set(q[0],.1,q[1]);w.rotation.y=hd+(pl.f===1?0:Math.PI)}else{w.position.set(x,.1,z);w.rotation.y=hd}
+  stepW(w,t,mv,carry)})}
+function setupDock(id,kind,g){const pl=PL[id],cf=DCFG[id],W=pl.W,D=pl.D,side=cf[kind],sx=side==='L'?-1:1,same=cf.raw===cf.out;
+ const off=(kind==='out'&&same)?8:0,zd=kind==='raw'?-D*.2:D*.2,xi=sx*(W/2+4.4+off),xo=xi+sx*5.4,Zr=ZR[id];
+ const tcol=kind==='raw'?cf.rawC:cf.outC,ttype=kind==='raw'?cf.rawT:cf.outT;
+ const fx=off>0?xi+sx*2.5:xi-sx*2.5;pile(g,fx-.4,zd+7.2,ttype==='cars'?'crate':ttype,ttype==='cars'?0x2a5da8:tcol,2,2,2);
+ const wp=pts=>pts.map(p=>wpos(pl,p[0],p[1]));
+ const path=mkPath(wp([[xi,Zr],[xi,zd+9],[xi,zd],[xi,-D/2-5],[xi+sx*2.7,-D/2-8],[xo,-D/2-5],[xo,zd+9],[xo,Zr]]));
+ const stp=wpos(pl,xi,zd);let sStop=0,bd=1e9;{const o={};for(let s=0;s<=path.L;s+=.25){pathAt(path,s,o);const d=Math.hypot(o.x-stp[0],o.z-stp[1]);if(d<bd){bd=d;sStop=s}}}
+ const tr=dockTruck(cf.cab,ttype,tcol);scene.add(tr.g);tr.g.visible=false;
+ const wg=new THREE.Group();scene.add(wg);forklift(wg,0,0,0);const fk=wg.children[wg.children.length-1];
+ const pal=cargoItem(wg,ttype==='cars'?'crate':ttype,ttype==='cars'?0x2a5da8:tcol,0,1.7,1.0);wg.visible=false;
+ const fa=wpos(pl,fx,zd),fb=wpos(pl,fx,zd+7.2);void fk;
+ {const sd=[xi-sx*2.1,zd],dd=[sx*(W/2+1.1),zd];for(let q=0;q<2;q++){const o=q?1.3:-1.3;const A=kind==='raw'?[sd[0],sd[1]+o]:[dd[0],dd[1]+o],B2=kind==='raw'?[dd[0],dd[1]+o]:[sd[0],sd[1]+o];shuttle(scene,pl,A,B2,()=>st===2,q?0xf4c20d:0x2e9bd6,q*4.5)}}
+ const B=DKB[id]||(DKB[id]={busy:0});const N=tr.items.length,WT=9;
+ let st=0,s=0,tw=0,idle=3+Math.random()*10+(kind==='out'?6:0),o={x:0,z:0,h:0},fph=0;
+ ANIM.push((t,dt)=>{const on=!(S.b[id]&&S.b[id].own&&(S.b[id].st==='noin'||S.b[id].st==='cash'));
+  if(st===0){if(!on||B.busy)return;idle-=dt;if(idle>0)return;st=1;s=0;B.busy=1;tr.g.visible=true;tr.setN(kind==='raw'?N:0);wg.visible=true;return}
+  let v=0;
+  if(st===1){v=clamp(2.5+(sStop-s)*1.1,2.5,9);s+=v*dt;if(s>=sStop-.05){s=sStop;st=2;tw=0;v=0}}
+  else if(st===2){tw+=dt;const u=clamp(tw/WT,0,1);tr.setN(kind==='raw'?Math.ceil(N*(1-u)):Math.floor(N*u));
+   fph=(tw/(WT/3))%1;const q=fph<.5?fph*2:(1-fph)*2;const px=fa[0]+(fb[0]-fa[0])*q,pz=fa[1]+(fb[1]-fa[1])*q;wg.position.set(px,0,pz);
+   const mv=fph<.5?1:-1;wg.rotation.y=(pl.f===1?0:Math.PI)+(mv>0?0:Math.PI);pal.visible=kind==='raw'?mv>0:mv<0;
+   if(tw>=WT){st=3;wg.visible=false}}
+  else{v=clamp(2+(s-sStop)*.8,2,10);s+=v*dt;if(s>=path.L-.05){st=0;B.busy=0;tr.g.visible=false;idle=14-clamp(S.b[id].w/BDM[id].maxW,0,1)*8+Math.random()*6}}
+  if(st!==0){pathAt(path,s,o);tr.g.position.set(o.x,0,o.z);tr.g.rotation.y=o.h;if(v)tr.wheels.forEach(w=>w.rotation.x+=dt*v*1.8)}})}
+function addDocks(id,g){const pl=PL[id],cf=DCFG[id],W=pl.W,D=pl.D;
+ for(const kind of['raw','out']){const sx=cf[kind]==='L'?-1:1,zd=kind==='raw'?-D*.2:D*.2;
+  box(g,.3,4.6,5.6,M.dark,sx*(W/2+.1),2.3,zd,1,false);box(g,.2,.35,6.2,M.yellow,sx*(W/2+.22),4.75,zd,1,false);box(g,.2,4.8,.35,M.yellow,sx*(W/2+.22),2.4,zd-2.9,1,false);box(g,.2,4.8,.35,M.yellow,sx*(W/2+.22),2.4,zd+2.9,1,false);
+  sign(g,6.2,1.1,kind==='raw'?'ШИКІЗАТ':'ДАЙЫН ӨНІМ','',kind==='raw'?'#1b5a8c':'#1f7a3a',kind==='raw'?'#0d2f4a':'#0f3d1d',sx*(W/2+.4),5.9,zd,sx>0?Math.PI/2:-Math.PI/2);
+  setupDock(id,kind,g);
+  {const xd=sx*(W/2-1.5),xin=sx*(W/2-8.5);box(g,1.5,.85,1.5,M.steel,xin+sx*-.9,.42,zd,1,false);
+   const col=kind==='raw'?cf.rawC:cf.outC,tp=kind==='raw'?cf.rawT:cf.outT;cargoItem(g,tp==='cars'?'crate':tp,tp==='cars'?0x2a5da8:col,xin-sx*.9,.85,zd);
+   for(let q=0;q<2;q++){const o=q?1.2:-1.2;const A=kind==='raw'?[xd,zd+o]:[xin,zd+o],B2=kind==='raw'?[xin,zd+o]:[xd,zd+o];shuttle(g,null,A,B2,()=>act(id),q?0xf4c20d:0xff7a12,q*4.2+(kind==='out'?2:0))}}}}
+/* ===== ішкі жабдықтар ===== */
+function fitSemi(id){const g=shell(id),pl=PL[id],W=pl.W,D=pl.D;g.visible=false;
+ for(const x of[-7.5,-3.5]){cyl(g,1.2,1.2,3.4,M.tank,x,1.9,-D/2+2.6,24);cyl(g,1.25,1.25,.25,M.steel,x,3.6,-D/2+2.6,24);cyl(g,1.3,.3,.9,M.steel,x,.65,-D/2+2.6,16);spinG(g,id,.07,2.2,M.steel,x,4.4,-D/2+2.6,'y',5,8);box(g,.5,.3,.5,M.ledG,x+1.3,2.4,-D/2+2.6,1,false);colL(pl,x,-D/2+2.6,2.6,2.6,id)}
+ conveyor(g,id,2,-1,W-9,true,pm(0x2a5da8,.5,.3));for(let i=0;i<2;i++)press(g,id,-8+i*3.6,4.2);robot(g,id,4,-3.6,0);robot(g,id,7.2,2.4,1.4);
+ rack(g,6,-D/2+1,8,3,3.2);pile(g,7.4,-5.6,'sack',0xd8c9a8,2,2,2);pile(g,7.6,3.4,'crate',0x2a5da8,2,2,2);forklift(g,-7,0,1);
+ makeWorkers(id,g,[[-6,1],[0,2],[4,0],[-2,-4]]);manualIP(id,-6.2,2.2,2.4);termIP(id,W/2-2.5,D/2-2.2,'[E] «'+BDM[id].name+'»: басқару','prod');addDocks(id,g);return g}
+function fitFert(id){const g=shell(id),pl=PL[id],W=pl.W,D=pl.D;g.visible=false;
+ drum(g,id,-5,-D/2+3,1.1,6,1.0);drum(g,id,3,-D/2+3,1.1,6,-1.0);
+ const hp=new THREE.Mesh(new THREE.SphereGeometry(1.8,16,10),pm(0x3d2b1a,1,0));hp.scale.set(1.3,.55,1.1);hp.position.set(-8.2,.7,.2);g.add(hp);
+ const au=cyl(g,.35,.35,7,M.steel,4.5,1.6,-.6,12);au.rotation.z=1.1;spinG(g,id,.5,2.2,M.steel,-1.5,1.2,-.2,'x',4,14);
+ conveyor(g,id,1,2.4,W-9,true,pm(0x7a5a34,.9,0));robot(g,id,-3,.6,0);robot(g,id,5.5,.4,1.2);
+ pile(g,7.6,-1.4,'sack',0x7fae45,2,2,2);pile(g,-9.2,-3.6,'sack',0x4a3622,1,3,2);forklift(g,3,5.8,3.1);
+ makeWorkers(id,g,[[-5,-1],[2,-1],[0,3],[6,3]]);manualIP(id,-2,4.4,2.4);termIP(id,W/2-2.5,D/2-2.2,'[E] «'+BDM[id].name+'»: басқару','prod');addDocks(id,g);return g}
+function fitTextile(id){const g=shell(id),pl=PL[id],W=pl.W,D=pl.D,H=pl.H;g.visible=false;
+ for(let r=0;r<2;r++)for(let i=0;i<6;i++)loom(g,id,-18+i*4.4,-11.5+r*4.6);
+ spinFrame(g,id,14,-12);spinFrame(g,id,14,-7.5);spinFrame(g,id,14,-3);for(let i=0;i<3;i++)card(g,id,-12+i*5,9);
+ conveyor(g,id,0,5.6,W-12,true,pm(0xcfb48a,.9,0));pile(g,-20,-9,'bale',0xefe6d0,2,3,3);pile(g,18.6,2,'roll',0x3a7fc2,2,3,3);
+ crane(g,id,W,D,H);forklift(g,-16,2.6,.3);makeWorkers(id,g,[[-14,-8],[-4,-8],[6,-3],[-14,2],[14,4],[0,12],[8,12],[-8,12]]);
+ manualIP(id,8.4,9.2,3);termIP(id,W/2-3,D/2-2.5,'[E] «'+BDM[id].name+'»: басқару','prod');addDocks(id,g);return g}
+function fitLeather(id){const g=shell(id),pl=PL[id],W=pl.W,D=pl.D,H=pl.H;g.visible=false;
+ for(let i=0;i<4;i++)drum(g,id,-16+i*7,-10,1.3,5,i%2?-1:1);
+ vat(g,-15,-2,6,3,0x5b4a2a);vat(g,-7,-2,6,3,0x3a5a4a);vat(g,1,-2,6,3,0x6a3a1a);hideRack(g,id,13,-10,6);hideRack(g,id,13,-5,6);
+ press(g,id,13,2.5);press(g,id,17.5,2.5);conveyor(g,id,0,6.4,W-12,true,pm(0x7a4b26,.9,0));
+ pile(g,-20,-9,'hide',0xb98b6a,2,3,5);pile(g,18.6,2,'roll',0x7a4b26,2,3,3);crane(g,id,W,D,H);forklift(g,-16,2.6,.3);
+ makeWorkers(id,g,[[-14,-6],[-6,-6],[2,-6],[10,-2],[14,6],[-10,4],[0,10],[8,10]]);manualIP(id,8.6,9.2,3);
+ termIP(id,W/2-3,D/2-2.5,'[E] «'+BDM[id].name+'»: басқару','prod');addDocks(id,g);return g}
+function fitMetal(id){const g=fitSteel(id),pl=PL[id],W=pl.W,D=pl.D;
+ carLine(g,id,14,8,26);pile(g,-26,-9,'ore',0x6b5a4a,2,3,3);
+ for(let i=0;i<2;i++){const c=carShell(g,[0xc0392b,0x2a5da8][i]);c.position.set(24.5,0,3.5+i*3.4);}
+ manualIP(id,-6,6,3.6);addDocks(id,g);return g}
+function fitPrintM(id){const g=shell(id),pl=PL[id],W=pl.W,D=pl.D,H=pl.H;g.visible=false;
+ for(let r=0;r<2;r++)for(let c=0;c<2;c++)printUnit(g,id,-10+c*20,-13+r*7);
+ conveyor(g,id,0,2.4,W-10,true,M.white);for(let i=0;i<5;i++)robot(g,id,-18+i*9,5.6,i*.7);
+ for(let i=0;i<3;i++)lathe(g,-4+i*6,D/2-4,Math.PI);crane(g,id,W,D,H);forklift(g,W/2-6,-2,-1);pile(g,-26,-9,'roll',0x8a9096,2,3,3);pile(g,24,6,'machine',0x2a5da8,2,2,2);
+ makeWorkers(id,g,[[-14,-8],[-6,-8],[6,-8],[14,-8],[-14,0],[0,0],[14,0],[0,8]]);manualIP(id,-4,8.4,4);
+ termIP(id,W/2-3,D/2-2.5,'[E] «'+BDM[id].name+'»: басқару','prod');addDocks(id,g);return g}
+function fitOil(id){const g=shell(id),pl=PL[id],W=pl.W,D=pl.D,H=pl.H;g.visible=false;
+ for(let i=0;i<3;i++)column(g,-16+i*6.5,-12,11,1.6);furnace(g,id,10,-12);furnace(g,id,18,-12);
+ sphereTank(g,-20,5,2.6);sphereTank(g,-12,5,2.6);pipeRun(g,id,-22,24,2.0,-6.5,0x2a2a2a);pipeRun(g,id,-22,24,2.8,-7.2,0xe0b030);pipeRun(g,id,-22,24,3.6,-7.9,0x30a0e0);
+ for(let i=0;i<3;i++){box(g,2.2,1,1.2,M.blue,-2+i*3.4,.5,4,2);cyl(g,.45,.45,1.4,M.dark,-2+i*3.4,1.3,4,14)}
+ box(g,6,3,4,M.white,18,1.5,8,3);box(g,5.6,1.2,.1,M.glass,18,2.2,10.05,1,false);pile(g,-26,-9,'barrel',0x222428,3,3,2);pile(g,24,6,'barrel',0xe8d070,2,3,2);
+ forklift(g,-4,-2,0);crane(g,id,W,D,H);makeWorkers(id,g,[[-14,-8],[-6,-8],[6,-8],[14,-8],[-14,0],[0,0],[14,0],[0,8]]);manualIP(id,2,8,4);
+ const sx=W/2-5;cyl(g,.7,1,26,M.steel,sx,13,-D/2-3,12);const fl=new THREE.Mesh(new THREE.SphereGeometry(.7,10,8),new THREE.MeshStandardMaterial({color:0xff9a2a,emissive:0xff6a10,emissiveIntensity:3}));fl.position.set(sx,26.6,-D/2-3);g.add(fl);
+ ANIM.push((t)=>{fl.scale.setScalar(act(id)?1.1+Math.sin(t*14)*.25+Math.sin(t*31)*.1:.35)});colL(pl,sx,-D/2-3,3,3,id);addEmit(pl.x+pl.f*sx,H+10,pl.z-pl.f*(D/2+3),2);
+ termIP(id,W/2-3,D/2-2.5,'[E] «'+BDM[id].name+'»: басқару','prod');addDocks(id,g);return g}
 
 /* ===== WORLD: city ===== */
 function addEmit(x,y,z,s){EMIT.push({x,y,z,s:s||1})}
@@ -4396,7 +4560,7 @@ function roadMarks(){const L=520,n=Math.floor(L/8),roads=[-225,-135,-45,45,135,2
  im.count=k;scene.add(im)}
 const TRAF=[];
 function traffic(){const defs=[['x',-45,-4,1],['x',45,4,-1],['z',-135,-4,1],['z',135,4,-1],['x',135,4,-1],['z',45,4,1],['x',-135,-4,1],['z',-45,-4,-1]];
- defs.forEach((d,i)=>{const m=i%3===0?truckMesh([0xc23b22,0x2a63a8,0xd8a21a][i%3]):carMesh([0xb8bcc4,0x1a3a5c,0x8b1e1e,0xe6e6e6][i%4],i%2?'suv':'sed');scene.add(m);const L=500;const v={m,ax:d[0],r:d[1],ln:d[2],dir:d[3],p:(i*83)%L-L/2,sp:6+(i%4)*1.4};TRAF.push(v)})}
+ defs.forEach((d,i)=>{const m=i%3===0?truckMesh([0xc23b22,0x2a63a8,0xd8a21a][i%3]):carMesh([0xb8bcc4,0x1a3a5c,0x8b1e1e,0xe6e6e6][i%4],i%2?'suv':'sed');scene.add(m);const L=500;const v={m,ax:d[0],r:d[1],ln:d[2],dir:d[3],p:(i*83)%L-L/2,sp:6+(i%4)*1.4,truck:i%3===0,k:i};TRAF.push(v)})}
 function farRing(){const rn=rng(99),N=70,im=new THREE.InstancedMesh(new THREE.BoxGeometry(1,1,1),mt({color:0x7b8794,roughness:.9}),N),m4=new THREE.Matrix4();
  for(let i=0;i<N;i++){const a=rn()*6.28,r=330+rn()*220,w=20+rn()*50,h=8+rn()*40,d=20+rn()*40;m4.makeScale(w,h,d);m4.setPosition(Math.cos(a)*r,h/2,Math.sin(a)*r);im.setMatrixAt(i,m4)}scene.add(im);
  for(let i=0;i<8;i++){const a=i/8*6.28+.3;stackN(Math.cos(a)*400,Math.sin(a)*400,3,60+rn()*30,3)}}
@@ -4412,23 +4576,28 @@ function buildWorld(){mkTex();sky=lightsAndSky();
  for(let i=-2;i<=2;i++)for(let j=-2;j<=2;j++)if(!sp[i+','+j])neutralBlock(i,j);
  plazaBlock();dealerBlock();houseBlock();farRing();
  for(let k=0;k<14;k++){const x=(R7()-.5)*420,z=(R7()-.5)*420;const p=plane(scene,3+R7()*5,2+R7()*3,M.puddle,x,.035,z);p.receiveShadow=false}
- fitGarage();const fm={m1:fitMini,m2:fitMini,a1:fitAssembly,a2:fitAssembly,s1:fitSteel,w1:fitPlant,w2:fitPlant};
- for(const id in fm){fm[id](id);lot(id)}
+ fitGarage();const fm={m1:fitSemi,m2:fitFert,a1:fitTextile,a2:fitLeather,s1:fitMetal,w1:fitPrintM,w2:fitOil};
+ for(const id in fm){fm[id](id);lot(id);const pl=PL[id],d=BDM[id],sg=new THREE.Group();scene.add(sg);const [sx,sz]=wpos(pl,pl.W/2-1,pl.D/2+3.2);sg.position.set(sx,0,sz);
+  sign(sg,5,1.6,'САТЫЛАДЫ',F(d.cost),'#1b5a8c','#0d2f4a',0,2.7,0,pl.f===1?0:Math.PI);for(const o of[-2,2])cyl(sg,.08,.08,2.8,M.steel,o,1.4,0,8);SALE[id]=sg;BLD[id].g.visible=true;if(LOT[id])LOT[id].visible=false}
  traffic();particles();
- for(const id in S.b)if(S.b[id].own&&BLD[id]){BLD[id].g.visible=true;if(LOT[id])LOT[id].visible=false;window.__workers(id)}
+ for(const id in S.b)if(S.b[id].own&&BLD[id]){BLD[id].g.visible=true;if(LOT[id])LOT[id].visible=false;if(SALE[id])SALE[id].visible=false;window.__workers(id)}
  if(S.house)window.__house();
  S.cars.forEach(placeCar);scene.traverse(o=>{if(o.isInstancedMesh)o.frustumCulled=false});worldReady=true}
 const PARK=[[-31,-4],[-31,4],[-31,12]],PCAR={};
 function placeCar(id){const i=S.cars.indexOf(id),c=CARS.find(x=>x.id===id);if(!c||PCAR[id])return;const k=c.id==='c2'?'suv':c.id==='c3'?'gt':'sed';const m=carMesh(c.col,k);const p=PARK[Math.min(i,2)];m.position.set(p[0],0,p[1]);m.rotation.y=Math.PI*.5*0+Math.PI;scene.add(m);const ip={x:p[0],z:p[1],r:3.2,on:()=>!window.__driving||!window.__driving(),label:()=>'[F] Көлікке отыру: '+c.name,key:'F',act:()=>window.__enterCar(id)};IP.push(ip);PCAR[id]={m,x:p[0],z:p[1],h:Math.PI,ip,c};}
 window.__car=placeCar;
-window.__built=function(id){const b=BLD[id];if(!b)return;b.g.visible=true;if(LOT[id])LOT[id].visible=false};
+window.__built=function(id){const b=BLD[id];if(!b)return;b.g.visible=true;if(LOT[id])LOT[id].visible=false;if(SALE[id])SALE[id].visible=false;if(window.__workers&&S.b[id])window.__workers(id)};
 function inside(){for(const id in PL){const pl=PL[id],b=S.b[id];if(!b||!b.own||b.bt<1)continue;const lx=(P.x-pl.x)*pl.f,lz=(P.z-pl.z)*pl.f;if(Math.abs(lx)<pl.W/2-.4&&Math.abs(lz)<pl.D/2-.4)return id}return null}
 let stT=0,scT=0;
 function worldUpdate(dt,t){
  for(const id in S.b){const b=S.b[id];if(b.own&&b.bt<1&&BLD[id]){b.bt=Math.min(1,b.bt+dt/7);const e=1-Math.pow(1-b.bt,3);BLD[id].g.position.y=-(1-e)*(PL[id].H+1.5);if(b.bt>=1){BLD[id].g.position.y=0;feed('Құрылыс аяқталды: '+BDM[id].name,'lv');window.__workers(id)}}}
  if(S.house&&BLD.house){const b=BLD.house;S.houseBt=Math.min(1,(S.houseBt||0)+dt/9);b.g.position.y=-(1-(1-Math.pow(1-S.houseBt,3)))*10;if(S.houseBt>=1&&!S.houseDone){S.houseDone=1;if(window.__ending)window.__ending()}}
  ANIM.forEach(f=>f(t,dt));
- for(const v of TRAF){v.p+=v.sp*dt*v.dir;if(v.p>260)v.p=-260;if(v.p<-260)v.p=260;if(v.ax==='x'){v.m.position.set(v.r+v.ln,0,v.p);v.m.rotation.y=v.dir>0?0:Math.PI}else{v.m.position.set(v.p,0,v.r+v.ln);v.m.rotation.y=v.dir>0?Math.PI/2:-Math.PI/2}
+ for(const v of TRAF){v.p+=v.sp*dt*v.dir;if(v.p>260)v.p=-260;if(v.p<-260)v.p=260;
+  if(v.kn){const k=v.kn;k.t+=dt;if(k.t<2.6){const dm=Math.pow(.35,dt);k.vx*=dm;k.vz*=dm;v.m.position.x+=k.vx*dt;v.m.position.z+=k.vz*dt;v.m.rotation.y+=k.sp*dt;k.sp*=Math.pow(.5,dt);k.y=Math.max(0,(k.y||0)+k.vy*dt);k.vy-=22*dt;if(k.y<=0){k.y=0;k.vy=Math.abs(k.vy)*.3>1?Math.abs(k.vy)*.3:0}v.m.position.y=k.y;v.m.rotation.z=Math.min(1.2,k.t*2)*k.tilt;continue}
+   if(k.t<3){v.m.visible=false;continue}
+   const ex=v.ax==='x'?v.r+v.ln:v.p,ez=v.ax==='x'?v.p:v.r+v.ln;if(Math.hypot(ex-P.x,ez-P.z)<25)continue;v.kn=null;v.m.visible=true;v.m.rotation.z=0;v.m.position.y=0}
+  if(v.ax==='x'){v.m.position.set(v.r+v.ln,0,v.p);v.m.rotation.y=v.dir>0?0:Math.PI}else{v.m.position.set(v.p,0,v.r+v.ln);v.m.rotation.y=v.dir>0?Math.PI/2:-Math.PI/2}
   if(v.m.userData.wheels)v.m.userData.wheels.forEach(w=>w.rotation.x+=dt*v.sp*v.dir*2.4)}
  for(const s of smk){const u=s.userData,e=u.e;u.age+=dt;if(u.age>9)u.age-=9;const p=u.age/9;s.position.set(e.x+p*14,e.y+p*22,e.z+p*6);const sc=(3+p*14)*e.s;s.scale.set(sc,sc,1);s.material.opacity=Math.sin(Math.min(1,p*3)*Math.PI/2)*(1-p)*.42*(e.s<.1?0:1)}
  if(dust){const a=dust.geometry.attributes.position;for(let i=0;i<a.count;i++){let x=a.getX(i),y=a.getY(i),z=a.getZ(i);y+=Math.sin(t*.4+i)*.002;x+=Math.cos(t*.3+i*.7)*.003;a.setXYZ(i,x,y,z)}a.needsUpdate=true;dust.position.set(camera.position.x,camera.position.y-2,camera.position.z)}
@@ -4447,13 +4616,13 @@ const K={};let started=false,menuOpen=false,paused=false,tab='market',focusId=nu
 const isTouch=('ontouchstart' in window)||navigator.maxTouchPoints>0;
 const CAR={x:0,z:0,h:0,v:0,id:null};
 window.__driving=()=>!!P.car;
-function active(c){if(!c.id)return true;if(c.id==='house')return!!S.house;const b=S.b[c.id];return!!(b&&b.own)}
+function active(c){if(!c.id)return true;if(c.id==='house')return!!S.house;return true}
 function resolve(x,z,r){for(let it=0;it<3;it++)for(const c of COL){if(!active(c))continue;const a=c.a;const px=clamp(x,a[0],a[2]),pz=clamp(z,a[1],a[3]);let dx=x-px,dz=z-pz;const d2=dx*dx+dz*dz;
   if(d2<r*r){if(d2>1e-8){const d=Math.sqrt(d2);x=px+dx/d*r;z=pz+dz/d*r}else{const l=x-a[0],rr=a[2]-x,t=z-a[1],b=a[3]-z,m=Math.min(l,rr,t,b);if(m===l)x=a[0]-r;else if(m===rr)x=a[2]+r;else if(m===t)z=a[1]-r;else z=a[3]+r}}}
  return[clamp(x,-300,300),clamp(z,-300,300)]}
 /* audio */
 let AC=null,AM=null,NB=null,bg=[null,null,null,null],tEv=[0,0,0,0],pw=[1,0,0,0],lvS=.6,clk=0;
-const PROF={garage:0,m1:0,m2:0,s1:0,a1:1,a2:2,w1:3,w2:0};
+const PROF={garage:0,m1:2,m2:2,s1:0,a1:1,a2:1,w1:3,w2:2};
 function noiseSrc(){const s=AC.createBufferSource();s.buffer=NB;s.loop=true;return s}
 function mkBed(k,nz,osc){const g=AC.createGain();g.gain.value=0;g.connect(AM);bg[k]=g;
  if(nz){const s=noiseSrc(),f=AC.createBiquadFilter();f.type=nz[0];f.frequency.value=nz[1];f.Q.value=nz[2]||.7;const a=AC.createGain();a.gain.value=nz[3];s.connect(f);f.connect(a);a.connect(g);s.start();
@@ -4512,10 +4681,10 @@ function tmpl(){
  <div class="bt"><button data-a="buy" data-i="${it}" data-q="1">Сатып алу +1</button><button data-a="buy" data-i="${it}" data-q="10">+10</button><button data-a="buy" data-i="${it}" data-q="100">+100</button></div>
  <div class="bt"><button data-a="sell" data-i="${it}" data-q="1">Сату −1</button><button data-a="sell" data-i="${it}" data-q="10">−10</button><button data-a="sell" data-i="${it}" data-q="all">Барлығы</button></div>
  <label class="tg"><input type="checkbox" data-a="as" data-i="${it}" ${S.autoSell[it]?'checked':''}> Автосату (өндіріске керегінен артығын)</label></div>`).join('')}</div>
- <h3>Автоматты сатып алу</h3><label class="tg"><input type="checkbox" data-a="ab" ${S.autoBuy?'checked':''}> Цехтар шикізат пен бөлшек жетпесе, нарықтан өзі сатып алсын (баға +4%)</label>`;
- if(tab==='prod')return`<h3>Өндіріс орындары</h3><p class="note">Цех салу үшін көшедегі «Сатылады» алаңына барыңыз немесе осы жерден сатып алыңыз. Орта фабрика «Орта бизнес», ірі зауыт «Ірі өнеркәсіп» деңгейін қажет етеді.</p><div class="g3">${BD.map(d=>{const b=S.b[d.id],own=b&&b.own;const rc=RECIPE[d.out];const rs=Object.keys(rc).map(k=>rc[k]+' '+IN[k]).join(' + ')+' → 1 '+IN[d.out];
+ <h3>Автоматты сатып алу</h3><label class="tg"><input type="checkbox" data-a="ab" ${S.autoBuy?'checked':''}> Зауыттар шикізат пен жартылай фабрикат жетпесе, нарықтан өзі сатып алсын (баға +4%)</label>`;
+ if(tab==='prod')return`<h3>Өндіріс орындары</h3><p class="note">Зауыт салу үшін көшедегі «Сатылады» алаңына барыңыз немесе осы жерден сатып алыңыз. Орта фабрика «Орта бизнес», ірі зауыт «Ірі өнеркәсіп» деңгейін қажет етеді.</p><div class="g3">${BD.map(d=>{const b=S.b[d.id],own=b&&b.own;const rc=RECIPE[d.out];const rs=Object.keys(rc).map(k=>rc[k]+' '+IN[k]).join(' + ')+' → 1 '+IN[d.out];
   const net=d.maxW*(profitEst(d)-d.wage)-d.util;const pb=net>0&&d.cost?Math.ceil(d.cost/net):0;
-  return`<div class="card ${focusId===d.id?'hl':''}"><div class="ch"><span>${d.name}</span><span class="tier">${d.tier?d.tier+' деңгей':'Бастапқы'}</span></div><div class="sm">${rs}</div>
+  return`<div class="card ${focusId===d.id?'hl':''}"><div class="ch"><span>${d.name}</span><span class="tier">${d.tier?d.tier+' деңгей':'Бастапқы'}</span></div><div class="sm">${d.ri?d.ri+' → '+d.ro+' · ':''}${rs}</div>
   ${own?`<div>Жұмысшы: <b data-v="w:${d.id}"></b> / ${d.maxW} <span class="sm">· жалақы ${F(d.wage)}/күн</span></div><div class="bt"><button data-a="hire" data-i="${d.id}" data-q="-1">− Жұмыстан шығару</button><button data-a="hire" data-i="${d.id}" data-q="1">+ Жалдау</button><button data-a="hire" data-i="${d.id}" data-q="5">+5</button></div>
   <div class="sm">Күйі: <b data-v="st:${d.id}"></b> · жасалды: <b data-v="m:${d.id}"></b></div><div class="sm">Коммуналдық: ${F(d.util)}/күн</div>`
   :`<div class="sm">Құны: <b>${F(d.cost)}</b>${pb?' · өзін өтеу ~'+pb+' күн (толық жұмысшымен)':''}</div><div class="sm">Толық қуатпен болжамды таза пайда: ${F(net)}/күн</div><div class="bt"><button class="pri ${canBuild(d)?'dim':''}" data-a="build" data-i="${d.id}">Салу · ${F(d.cost)}</button></div><div class="sm" style="color:var(--bad)">${canBuild(d)}</div>`}</div>`}).join('')}</div>`;
@@ -4528,7 +4697,7 @@ function tmpl(){
   <h3>Баланс</h3><table><tr><td>Қолма-қол ақша</td><td class="r">${FF(S.cash)}</td></tr><tr><td>Қойма құны (нарық −10%)</td><td class="r">${FF(invValue())}</td></tr><tr><td>Ғимараттар, көлік, үй (құнының ~85%)</td><td class="r">${FF(netWorth()-S.cash+S.debt-invValue())}</td></tr><tr><td>Несие (міндеттеме)</td><td class="r dn">−${FF(S.debt)}</td></tr><tr><th>Таза байлық</th><th class="r">${FF(netWorth())}</th></tr></table>
   <h3>Банк несиесі (0,4% күніне)</h3><div class="bt"><button class="b" data-a="loan" data-q="1000000">+1 млн</button><button class="b" data-a="loan" data-q="5000000">+5 млн</button><button class="b" data-a="loan" data-q="20000000">+20 млн</button><button class="b" data-a="loan" data-q="-1000000">Қайтару 1 млн</button><button class="b" data-a="loan" data-q="-99999999999">Барлығын қайтару</button></div>
   <h3>Соңғы операциялар</h3><table>${S.led.recent.slice(0,14).map(r=>`<tr><td>${r.d}-күн</td><td>${r.c}</td><td class="r ${r.k==='inc'?'up':r.k==='exp'?'dn':''}">${r.k==='inc'?'+':'−'}${FF(r.a)}</td></tr>`).join('')}</table>`}
- if(tab==='city'){return`<h3>Даму деңгейі</h3><div class="stg">${STN.map((n,i)=>`<div class="${S.stage===i?'on':''}"><b>${i+1}. ${n}</b><br><small>${i===0?'Гараж, шағын цехтар':i===1?'Таза байлық 8 млн ₸ · фабрика, көлік':'Таза байлық 60 млн ₸ · ірі зауыт, үй'}</small></div>`).join('')}</div>
+ if(tab==='city'){return`<h3>Даму деңгейі</h3><div class="stg">${STN.map((n,i)=>`<div class="${S.stage===i?'on':''}"><b>${i+1}. ${n}</b><br><small>${i===0?'Гараж, шағын зауыттар':i===1?'Таза байлық 8 млн ₸ · фабрика, көлік':'Таза байлық 60 млн ₸ · ірі зауыт, үй'}</small></div>`).join('')}</div>
  <h3>«Қыран Motors» көлік дүкені ${S.stage<1?'(Орта бизнес деңгейінде ашылады)':''}</h3><div class="g3">${CARS.map(c=>`<div class="card"><div class="ch"><span>🚗 ${c.name}</span></div><div class="sm">Жылдамдық: ${Math.round(c.speed*3.6)} км/сағ</div><div class="big">${F(c.price)}</div>${S.cars.includes(c.id)?'<div class="up">Сізде бар: гараж жанында тұр, F басып міну</div>':`<div class="bt"><button class="pri ${S.stage<1||S.cash<c.price?'dim':''}" data-a="car" data-i="${c.id}">Сатып алу</button></div>`}</div>`).join('')}</div>
  <h3>Үй салу ${S.stage<2?'(Ірі өнеркәсіп деңгейінде ашылады)':''}</h3><div class="card" style="max-width:480px"><div class="ch"><span>🏠 ${HOUSE.name}</span></div><div class="sm">Бассейні бар екі қабатты заманауи үй. Шығыс-батыс аймағындағы тұрғын алаңда салынады.</div><div class="big">${F(HOUSE.price)}</div>${S.house?'<div class="up">Үй салынды!</div>':`<div class="bt"><button class="pri ${S.stage<2||S.cash<HOUSE.price?'dim':''}" data-a="house">Үй салу</button></div>`}</div>
  <p class="note">Көлік пен үй таза байлыққа қосылады, бірақ ақша ағынын азайтады. Алдымен бизнесті өсіріп, содан кейін жеке мақсаттарға жұмсаңыз.</p>`}
@@ -4566,7 +4735,7 @@ function onClick(e){const t=e.target.closest('[data-a]');if(!t)return;const a=t.
  else if(a==='sell'){const n=sell(i,q==='all'?S.stock[i]:+q);if(n)sfx(900,.1,'sine',.05);else toast('Қоймада жоқ')}
  else if(a==='as'){S.autoSell[i]=t.checked;return}else if(a==='ab'){S.autoBuy=t.checked;return}
  else if(a==='hire'){hire(i,+q);sfx(400,.06,'square',.03)}
- else if(a==='build'){const m=build(i);if(m)toast(m);else{sfx(300,.5,'sawtooth',.06);closeMenu();toast('Құрылыс басталды')}}
+ else if(a==='build'){const m=build(i);if(m)toast(m);else{sfx(300,.5,'sawtooth',.06);closeMenu();toast('Зауыт сатып алынды: ішіне кіріңіз')}}
  else if(a==='car'){const m=buyCar(i);if(m)toast(m);else{sfx(700,.3,'sine',.1);toast('Көлік алынды: гараж жанында тұр')}}
  else if(a==='house'){const m=buyHouse();if(m)toast(m);else{closeMenu();toast('Үй салынуда!')}}
  else if(a==='loan'){const m=loan(+q);if(m)toast(m)}
@@ -4587,7 +4756,18 @@ document.addEventListener('mousemove',e=>{if(!locked||menuOpen||P.car)return;P.y
 document.addEventListener('pointerlockchange',()=>{locked=document.pointerLockElement===(renderer&&renderer.domElement)});
 document.addEventListener('mousedown',e=>{if(started&&!menuOpen&&!locked&&!isTouch&&e.target===renderer.domElement)lockPtr()});
 function nearest(key){let best=null,bd=1e9;const fx=-Math.sin(P.yaw),fz=-Math.cos(P.yaw);for(const ip of IP){if(ip.on&&!ip.on())continue;if(key==='F'?ip.key!=='F':false)continue;const dx=ip.x-P.x,dz=ip.z-P.z,d=Math.hypot(dx,dz);if(d>ip.r)continue;if(d>1.2&&(dx*fx+dz*fz)/d<-.2&&ip.hold)continue;if(d<bd){bd=d;best=ip}}return best}
-function enterCar(id){const c=PCAR[id];if(!c||S.stage<0)return;P.car=id;CAR.id=id;CAR.x=c.x;CAR.z=c.z;CAR.h=c.h;CAR.v=0;P.x=c.x;P.z=c.z;sfx(200,.3,'sawtooth',.05)}
+const TCAR={id:'tr',name:'Көше көлігі',speed:26};let SHK=0,TJ=0;
+function hitTraffic(dt){if(Math.abs(CAR.v)<2)return;const fx=Math.sin(CAR.h),fz=Math.cos(CAR.h);
+ for(const v of TRAF){if(v.kn)continue;const p=v.m.position,dx=p.x-CAR.x,dz=p.z-CAR.z,rr=v.truck?3.4:2.7;if(dx*dx+dz*dz>rr*rr)continue;
+  const sv=Math.abs(CAR.v),sgn=CAR.v>=0?1:-1,side=(dx*fz-dz*fx)>0?1:-1;
+  const f=Math.max(10,sv*1.5)*(v.truck?.6:1);v.kn={t:0,vx:fx*sgn*f+(-fz)*side*-f*.35*0+fz*side*f*.35,vz:fz*sgn*f-fx*side*f*.35,vy:4+sv*.25,y:0,sp:side*(3+sv*.18),tilt:side};
+  CAR.v*=v.truck?.35:.65;SHK=Math.min(.7,.15+sv*.02);sfx(90,.3,'sawtooth',.2);sfx(55,.5,'square',.16);sfx(900,.08,'square',.05);feed('Қарсы көлікті қағып жібердіңіз!','up')}}
+function jackNear(){let b=null,bd=16;for(const v of TRAF){if(v.kn||v.truck)continue;const d=Math.hypot(v.m.position.x-P.x,v.m.position.z-P.z);if(d<bd){bd=d;b=v}}return b}
+const JIP={x:0,z:0,r:4.2,key:'F',label:()=>'[F] Көлікті алып кету (отыру)',on(){if(window.__driving&&window.__driving())return false;const v=jackNear();if(!v)return false;this.x=v.m.position.x;this.z=v.m.position.z;return true},act(){const v=jackNear();if(!v)return;const id='tr'+(++TJ),m=v.m,h=m.rotation.y;const ix=TRAF.indexOf(v);if(ix>=0)TRAF.splice(ix,1);
+  const nm=carMesh([0xb8bcc4,0x1a3a5c,0x8b1e1e,0xe6e6e6][v.k%4],v.k%2?'suv':'sed');scene.add(nm);TRAF.push({m:nm,ax:v.ax,r:v.r,ln:v.ln,dir:v.dir,p:v.p<0?v.p+120:v.p-120,sp:v.sp,truck:false,k:v.k});
+  const ip={x:m.position.x,z:m.position.z,r:3.2,on:()=>!window.__driving||!window.__driving(),label:()=>'[F] Көлікке отыру',key:'F',act:()=>window.__enterCar(id)};IP.push(ip);PCAR[id]={m,x:m.position.x,z:m.position.z,h,ip,c:TCAR};enterCar(id);feed('Көлік алынды! Жолда қарсы көліктерді қағып кетуге болады','up')}};
+IP.push(JIP);
+function enterCar(id){const c=PCAR[id];if(!c||(S.stage<0&&id.indexOf('tr')!==0))return;P.car=id;CAR.id=id;CAR.x=c.x;CAR.z=c.z;CAR.h=c.h;CAR.v=0;P.x=c.x;P.z=c.z;sfx(200,.3,'sawtooth',.05)}
 window.__enterCar=enterCar;
 function exitCar(){const c=PCAR[P.car];if(!c)return;c.x=CAR.x;c.z=CAR.z;c.h=CAR.h;c.ip.x=c.x;c.ip.z=c.z;const r=resolve(CAR.x+Math.cos(CAR.h)*3,CAR.z-Math.sin(CAR.h)*3,.6);P.x=r[0];P.z=r[1];P.yaw=CAR.h+Math.PI;P.pitch=0;P.car=null;CAR.v=0}
 /* mobile */
@@ -4602,13 +4782,13 @@ function mobileInit(){if(!isTouch)return;$('mob').classList.add('on');const j=$(
 /* update */
 function update(dt,t){
  if(!menuOpen||true){
-  if(P.car){const c=CARS.find(x=>x.id===P.car),mx=c.speed,m=PCAR[P.car].m;let thr=(K.KeyW||K.ArrowUp?1:0)-(K.KeyS||K.ArrowDown?1:0)-(isTouch?TS2.jz:0),st=(K.KeyA||K.ArrowLeft?1:0)-(K.KeyD||K.ArrowRight?1:0)-(isTouch?TS2.jx:0);if(menuOpen){thr=0;st=0}
+  if(P.car){const c=CARS.find(x=>x.id===P.car)||TCAR,mx=c.speed,m=PCAR[P.car].m;let thr=(K.KeyW||K.ArrowUp?1:0)-(K.KeyS||K.ArrowDown?1:0)-(isTouch?TS2.jz:0),st=(K.KeyA||K.ArrowLeft?1:0)-(K.KeyD||K.ArrowRight?1:0)-(isTouch?TS2.jx:0);if(menuOpen){thr=0;st=0}
    if(thr>0)CAR.v+=(mx*.75)*dt*(1-CAR.v/mx*.6)*thr;else if(thr<0)CAR.v+=(CAR.v>0?-22:-8)*dt*-thr;else CAR.v*=Math.pow(.35,dt);CAR.v=clamp(CAR.v,-7,mx);
    if(K.Space)CAR.v*=Math.pow(.05,dt);CAR.h+=st*dt*1.7*clamp(CAR.v/6,-1,1);
    const nx=CAR.x+Math.sin(CAR.h)*CAR.v*dt,nz=CAR.z+Math.cos(CAR.h)*CAR.v*dt;const r=resolve(nx,nz,1.9);if(Math.hypot(r[0]-nx,r[1]-nz)>.02)CAR.v*=.4;CAR.x=r[0];CAR.z=r[1];P.x=CAR.x;P.z=CAR.z;
-   m.position.set(CAR.x,0,CAR.z);m.rotation.y=CAR.h;m.userData.wheels.forEach(w=>w.rotation.x+=CAR.v*dt/.38);
+   m.position.set(CAR.x,0,CAR.z);m.rotation.y=CAR.h;(m.userData.wheels||[]).forEach(w=>w.rotation.x+=CAR.v*dt/.38);hitTraffic(dt);
    const fx=Math.sin(CAR.h),fz=Math.cos(CAR.h);const tx=CAR.x-fx*8.5,tz=CAR.z-fz*8.5;camera.position.x+=(tx-camera.position.x)*Math.min(1,dt*5);camera.position.z+=(tz-camera.position.z)*Math.min(1,dt*5);camera.position.y+=(3.8-camera.position.y)*Math.min(1,dt*5);
-   camera.lookAt(CAR.x+fx*6,1.3,CAR.z+fz*6);camera.fov+=((66+Math.abs(CAR.v)*.5)-camera.fov)*Math.min(1,dt*3);camera.updateProjectionMatrix()}
+   camera.lookAt(CAR.x+fx*6,1.3,CAR.z+fz*6);if(SHK>.01){camera.position.x+=(Math.random()-.5)*SHK;camera.position.y+=(Math.random()-.5)*SHK;SHK*=Math.pow(.02,dt)}else SHK=0;camera.fov+=((66+Math.abs(CAR.v)*.5)-camera.fov)*Math.min(1,dt*3);camera.updateProjectionMatrix()}
   else{let ix=(K.KeyD||K.ArrowRight?1:0)-(K.KeyA||K.ArrowLeft?1:0)+(isTouch?TS2.jx:0),iz=(K.KeyW||K.ArrowUp?1:0)-(K.KeyS||K.ArrowDown?1:0)-(isTouch?TS2.jz:0);if(menuOpen){ix=0;iz=0}
    const l=Math.hypot(ix,iz);if(l>1){ix/=l;iz/=l}const sp=(K.ShiftLeft||K.ShiftRight?8.6:5.4),sy=Math.sin(P.yaw),cy=Math.cos(P.yaw);
    const vx=(-sy*iz+cy*ix)*sp,vz=(-cy*iz-sy*ix)*sp;const r=resolve(P.x+vx*dt,P.z+vz*dt,.45);P.x=r[0];P.z=r[1];
@@ -4616,9 +4796,9 @@ function update(dt,t){
    if(camera.fov!==66){camera.fov+=(66-camera.fov)*Math.min(1,dt*4);camera.updateProjectionMatrix()}
    const ip=nearest(),pe=$('prompt');
    if(ip&&!menuOpen){pe.hidden=false;const tx=ip.label();if(pe.textContent!==tx)pe.textContent=tx}else pe.hidden=true;
-   if(ip&&ip.hold&&(K.KeyE)&&!menuOpen){crafting=1;craftP+=dt/2.2;$('prog').hidden=false;$('prog').firstElementChild.style.width=Math.min(100,craftP*100)+'%';
-    if(craftP>=1){craftP=0;if(S.stock.raw>=2){S.stock.raw-=2;S.stock.part+=1;S.crafted++;sfx(300,.12,'square',.06);feed('+1 бөлшек (қолмен)','up')}else{toast('Шикізат жетпейді: компьютерден сатып алыңыз');craftP=0}}}
-   else{crafting=0;craftP=0;$('prog').hidden=true}}}
+   if(ip&&ip.hold&&(K.KeyE)&&!menuOpen){crafting=ip.fid?0:1;MAN=ip.fid||null;craftP+=dt/(ip.craftT||2.2);$('prog').hidden=false;$('prog').firstElementChild.style.width=Math.min(100,craftP*100)+'%';
+    if(craftP>=1){craftP=0;if(ip.craftFn)ip.craftFn();else if(S.stock.raw>=2){S.stock.raw-=2;S.stock.part+=1;S.crafted++;sfx(300,.12,'square',.06);feed('+1 жартылай фабрикат (қолмен)','up')}else{toast('Шикізат жетпейді: компьютерден сатып алыңыз');craftP=0}}}
+   else{crafting=0;MAN=null;craftP=0;$('prog').hidden=true}}}
 }
 
 const _v=new THREE.Vector3();
@@ -4669,7 +4849,7 @@ function render(){
  <div class="odbox" id="od-box"></div>
  <p class="note">${X('Ойын оқу мақсатында жасалған. Қозғалыс: W A S D, жүгіру: Shift, айналаға қарау: тышқан, әрекет: E, көлік: F, мәзір: B. Прогресс осы браузерде ғана сақталады. Телефонда джойстик пен батырмалар жұмыс істейді.','Игра учебная. Движение: W A S D, бег: Shift, обзор: мышь, действие: E, машина: F, меню: B. Прогресс хранится только в этом браузере. На телефоне работают джойстик и кнопки.','The game is educational. Move: W A S D, sprint: Shift, look: mouse, act: E, car: F, menu: B. Progress stays in this browser only. On phones use the joystick and buttons.')}</p></div>`;
  root.querySelector('#od-fs').onclick=()=>{const b=root.querySelector('#od-box');const r=b.requestFullscreen||b.webkitRequestFullscreen;if(r)try{r.call(b)}catch(e){}};
- load()}
+ load();if(matchMedia('(max-width:700px)').matches)setTimeout(()=>{try{const bx=root.querySelector('#od-box');window.scrollTo({top:bx.getBoundingClientRect().top+scrollY-62,behavior:'auto'})}catch(e){}},60)}
 INIT.ondiris=render;
 /* leaving the section stops the game and its sound; coming back restarts it */
 const _show=show;
