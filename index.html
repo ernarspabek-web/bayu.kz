@@ -3799,6 +3799,286 @@ INIT.vc=render;
 })();
 </script>
 
+<style id="lpfont">
+/* лендинг слайдтары: ірі, көзге жайлы мәтін */
+.lp .sl h3{font-size:clamp(1.6rem,4vw,2.3rem);line-height:1.2;margin-bottom:10px}
+.lp .sl p{font-size:clamp(1.15rem,2.6vw,1.35rem);line-height:1.6;color:var(--ink);max-width:60ch}
+.lp .bn{gap:12px;margin:6px 0 0}
+.lp .bn li{font-size:clamp(1.15rem,2.6vw,1.35rem);line-height:1.55;gap:12px}
+.lp .bn li::before{font-size:1.2em}
+.lp .sl .im{font-size:clamp(1.1rem,2.4vw,1.25rem);line-height:1.6;color:var(--muted);margin-top:16px}
+.lp .sl .rs{font-size:clamp(1.15rem,2.6vw,1.35rem);line-height:1.55;padding:14px 16px;border-radius:12px;margin-top:16px}
+.lp .aa{font-size:1rem;line-height:1.5;margin-top:14px}
+.lp .kicker{font-size:.95rem}
+.lp .ar{min-width:52px;min-height:52px;font-size:1.5rem}
+.lp .dots button{width:14px;height:14px}.lp .dots button[aria-current="true"]{width:34px}
+.lp .sl{padding:clamp(18px,4vw,36px)}
+@media(max-width:560px){.lp .sl h3{font-size:1.6rem}.lp .sl p,.lp .bn li,.lp .sl .rs{font-size:1.15rem}.lp .sl .im{font-size:1.1rem}}
+.lp .sl h3{font-size:clamp(1.8rem,4.4vw,2.6rem)!important}
+.lp .sl p,.lp .bn li,.lp .sl .rs{font-size:clamp(1.25rem,2.8vw,1.5rem)!important;line-height:1.65!important}
+.lp .sl .im{font-size:clamp(1.2rem,2.6vw,1.4rem)!important;line-height:1.65!important}
+.lp .aa{font-size:1.1rem!important}
+.lp .kicker{font-size:1rem!important}
+.lp h2{font-size:clamp(1.9rem,5.4vw,3.3rem)!important;line-height:1.2!important}
+.lp .sl{gap:clamp(18px,4vw,44px)}
+@media(max-width:560px){.lp .sl h3{font-size:1.8rem!important}.lp .sl p,.lp .bn li,.lp .sl .rs{font-size:1.25rem!important}.lp .sl .im{font-size:1.2rem!important}.lp h2{font-size:2rem!important}}
+</style><script id="lp">(function(){try{
+const X=(k,r,e)=>LANG==='ru'?r:LANG==='en'?e:k;
+const home=document.getElementById('v-home');if(!home||document.getElementById('lp1'))return;
+const E=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const IMP={
+map:['Маңызы: мақсатсыз жинақ жоспарға айналмайды. Нақты сома мен мерзім болғанда ғана шешім қабылдау оңай.','Важность: без цели накопления не становятся планом. Решать проще, когда есть конкретная сумма и срок.','Why it matters: savings without a goal never become a plan. Decisions are easier with a clear amount and date.'],
+check:['Маңызы: алаяқтық бір қатеден-ақ жинаған ақшаңызды жоққа шығара алады. Тексеру — ең арзан қорғаныс.','Важность: одна ошибка может обнулить накопления. Проверка — самая дешёвая защита.','Why it matters: one mistake can wipe out savings. Checking first is the cheapest protection.'],
+comm:['Маңызы: инвестор жалғыз қателеседі, қауымдастықта қатені біреу алдын ала айтып қояды.','Важность: в одиночку легче ошибиться, в сообществе ошибку подскажут заранее.','Why it matters: alone you repeat mistakes; in a community someone warns you in advance.'],
+isl:['Маңызы: көпшілік үшін қаржы шешімі сенімнен бөлек емес. Сәйкестікті алдын ала білу — жүрекке тыныштық.','Важность: для многих финансовое решение неотделимо от веры. Знать о соответствии заранее — спокойствие.','Why it matters: for many people money decisions and faith go together. Knowing in advance brings peace of mind.']};
+const RES={
+map:['Нәтиже: «қанша және қашан» деген сұраққа нақты сан алып, мақсатқа жоспар құрасыз.','Результат: получаете конкретные цифры «сколько и когда» и план к цели.','Result: you get concrete numbers for “how much and by when” and a plan.'],
+check:['Нәтиже: күмәнді ұсыныстың қауіпті белгілерін көріп, ақша салмай тұрып дұрыс шешім қабылдайсыз.','Результат: видите тревожные признаки предложения и решаете до вложения денег.','Result: you spot the red flags and decide before putting any money in.'],
+comm:['Нәтиже: сұрағыңызға жауап алып, басқалардың тәжірибесін өз шешіміңізге қосасыз.','Результат: получаете ответы на вопросы и учитываете чужой опыт в решениях.','Result: you get answers and add others’ experience to your own decisions.'],
+isl:['Нәтиже: қаржы құралының мұсылмандыққа сай-сай еместігін түсініп, шешімді сеніммен қабылдайсыз.','Результат: понимаете, соответствует ли инструмент исламу, и решаете увереннее.','Result: you see whether an instrument is Muslim-friendly and decide with confidence.']};
+const BEN={map:['Мақсатқа қанша ақша керегін есептейсіз|Қанша уақыт кететінін көресіз|Үй, бизнес, инвестиция капиталы, зейнетке дайындық','Считаете, сколько денег нужно на цель|Видите, сколько времени это займёт|Дом, бизнес, капитал для инвестиций, пенсия','Work out how much money a goal needs|See how long it will take|Home, business, investment capital, retirement'],
+check:['Күмәнді ұсынысты тексересіз|Алаяқтық белгілерін танисыз|Ақшаңызды жоғалтып алмай сақтанасыз','Проверяете сомнительное предложение|Узнаёте признаки мошенничества|Бережёте деньги от потерь','Check a doubtful offer|Spot the signs of a scam|Protect your money from loss'],
+comm:['Инвесторлармен пікір алмасасыз|Басқалардың тәжірибесінен үйренесіз|Бірге өсетін ортаға қосыласыз','Обмениваетесь мнениями с инвесторами|Учитесь на чужом опыте|Присоединяетесь к растущему сообществу','Share views with investors|Learn from others’ experience|Join a community that grows together'],
+isl:['Қаржы құралының мұсылмандыққа сәйкестігін тексересіз|Исламдық қаржы негіздерін түсінесіз|Күмәнді ұсыныстан сақтанасыз','Проверяете инструмент на соответствие исламу|Узнаёте основы исламских финансов|Остерегаетесь сомнительных предложений','Check whether an instrument is Muslim-friendly|Learn the basics of Islamic finance|Stay clear of doubtful offers']};
+const pick=(o,id)=>o[id][LANG==='ru'?1:LANG==='en'?2:0];
+const bl=id=>'<ul class="bn">'+pick(BEN,id).split('|').map(t=>'<li>'+E(t)+'</li>').join('')+'</ul>';
+const LP=[
+ {id:'lp1',k:X('Мақсат және сенім','Цель и вера','Goal and faith'),h:X('Мақсат қойып, сеніміңізге сай шешім қабылдаңыз','Поставьте цель и принимайте решения, созвучные вашей вере','Set a goal and decide in line with your faith'),
+  s:[
+   ['🗺️','map','Financial Map',X('Қаржылық мақсат калькуляторы: қанша ақша және қанша уақыт керек.','Калькулятор финансовых целей: сколько денег и времени нужно.','A goal calculator: how much money and time you need.')],
+   ['☪️','isl','Islamic Economic KZ',X('Исламдық қаржы мен скрининг: мұсылмандыққа сай ма?','Исламские финансы и скрининг: соответствует ли исламу?','Islamic finance and screening: is it Muslim-friendly?')]]},
+ {id:'lp2',k:X('Қорғаныс және қауымдастық','Защита и сообщество','Protection and community'),h:X('Алаяқты анықтап, бірге үйреніңіз','Распознавайте мошенников и учитесь вместе','Spot the scammer and learn together'),
+  s:[
+   ['🛡️','check','Invest Check',X('Күмәнді ұсынысты тексеріп, алаяқтық белгілерін анықтаңыз.','Проверьте сомнительное предложение и найдите признаки мошенничества.','Check a doubtful offer and spot the signs of a scam.')],
+   ['🤝','comm','Invest Community',X('Инвесторлар қауымдастығы: пікір алмасып, бірге үйреніңіз.','Сообщество инвесторов: делитесь мнением и учитесь вместе.','An investor community: share views and learn together.')]]}];
+const st=document.createElement('style');st.textContent=`
+.lp{position:relative;isolation:isolate;overflow:hidden;border:1px solid var(--line);border-radius:20px;padding:clamp(22px,5vw,48px);margin-top:clamp(28px,6vw,64px);display:flex;flex-direction:column;gap:18px;box-shadow:var(--sh);background:radial-gradient(700px 260px at 92% -10%,color-mix(in srgb,var(--g2) 22%,transparent),transparent 70%),radial-gradient(600px 260px at 0% 110%,color-mix(in srgb,var(--g3) 18%,transparent),transparent 70%),var(--surface);min-height:min(70vh,520px);justify-content:center}
+.lp h2{font-size:clamp(1.5rem,4.4vw,2.5rem);line-height:1.18;max-width:26ch;margin:0}
+.lp .trk{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px}
+.lp .trk::-webkit-scrollbar{display:none}
+.lp .sl{flex:0 0 100%;scroll-snap-align:start;display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,4vw,40px);align-items:center;border:1px solid var(--line);border-radius:16px;padding:clamp(16px,3.5vw,32px);background:color-mix(in srgb,var(--surface) 80%,transparent)}
+.lp .em{font-size:clamp(3rem,10vw,5.5rem);line-height:1;width:clamp(86px,16vw,150px);aspect-ratio:1;display:grid;place-items:center;border-radius:24px;border:1px solid var(--line);background:var(--surface)}
+.lp .sl h3{margin:0 0 6px;font-size:clamp(1.25rem,3.4vw,1.8rem)}
+.lp .sl p{margin:0 0 14px;color:var(--muted);font-size:1.05rem;max-width:52ch}
+.lp .sl{cursor:default}.lp .bn{margin:0;padding:0;list-style:none;display:grid;gap:7px}.lp .bn li{display:flex;gap:9px;line-height:1.4}.lp .bn li::before{content:"✓";color:var(--accent);font-weight:700;flex:none}.lp .sl p{margin-bottom:10px}.lp .sl .im{margin:12px 0 0;color:var(--muted);font-size:.98rem}.lp .sl .rs{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--ink);font-weight:600;font-size:.98rem}
+.lp .nv{display:flex;align-items:center;gap:10px}
+.lp .dots{display:flex;gap:8px;flex:1}
+.lp .dots button{width:11px;height:11px;border-radius:50%;border:0;padding:0;background:var(--line);cursor:pointer;position:relative}
+.lp .dots button::after{content:"";position:absolute;inset:-12px}
+.lp .dots button[aria-current="true"]{background:var(--accent);width:28px;border-radius:99px}
+.lp .ar{min-width:44px;min-height:44px;padding:0}
+@media(max-width:560px){.lp .sl{grid-template-columns:1fr;text-align:left}.lp .em{width:84px;font-size:3rem}}
+@media(prefers-reduced-motion:no-preference){.lp .trk{scroll-behavior:smooth}}`;
+document.head.appendChild(st);
+LP.forEach((L,li)=>{
+ const sec=document.createElement('section');sec.id=L.id;sec.className='lp';sec.setAttribute('aria-roledescription','carousel');sec.setAttribute('aria-label',L.k);
+ sec.innerHTML=`<span class="kicker">${E(L.k)}</span><h2>${E(L.h)}</h2><div class="trk" tabindex="0">${L.s.map((x,i)=>`<article class="sl" aria-roledescription="slide" aria-label="${i+1} / ${L.s.length}"><div class="em" aria-hidden="true">${x[0]}</div><div><h3>${E(x[2])}</h3><p>${E(x[3])}</p>${bl(x[1])}<p class="im">${E(pick(IMP,x[1]))}</p><p class="rs">${E(pick(RES,x[1]))}</p></div></article>`).join('')}</div><div class="nv"><button type="button" class="btn ghost ar" data-d="-1" aria-label="${X('Алдыңғы','Назад','Previous')}">‹</button><div class="dots">${L.s.map((x,i)=>`<button type="button" data-i="${i}" aria-label="${i+1}" ${i?'':'aria-current="true"'}></button>`).join('')}</div><button type="button" class="btn ghost ar" data-d="1" aria-label="${X('Келесі','Далее','Next')}">›</button></div>`;
+ home.appendChild(sec);
+ const trk=sec.querySelector('.trk'),dots=[...sec.querySelectorAll('.dots button')];let idx=0;
+ const go=i=>{const n=L.s.length;idx=(i+n)%n;trk.scrollTo({left:idx*trk.clientWidth,behavior:'smooth'})};
+ const mark=()=>{const i=Math.round(trk.scrollLeft/Math.max(1,trk.clientWidth));idx=i;dots.forEach((d,k)=>k===i?d.setAttribute('aria-current','true'):d.removeAttribute('aria-current'))};
+ trk.addEventListener('scroll',()=>{clearTimeout(trk._t);trk._t=setTimeout(mark,60)},{passive:true});
+ sec.querySelectorAll('.ar').forEach(b=>b.addEventListener('click',()=>go(idx+ +b.dataset.d)));
+ dots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.i)));
+ trk.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){go(idx+1);e.preventDefault()}if(e.key==='ArrowLeft'){go(idx-1);e.preventDefault()}});
+ /* автоауыстыру: тек көрінгенде, қолданушы тимесе */
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){let paused=false,vis=false;
+  ['pointerdown','focusin','mouseenter','touchstart'].forEach(ev=>sec.addEventListener(ev,()=>paused=true,{passive:true}));
+  new IntersectionObserver(es=>vis=es[0].isIntersecting,{threshold:.5}).observe(sec);
+  setInterval(()=>{if(!paused&&vis&&!document.hidden&&!home.hidden)go(idx+1)},5500)}
+});
+}catch(e){try{console.warn('lp',e)}catch(_){}}})();
+</script>
+<script id="glow">(function(){try{
+const X=(k,r,e)=>LANG==='ru'?r:LANG==='en'?e:k;
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const st=document.createElement('style');let css=`
+/* Менің жолым: әр қадам кезекпен жарқырап жанады */
+@keyframes jlit{0%{box-shadow:0 0 0 0 transparent;transform:translateY(8px);opacity:.25}
+ 45%{box-shadow:0 0 0 2px var(--g2),0 0 34px 4px var(--glowc);transform:none;opacity:1}
+ 100%{box-shadow:0 0 0 1px color-mix(in srgb,var(--g2) 45%,transparent),0 0 14px -2px var(--glowc);transform:none;opacity:1}}
+#v-start .jlist li{border-radius:10px}
+.jback0{align-self:flex-start;margin-bottom:10px}
+/* лендинг тақырыптары */
+@keyframes lptitle{0%,100%{filter:drop-shadow(0 0 10px var(--glowc)) drop-shadow(0 0 2px var(--glowc))}50%{filter:drop-shadow(0 0 24px var(--glowc)) drop-shadow(0 0 6px var(--glowc))}}
+.lp h2{font-size:clamp(1.7rem,5vw,3rem);font-weight:700;letter-spacing:.01em;max-width:30ch;background:linear-gradient(100deg,var(--g1),var(--g2),var(--g3),var(--g2),var(--g1));background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:shine 7s linear infinite,lptitle 3.4s ease-in-out infinite;width:fit-content}
+.lp .kicker{align-self:flex-start;border:1px solid color-mix(in srgb,var(--gold) 55%,var(--line));border-radius:999px;padding:5px 14px;background:color-mix(in srgb,var(--gold) 10%,transparent);box-shadow:0 0 18px -6px var(--g3)}
+.lp::before{content:"";position:absolute;left:clamp(22px,5vw,48px);top:0;width:96px;height:4px;border-radius:0 0 6px 6px;background:linear-gradient(90deg,var(--g2),var(--g3));box-shadow:0 0 18px var(--glowc)}
+/* BAYU басты қызметтері: ашылғанда кезекпен жарқырайды */
+@keyframes slit{0%{box-shadow:0 0 0 0 transparent;border-color:var(--line)}35%{box-shadow:0 0 0 2px var(--g2),0 0 30px 3px var(--glowc);border-color:var(--g2);background:color-mix(in srgb,var(--g2) 14%,var(--surface))}100%{box-shadow:0 0 0 1px color-mix(in srgb,var(--g2) 40%,transparent),0 0 12px -2px var(--glowc);border-color:color-mix(in srgb,var(--g2) 55%,var(--line))}}
+#startBox h3{font-size:clamp(1.3rem,3.6vw,1.9rem);background:linear-gradient(100deg,var(--g1),var(--g2),var(--g3),var(--g2),var(--g1));background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;width:fit-content;animation:shine 7s linear infinite,lptitle 3.4s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.lp h2,#startBox h3{animation:none}}`;
+if(!rm){for(let i=1;i<=9;i++)css+=`#v-start:not([hidden]) .jlist li:nth-child(${i}){animation:jlit 1.5s cubic-bezier(.2,.7,.2,1) ${(i-1)*.38}s both}\n#startBox.go .sg button:nth-child(${i}){animation:slit 1.6s ease ${(i-1)*.5}s both}\n`}
+st.textContent=css;document.head.appendChild(st);
+/* Менің жолым ішіне «Басты бет» батырмасы */
+const sv=document.getElementById('v-start');
+if(sv&&!sv.querySelector('.jback0')){const b=document.createElement('button');b.type='button';b.className='btn ghost sm jback0';b.dataset.go='home';b.textContent='← '+X('Басты бет','Главная','Home');sv.insertBefore(b,sv.firstChild)}
+/* басты қызметтер көрінгенде кезекпен жарқырау */
+const box=document.getElementById('startBox');
+if(box&&!rm){new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){box.classList.remove('go');void box.offsetWidth;box.classList.add('go')}else box.classList.remove('go')}),{threshold:.45}).observe(box)}
+/* Бастау → Менің жолым */
+const hb=document.getElementById('heroStart');if(hb)hb.addEventListener('click',()=>show('start'));
+}catch(e){try{console.warn('glow',e)}catch(_){}}})();
+</script>
+<script id="aa">(function(){try{
+const X=(k,r,e)=>LANG==='ru'?r:LANG==='en'?e:k;
+const v=document.getElementById('v-isl');if(!v||document.getElementById('aaBadge'))return;
+const st=document.createElement('style');st.textContent=`
+.aaB{display:flex;gap:14px;align-items:flex-start;border:1px solid color-mix(in srgb,var(--g2) 55%,var(--line));border-radius:14px;padding:14px 16px;background:linear-gradient(100deg,color-mix(in srgb,var(--g2) 12%,var(--surface)),var(--surface));box-shadow:0 0 22px -8px var(--glowc)}
+.aaB .ic{font-size:1.7rem;line-height:1;flex:none}
+.aaB b{display:block;font-size:1.05rem;margin-bottom:2px}
+.aaB small{color:var(--muted);display:block;line-height:1.45}
+.aaC{margin:8px 0 2px;padding:0;list-style:none;display:grid;gap:4px;font-size:.92rem}
+.aaC li{display:flex;gap:8px}.aaC li::before{content:"✓";color:var(--accent);font-weight:700;flex:none}
+.lp .aa{display:inline-block;margin-top:10px;font-size:.8rem;color:var(--muted)}
+.lp .aa::before{content:"✓ ";color:var(--accent);font-weight:700}`;
+document.head.appendChild(st);
+const badge=document.createElement('div');badge.id='aaBadge';badge.className='aaB';
+badge.innerHTML=`<span class="ic" aria-hidden="true">✅</span><div><b>${X('Скрининг AAOIFI ережелеріне сәйкес жасалған','Скрининг выполнен по правилам AAOIFI','Screening follows AAOIFI rules')}</b><small>${X('Тексеру AAOIFI Shari’ah Standard №21 («Акциялар мен облигациялар») критерийлеріне негізделген. Бұл AAOIFI растауы не сертификаты емес, фатуа да емес.','Проверка основана на критериях AAOIFI Shari’ah Standard №21 («Акции и облигации»). Это не подтверждение или сертификат AAOIFI и не фетва.','Screening is based on AAOIFI Shari’ah Standard No. 21 (Shares and Bonds). It is not an AAOIFI endorsement or certificate, and not a fatwa.')}</small></div>`;
+const head=v.querySelector('.head');if(head)head.after(badge);
+const card=document.getElementById('s-sector');const c=card&&card.closest('.card');const note=c&&c.querySelector('.note');
+if(note){const u=document.createElement('ul');u.className='aaC';
+ u.innerHTML=[X('Негізгі қызметі тыйым салынған салаға жатпайды','Основная деятельность не относится к запрещённым отраслям','Core business is not in a prohibited sector'),X('Пайызды қарыз / нарықтық құн — 30%-дан аз','Процентный долг / рыночная капитализация — менее 30%','Interest-bearing debt / market cap — under 30%'),X('Пайызды депозит пен қағаздар / нарықтық құн — 30%-дан аз','Процентные депозиты и бумаги / рыночная капитализация — менее 30%','Interest-bearing deposits and securities / market cap — under 30%'),X('Пайыздық және тыйым салынған кіріс / түсім — 5%-дан аз','Процентный и запрещённый доход / выручка — менее 5%','Interest and prohibited income / revenue — under 5%')].map(t=>'<li>'+t+'</li>').join('');
+ note.after(u)}
+/* басты беттегі Islamic Economic KZ слайдында шағын жазу */
+const sl=[...document.querySelectorAll('.lp .sl')].find(a=>/Islamic Economic KZ/.test(a.querySelector('h3')?.textContent||''));
+if(sl&&!sl.querySelector('.aa')){const s=document.createElement('small');s.className='aa';s.textContent=X('Скрининг AAOIFI ережелеріне сәйкес жасалған','Скрининг выполнен по правилам AAOIFI','Screening follows AAOIFI rules');const rs=sl.querySelector('.rs');(rs||sl.querySelector('ul')).after(s)}
+}catch(e){try{console.warn('aa',e)}catch(_){}}})();
+</script>
+<script id="pathsrc">(function(){try{
+const X=(k,r,e)=>LANG==='ru'?r:LANG==='en'?e:k;
+const home=document.getElementById('v-home');if(!home||document.getElementById('path'))return;
+const E=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const T=(k,r,e)=>E(X(k,r,e));
+const OPEN=T('Ашу','Открыть','Open');
+const st=document.createElement('style');st.textContent=`
+.pth{gap:clamp(34px,6vw,72px)}
+.pth .pn{display:flex;flex-direction:column;gap:clamp(14px,2.4vw,22px)}
+.pth h2.big{font-size:clamp(2rem,5vw,3.2rem)!important;max-width:22ch!important;line-height:1.12!important}
+.pth h3.m{font:700 clamp(1.7rem,4.6vw,2.7rem)/1.15 var(--f-display);margin:0;max-width:24ch;color:var(--ink)}
+.pth .lead{font-size:clamp(1.2rem,2.8vw,1.5rem);line-height:1.65;color:var(--ink);margin:0;max-width:56ch}
+.pth .sm2{font-size:1rem;line-height:1.6;color:var(--muted);margin:0;max-width:70ch}
+.pth .cta{display:flex;gap:12px;flex-wrap:wrap}
+.pth .btn{min-height:52px;font-size:1.1rem;padding:12px 24px;border-radius:12px}
+.pth .btn.big{background:linear-gradient(100deg,var(--g1),var(--g2));border-color:transparent;color:var(--accent-ink,#fff);box-shadow:0 0 22px -6px var(--glowc)}
+.pth .split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(18px,4vw,48px);align-items:center}
+@media(max-width:820px){.pth .split{grid-template-columns:1fr}}
+.pth .sc{border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,34px);background:linear-gradient(160deg,color-mix(in srgb,var(--g2) 14%,var(--surface)),var(--surface));box-shadow:var(--sh);display:flex;flex-direction:column;gap:8px;cursor:default}
+.pth .sc b{font:700 clamp(2.6rem,6vw,4rem)/1.05 var(--f-display);white-space:nowrap;background:linear-gradient(100deg,var(--g1),var(--g2),var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.pth .sc span{font-size:clamp(1.15rem,2.6vw,1.4rem);line-height:1.5;color:var(--ink)}
+.pth .sc small{font-size:.95rem;color:var(--muted)}
+.pth .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}
+.pth .stats .sc b{font-size:clamp(2.4rem,6vw,3.4rem)}
+.pth .stp{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px}
+.pth .s{border:1px solid var(--line);border-radius:20px;padding:22px;background:var(--surface);box-shadow:var(--sh);display:flex;flex-direction:column;gap:10px}
+.pth .s .ic{font-size:2.8rem;line-height:1;width:76px;height:76px;display:grid;place-items:center;border-radius:20px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid var(--line)}
+.pth .s h4{font:700 clamp(1.35rem,3vw,1.7rem)/1.2 var(--f-display);margin:0}
+.pth .s p{font-size:1.15rem;line-height:1.6;margin:0;color:var(--ink)}
+.pth .s .n{font:700 .95rem var(--f-num);color:var(--gold)}
+.pth .ph{justify-self:center;width:min(100%,330px);border:10px solid #1d2b27;border-radius:38px;background:var(--bg);padding:18px 14px 14px;box-shadow:0 24px 50px -20px rgba(0,0,0,.5),0 0 30px -8px var(--glowc);display:flex;flex-direction:column;gap:10px;cursor:default;transform:rotate(-2.5deg)}
+.pth .ph .tp{font-weight:700;font-size:.95rem;color:var(--muted)}
+.pth .ph .row2{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:11px 13px;font-size:1.05rem}
+.pth .ph .row2 b{font:600 .95rem var(--f-num);background:color-mix(in srgb,var(--g2) 28%,var(--surface));border-radius:99px;padding:3px 10px;white-space:nowrap}
+.pth .ph .ready{background:linear-gradient(100deg,var(--g1),var(--g2));color:#fff;border-radius:14px;padding:12px 14px;font-weight:700;display:flex;justify-content:space-between;gap:8px}
+.pth .calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
+.pth .calc>div{border:1px solid var(--line);border-radius:18px;padding:20px;background:var(--surface);box-shadow:var(--sh);display:flex;flex-direction:column;gap:6px;cursor:default}
+.pth .calc small{font-size:1rem;color:var(--muted);font-weight:700}
+.pth .calc b{font:700 clamp(1.8rem,4.4vw,2.4rem)/1.1 var(--f-display)}
+.pth .calc span{font-size:1.1rem;line-height:1.5}
+.pth .calc .g b{color:var(--good)}.pth .calc .w b{color:var(--bad)}
+.pth .end{border:2px solid var(--gold);border-radius:24px;padding:clamp(22px,5vw,44px);background:radial-gradient(500px 200px at 90% 0,color-mix(in srgb,var(--g3) 22%,transparent),transparent 70%),var(--surface);display:flex;flex-direction:column;gap:14px;align-items:flex-start;box-shadow:0 0 34px -10px var(--glowc)}
+.pth .src{font-size:.95rem;color:var(--muted);line-height:1.7}.pth .src a{margin-right:10px}
+@media(max-width:560px){.pth .ph{transform:none}}`;
+document.head.appendChild(st);
+const sec=document.createElement('section');sec.id='path';sec.className='lp pth';sec.setAttribute('aria-label',T('Ақша туралы уайымсыз өмір','Жизнь без денежной тревоги','Life without money worry'));
+sec.innerHTML=`
+<div class="pn"><span class="kicker">${T('Қарыздан капиталға','От долгов к капиталу','From debt to capital')}</span>
+<div class="split"><div class="pn">
+<h2 class="big">${T('Ақша туралы уайымдаудан шаршадыңыз ба? Сіз жалғыз емессіз.','Устали переживать о деньгах? Вы не одиноки.','Tired of worrying about money? You are not alone.')}</h2>
+<p class="lead">${T('Ақшаны нашар басқару мінездің кемшілігі емес. Бұл дағдының жетіспеушілігі, ал дағдыны үйренуге болады. BAYU сізге бюджет құруды, қарыздан шығуды және инвестициялауды қадам-қадаммен үйретеді.','Плохое управление деньгами — не недостаток характера. Это пробел в навыках, а навыки можно освоить. BAYU шаг за шагом учит бюджету, выходу из долгов и инвестированию.','Poor money management is not a character flaw. It is a skills gap, and skills can be learned. BAYU teaches budgeting, getting out of debt and investing, step by step.')}</p>
+<div class="cta"><button type="button" class="btn big" data-go="start">${T('Бастау','Начать','Start')}</button><button type="button" class="btn ghost" data-go="qarjy">${OPEN}: Qarjy AI</button></div></div>
+<div class="sc" role="group" aria-label="${T('Қазақстандағы қарыз','Долги в Казахстане','Debt in Kazakhstan')}"><b>26,7 ${T('трлн ₸','трлн ₸','trn ₸')}</b><span>${T('қазақстандықтардың банктерге қарызы. Оның 17,7 трлн ₸-і тұтынушылық несие.','долг казахстанцев перед банками. Из них 17,7 трлн ₸ — потребительские кредиты.','owed by Kazakhstanis to banks. Of this, 17.7 trn ₸ is consumer loans.')}</span><small>${T('01.10.2026, ARRFR деректері (zakon.kz)','на 01.10.2026, данные АРРФР (zakon.kz)','as of 1 Oct 2026, ARRFR data (zakon.kz)')}</small></div></div></div>
+
+<div class="pn"><h3 class="m">${T('Қазақстандағы ақша жағдайы','Деньги в Казахстане сегодня','Money in Kazakhstan today')}</h3>
+<div class="stats">
+<div class="sc"><b>9,3%</b><span>${T('жылдық инфляция (қыркүйек 2026). Ұлттық банктің мақсаты: 2028 жылы 5%.','годовая инфляция (сентябрь 2026). Цель Нацбанка: 5% в 2028 году.','annual inflation (Sept 2026). National Bank target: 5% in 2028.')}</span><small>${T('Дереккөз: Ұлттық банк','Источник: Нацбанк','Source: National Bank')}</small></div>
+<div class="sc"><b>15,75%</b><span>${T('Ұлттық Банктің негізгі пайызы: ақшаның «бағасы». Банктердегі несие мен салым пайызы соған қарап белгіленеді.','главный процент Нацбанка — «цена» денег. От него зависят проценты по кредитам и вкладам в банках.','the National Bank’s main rate, the “price” of money. Loan and savings rates at banks follow it.')}</span><small>${T('23.10.2026, Ұлттық банк','23.10.2026, Нацбанк','23 Oct 2026, National Bank')}</small></div>
+<div class="sc"><b>4,6%</b><span>${T('жеке тұлғалардың несиесі 90 күннен астам мерзімі өткен.','кредитов физлиц просрочены более 90 дней.','of personal loans are overdue by more than 90 days.')}</span><small>${T('01.10.2026, zakon.kz','на 01.10.2026, zakon.kz','1 Oct 2026, zakon.kz')}</small></div>
+<div class="sc"><b>20 ${T('млн ₸','млн ₸','m ₸')}</b><span>${T('мемлекет қорғайтын салым: банк жабылып қалса да, бір банктегі ақшаңыз осы сомаға дейін қайтарылады.','вклад под защитой государства: даже если банк закроется, деньги в одном банке вернут до этой суммы.','savings protected by the state: even if a bank closes, your money in one bank is returned up to this amount.')}</span><small>${T('finance.kz, нақты соманы kdif.kz сайтынан тексеріңіз','finance.kz, точную сумму проверьте на kdif.kz','finance.kz, check the exact amount on kdif.kz')}</small></div>
+</div>
+<p class="sm2">${T('Инфляция 9,3% болса, жылына осыдан аз табыс беретін жинақтың сатып алу қабілеті төмендейді.','Если инфляция 9,3%, накопления с доходностью ниже этой теряют покупательную способность.','With inflation at 9.3%, savings that earn less than that lose buying power.')}</p></div>
+
+<div class="pn"><h3 class="m">${T('Бастау үшін 3 қадам жеткілікті','Для старта достаточно трёх шагов','Three steps are enough to start')}</h3>
+<div class="stp">
+<div class="s"><div class="ic" aria-hidden="true">🚪</div><span class="n">1</span><h4>${T('BAYU-ға қосылыңыз','Присоединяйтесь к BAYU','Join BAYU')}</h4><p>${T('Кіріп, өз қаржыңыздың қазіргі жағдайын жазыңыз: кіріс, шығыс, қарыз.','Войдите и запишите текущее положение: доходы, расходы, долги.','Sign in and write down where you stand: income, spending, debts.')}</p></div>
+<div class="s"><div class="ic" aria-hidden="true">🗺️</div><span class="n">2</span><h4>${T('Жоспар құрыңыз','Составьте план','Make a plan')}</h4><p>${T('Өзіңізден сұраңыз: «Бұл ақша не үшін?» Ақшаны жұмсамай тұрып, икемді жоспар құрыңыз.','Спросите себя: «Для чего эти деньги?» Составьте гибкий план до того, как тратить.','Ask: “What is this money for?” Build a flexible plan before you spend.')}</p></div>
+<div class="s"><div class="ic" aria-hidden="true">🌱</div><span class="n">3</span><h4>${T('Қарызды жауып, өсіре бастаңыз','Закройте долги и начните расти','Clear debt and start growing')}</h4><p>${T('Қарыз жабылған соң, сол төлемді инвестицияға бағыттаңыз. Алдымен InvestLab-та ақшасыз сынап көріңіз.','Когда долг закрыт, направьте тот же платёж в инвестиции. Сначала попробуйте в InvestLab без денег.','Once debt is gone, redirect that payment to investing. Try it in InvestLab first with no real money.')}</p></div>
+</div></div>
+
+<div class="pn"><div class="split">
+<div class="pn"><h3 class="m">${T('Әр теңге өз міндетін біледі','Каждый тенге знает своё дело','Every tenge knows its job')}</h3>
+<p class="lead">${T('Табыс түскен күні бөліп шығыңыз: қажет шығын, қарыз, қор, инвестиция. Тізімде тек «қанша қалды» емес, «не үшін қалды» көрінеді.','В день получения дохода распределите его: обязательные траты, долг, резерв, инвестиции. Видно не только «сколько осталось», но и «на что».','On payday, split income into needs, debt, reserve and investing. You see not only how much is left but what for.')}</p>
+<div class="cta"><button type="button" class="btn" data-go="qarjy">${OPEN}: Qarjy AI</button><button type="button" class="btn ghost" data-go="map">${OPEN}: Financial Map</button></div></div>
+<div class="ph" role="img" aria-label="${T('Бюджет үлгісі','Пример бюджета','Budget example')}"><div class="tp">${T('Мысал: 400 000 ₸ табыс','Пример: доход 400 000 ₸','Example: income 400,000 ₸')}</div>
+<div class="row2"><span>🏠 ${T('Тұрғын үй','Жильё','Housing')}</span><b>140 000 ₸</b></div>
+<div class="row2"><span>🛒 ${T('Азық-түлік','Продукты','Groceries')}</span><b>90 000 ₸</b></div>
+<div class="row2"><span>💳 ${T('Қарыз төлемі','Платёж по долгу','Debt payment')}</span><b>80 000 ₸</b></div>
+<div class="row2"><span>🛟 ${T('Қор','Резерв','Reserve')}</span><b>50 000 ₸</b></div>
+<div class="row2"><span>📈 ${T('Инвестиция','Инвестиции','Investing')}</span><b>40 000 ₸</b></div>
+<div class="ready"><span>${T('Бөлінбеген','Не распределено','Unassigned')}</span><span>0 ₸</span></div></div></div></div>
+
+<div class="pn"><h3 class="m">${T('Мысал есеп: қарыздан инвесторға','Пример расчёта: от долга к инвестору','Worked example: from debt to investor')}</h3>
+<p class="sm2">${T('Бұл ойдан құрастырылған есеп, нақты адамның тарихы емес және болжам да емес. Пайыздар түсіндіру үшін алынды.','Это условный расчёт, не история реального человека и не прогноз. Проценты взяты для иллюстрации.','This is a hypothetical calculation, not a real person’s story and not a forecast. Rates are illustrative.')}</p>
+<div class="calc">
+<div><small>${T('1-кезең. Қарыз','Этап 1. Долг','Stage 1. Debt')}</small><b>1 000 000 ₸</b><span>${T('жылдық 25% несие, ай сайын 50 000 ₸ төленеді','кредит под 25% годовых, платёж 50 000 ₸ в месяц','a loan at 25% a year, paying 50,000 ₸ a month')}</span></div>
+<div class="w"><small>${T('Жабылу мерзімі','Срок погашения','Payoff time')}</small><b>27 ${T('ай','мес.','months')}</b><span>${T('Артық төлем шамамен 307 000 ₸','Переплата около 307 000 ₸','Overpayment about 307,000 ₸')}</span></div>
+<div><small>${T('2-кезең. Сол 50 000 ₸ инвестицияға','Этап 2. Те же 50 000 ₸ в инвестиции','Stage 2. The same 50,000 ₸ invested')}</small><b>36 ${T('ай','мес.','months')}</b><span>${T('Жиналған жарна: 1 800 000 ₸','Внесено: 1 800 000 ₸','Contributed: 1,800,000 ₸')}</span></div>
+<div class="g"><small>${T('Жорамал 12% жылдық табыспен','При условных 12% годовых','At an assumed 12% a year')}</small><b>≈ 2 153 800 ₸</b><span>${T('Табыс кепілдік емес, нарыққа байланысты өзгереді','Доходность не гарантирована и зависит от рынка','Returns are not guaranteed and depend on the market')}</span></div>
+</div></div>
+
+<div class="end"><h3 class="m">${T('Бүгін бір қадам жасаңыз','Сделайте шаг сегодня','Take one step today')}</h3>
+<p class="lead">${T('Қарызыңызды тізімдеп, бір ай бюджетін жазудан бастаңыз. Қалғанын BAYU көрсетеді.','Начните со списка долгов и бюджета на один месяц. Остальное подскажет BAYU.','Start with a list of your debts and one month of budget. BAYU will guide the rest.')}</p>
+<div class="cta"><button type="button" class="btn big" data-go="start">${T('Бастау','Начать','Start')}</button><button type="button" class="btn ghost" data-go="lab">${OPEN}: InvestLab</button></div>
+<p class="src">${T('Дереккөздер:','Источники:','Sources:')} <a href="https://nationalbank.kz/ru/news/press-relizy/20503" target="_blank" rel="noopener noreferrer">${T('Ұлттық банк','Нацбанк','National Bank')}</a><a href="https://www.zakon.kz/finansy/6537456-dolgi-kazakhstantsev-po-kreditam-dostigli-267-trillionov-tenge.html" target="_blank" rel="noopener noreferrer">zakon.kz</a><a href="https://finance.kz/articles/garantiya-kfgd-po-depozitam" target="_blank" rel="noopener noreferrer">finance.kz</a><br>${T('Көрсеткіштер көрсетілген күнге берілген. Бұл білім беру материалы, инвестициялық кеңес емес. Бөлімнің стилі бюджет қолданбаларының үздік тәжірибесіне негізделген, бірақ олармен байланысымыз жоқ.','Показатели даны на указанные даты. Это образовательный материал, а не инвестиционная рекомендация. Стиль раздела основан на лучших практиках бюджетных приложений, но мы с ними не связаны.','Figures are as of the stated dates. This is educational material, not investment advice. The style draws on best practice from budgeting apps, but we are not affiliated with them.')}</p></div>`;
+const after=document.getElementById('lp2');(after&&after.parentNode===home)?after.after(sec):home.appendChild(sec);
+}catch(e){try{console.warn('path',e)}catch(_){}}})();
+</script>
+<script id="flowsrc">(function(){try{
+const home=document.getElementById('v-home');if(!home||document.getElementById('flowcss'))return;
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const st=document.createElement('style');st.id='flowcss';st.textContent=`
+html:has(#v-home:not([hidden])){overflow-x:clip}
+body:has(#v-home:not([hidden])){overflow-x:clip}
+#v-home:not([hidden]){gap:0!important}
+#v-home .hero,#v-home #startBox,#v-home .lp{width:100vw;margin:0 calc(50% - 50vw)!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding-inline:max(16px,calc((100vw - 1080px)/2))!important;
+ background:radial-gradient(640px 240px at 80% 38%,color-mix(in srgb,var(--g2) 15%,transparent),transparent 100%),radial-gradient(560px 220px at 10% 66%,color-mix(in srgb,var(--g3) 12%,transparent),transparent 100%)!important}
+#v-home .lp::before{display:none!important}
+#v-home .hero{min-height:calc(100svh - 56px - var(--sbh,170px));justify-content:center;padding-block:clamp(24px,5vw,56px)!important}
+#v-home #startBox{padding-block:8px 28px!important;background:none!important}
+#v-home .lp{min-height:0;justify-content:center;padding-block:clamp(36px,7vw,84px)!important}
+#v-home #path{min-height:0;display:block;padding-block:0!important;background:none!important;gap:0}
+#v-home #path>.pn,#v-home #path>.end{min-height:0;justify-content:center;width:100vw;margin:0 calc(50% - 50vw)!important;padding-inline:max(16px,calc((100vw - 1080px)/2));padding-block:clamp(36px,7vw,84px);box-sizing:border-box;
+ background:radial-gradient(640px 240px at 80% 38%,color-mix(in srgb,var(--g2) 13%,transparent),transparent 100%),radial-gradient(560px 220px at 10% 66%,color-mix(in srgb,var(--g3) 10%,transparent),transparent 100%)}
+#v-home #path>.end{border:0;border-radius:0;box-shadow:none;align-items:flex-start;display:flex}
+#v-home #path>.pn{display:flex}
+#v-home #path>.pn.first{padding-top:clamp(28px,6vw,64px)}
+@media(prefers-reduced-motion:no-preference){
+ #v-home .rev{opacity:1;transform:none}
+ #v-home .rev.in{opacity:1;transform:none}}`;
+document.head.appendChild(st);
+const sb=document.getElementById('startBox');
+const fit=()=>{if(sb)document.documentElement.style.setProperty('--sbh',Math.round(sb.getBoundingClientRect().height)+'px')};
+fit();addEventListener('resize',fit);setTimeout(fit,400);setTimeout(fit,1500);
+/* жұмсақ пайда болу */
+if(false){
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+ const targets=[];
+ home.querySelectorAll('.hero > *, #startBox > *, .lp > *, #path > .pn > *, #path > .end > *').forEach(n=>{if(n.id==='rain'||n.tagName==='CANVAS')return;targets.push(n)});
+ targets.forEach((n,i)=>{n.classList.add('rev');io.observe(n)});
+ setTimeout(()=>targets.forEach(n=>{const r=n.getBoundingClientRect();if(r.top<innerHeight)n.classList.add('in')}),50);
+}
+}catch(e){try{console.warn('flow',e)}catch(_){}}})();
+</script>
 <style id="ondiris-css">
 .od .odbar{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .od .odbox{position:relative;margin-top:10px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#000;height:calc(100vh - 190px);height:calc(100dvh - 190px);min-height:460px}
@@ -6049,281 +6329,6 @@ const qh=document.querySelector('#v-qarjy .head');if(qh){const p=document.create
 const sg=document.getElementById('sGo');if(sg&&CFG.email){const b=document.createElement('button');b.type='button';b.className='btn ghost';b.textContent=X('Поштамен жіберу','Отправить по почте','Send by email');b.style.marginLeft='8px';
  b.onclick=()=>{const t=(document.getElementById('s-text')||{}).value||'';const n=(document.getElementById('s-name')||{}).value||'';location.href='mailto:'+CFG.email+'?subject='+encodeURIComponent('BAYU ұсыныс')+'&body='+encodeURIComponent(t+(n?'\n\n'+n:''))};sg.after(b)}
 }catch(err){try{console.warn('fixpack2',err)}catch(_){}}})();
-</script><style id="lpfont">
-/* лендинг слайдтары: ірі, көзге жайлы мәтін */
-.lp .sl h3{font-size:clamp(1.6rem,4vw,2.3rem);line-height:1.2;margin-bottom:10px}
-.lp .sl p{font-size:clamp(1.15rem,2.6vw,1.35rem);line-height:1.6;color:var(--ink);max-width:60ch}
-.lp .bn{gap:12px;margin:6px 0 0}
-.lp .bn li{font-size:clamp(1.15rem,2.6vw,1.35rem);line-height:1.55;gap:12px}
-.lp .bn li::before{font-size:1.2em}
-.lp .sl .im{font-size:clamp(1.1rem,2.4vw,1.25rem);line-height:1.6;color:var(--muted);margin-top:16px}
-.lp .sl .rs{font-size:clamp(1.15rem,2.6vw,1.35rem);line-height:1.55;padding:14px 16px;border-radius:12px;margin-top:16px}
-.lp .aa{font-size:1rem;line-height:1.5;margin-top:14px}
-.lp .kicker{font-size:.95rem}
-.lp .ar{min-width:52px;min-height:52px;font-size:1.5rem}
-.lp .dots button{width:14px;height:14px}.lp .dots button[aria-current="true"]{width:34px}
-.lp .sl{padding:clamp(18px,4vw,36px)}
-@media(max-width:560px){.lp .sl h3{font-size:1.6rem}.lp .sl p,.lp .bn li,.lp .sl .rs{font-size:1.15rem}.lp .sl .im{font-size:1.1rem}}
-.lp .sl h3{font-size:clamp(1.8rem,4.4vw,2.6rem)!important}
-.lp .sl p,.lp .bn li,.lp .sl .rs{font-size:clamp(1.25rem,2.8vw,1.5rem)!important;line-height:1.65!important}
-.lp .sl .im{font-size:clamp(1.2rem,2.6vw,1.4rem)!important;line-height:1.65!important}
-.lp .aa{font-size:1.1rem!important}
-.lp .kicker{font-size:1rem!important}
-.lp h2{font-size:clamp(1.9rem,5.4vw,3.3rem)!important;line-height:1.2!important}
-.lp .sl{gap:clamp(18px,4vw,44px)}
-@media(max-width:560px){.lp .sl h3{font-size:1.8rem!important}.lp .sl p,.lp .bn li,.lp .sl .rs{font-size:1.25rem!important}.lp .sl .im{font-size:1.2rem!important}.lp h2{font-size:2rem!important}}
-</style><script id="lp">(function(){try{
-const X=(k,r,e)=>LANG==='ru'?r:LANG==='en'?e:k;
-const home=document.getElementById('v-home');if(!home||document.getElementById('lp1'))return;
-const E=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const IMP={
-map:['Маңызы: мақсатсыз жинақ жоспарға айналмайды. Нақты сома мен мерзім болғанда ғана шешім қабылдау оңай.','Важность: без цели накопления не становятся планом. Решать проще, когда есть конкретная сумма и срок.','Why it matters: savings without a goal never become a plan. Decisions are easier with a clear amount and date.'],
-check:['Маңызы: алаяқтық бір қатеден-ақ жинаған ақшаңызды жоққа шығара алады. Тексеру — ең арзан қорғаныс.','Важность: одна ошибка может обнулить накопления. Проверка — самая дешёвая защита.','Why it matters: one mistake can wipe out savings. Checking first is the cheapest protection.'],
-comm:['Маңызы: инвестор жалғыз қателеседі, қауымдастықта қатені біреу алдын ала айтып қояды.','Важность: в одиночку легче ошибиться, в сообществе ошибку подскажут заранее.','Why it matters: alone you repeat mistakes; in a community someone warns you in advance.'],
-isl:['Маңызы: көпшілік үшін қаржы шешімі сенімнен бөлек емес. Сәйкестікті алдын ала білу — жүрекке тыныштық.','Важность: для многих финансовое решение неотделимо от веры. Знать о соответствии заранее — спокойствие.','Why it matters: for many people money decisions and faith go together. Knowing in advance brings peace of mind.']};
-const RES={
-map:['Нәтиже: «қанша және қашан» деген сұраққа нақты сан алып, мақсатқа жоспар құрасыз.','Результат: получаете конкретные цифры «сколько и когда» и план к цели.','Result: you get concrete numbers for “how much and by when” and a plan.'],
-check:['Нәтиже: күмәнді ұсыныстың қауіпті белгілерін көріп, ақша салмай тұрып дұрыс шешім қабылдайсыз.','Результат: видите тревожные признаки предложения и решаете до вложения денег.','Result: you spot the red flags and decide before putting any money in.'],
-comm:['Нәтиже: сұрағыңызға жауап алып, басқалардың тәжірибесін өз шешіміңізге қосасыз.','Результат: получаете ответы на вопросы и учитываете чужой опыт в решениях.','Result: you get answers and add others’ experience to your own decisions.'],
-isl:['Нәтиже: қаржы құралының мұсылмандыққа сай-сай еместігін түсініп, шешімді сеніммен қабылдайсыз.','Результат: понимаете, соответствует ли инструмент исламу, и решаете увереннее.','Result: you see whether an instrument is Muslim-friendly and decide with confidence.']};
-const BEN={map:['Мақсатқа қанша ақша керегін есептейсіз|Қанша уақыт кететінін көресіз|Үй, бизнес, инвестиция капиталы, зейнетке дайындық','Считаете, сколько денег нужно на цель|Видите, сколько времени это займёт|Дом, бизнес, капитал для инвестиций, пенсия','Work out how much money a goal needs|See how long it will take|Home, business, investment capital, retirement'],
-check:['Күмәнді ұсынысты тексересіз|Алаяқтық белгілерін танисыз|Ақшаңызды жоғалтып алмай сақтанасыз','Проверяете сомнительное предложение|Узнаёте признаки мошенничества|Бережёте деньги от потерь','Check a doubtful offer|Spot the signs of a scam|Protect your money from loss'],
-comm:['Инвесторлармен пікір алмасасыз|Басқалардың тәжірибесінен үйренесіз|Бірге өсетін ортаға қосыласыз','Обмениваетесь мнениями с инвесторами|Учитесь на чужом опыте|Присоединяетесь к растущему сообществу','Share views with investors|Learn from others’ experience|Join a community that grows together'],
-isl:['Қаржы құралының мұсылмандыққа сәйкестігін тексересіз|Исламдық қаржы негіздерін түсінесіз|Күмәнді ұсыныстан сақтанасыз','Проверяете инструмент на соответствие исламу|Узнаёте основы исламских финансов|Остерегаетесь сомнительных предложений','Check whether an instrument is Muslim-friendly|Learn the basics of Islamic finance|Stay clear of doubtful offers']};
-const pick=(o,id)=>o[id][LANG==='ru'?1:LANG==='en'?2:0];
-const bl=id=>'<ul class="bn">'+pick(BEN,id).split('|').map(t=>'<li>'+E(t)+'</li>').join('')+'</ul>';
-const LP=[
- {id:'lp1',k:X('Мақсат және сенім','Цель и вера','Goal and faith'),h:X('Мақсат қойып, сеніміңізге сай шешім қабылдаңыз','Поставьте цель и принимайте решения, созвучные вашей вере','Set a goal and decide in line with your faith'),
-  s:[
-   ['🗺️','map','Financial Map',X('Қаржылық мақсат калькуляторы: қанша ақша және қанша уақыт керек.','Калькулятор финансовых целей: сколько денег и времени нужно.','A goal calculator: how much money and time you need.')],
-   ['☪️','isl','Islamic Economic KZ',X('Исламдық қаржы мен скрининг: мұсылмандыққа сай ма?','Исламские финансы и скрининг: соответствует ли исламу?','Islamic finance and screening: is it Muslim-friendly?')]]},
- {id:'lp2',k:X('Қорғаныс және қауымдастық','Защита и сообщество','Protection and community'),h:X('Алаяқты анықтап, бірге үйреніңіз','Распознавайте мошенников и учитесь вместе','Spot the scammer and learn together'),
-  s:[
-   ['🛡️','check','Invest Check',X('Күмәнді ұсынысты тексеріп, алаяқтық белгілерін анықтаңыз.','Проверьте сомнительное предложение и найдите признаки мошенничества.','Check a doubtful offer and spot the signs of a scam.')],
-   ['🤝','comm','Invest Community',X('Инвесторлар қауымдастығы: пікір алмасып, бірге үйреніңіз.','Сообщество инвесторов: делитесь мнением и учитесь вместе.','An investor community: share views and learn together.')]]}];
-const st=document.createElement('style');st.textContent=`
-.lp{position:relative;isolation:isolate;overflow:hidden;border:1px solid var(--line);border-radius:20px;padding:clamp(22px,5vw,48px);margin-top:clamp(28px,6vw,64px);display:flex;flex-direction:column;gap:18px;box-shadow:var(--sh);background:radial-gradient(700px 260px at 92% -10%,color-mix(in srgb,var(--g2) 22%,transparent),transparent 70%),radial-gradient(600px 260px at 0% 110%,color-mix(in srgb,var(--g3) 18%,transparent),transparent 70%),var(--surface);min-height:min(70vh,520px);justify-content:center}
-.lp h2{font-size:clamp(1.5rem,4.4vw,2.5rem);line-height:1.18;max-width:26ch;margin:0}
-.lp .trk{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px}
-.lp .trk::-webkit-scrollbar{display:none}
-.lp .sl{flex:0 0 100%;scroll-snap-align:start;display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,4vw,40px);align-items:center;border:1px solid var(--line);border-radius:16px;padding:clamp(16px,3.5vw,32px);background:color-mix(in srgb,var(--surface) 80%,transparent)}
-.lp .em{font-size:clamp(3rem,10vw,5.5rem);line-height:1;width:clamp(86px,16vw,150px);aspect-ratio:1;display:grid;place-items:center;border-radius:24px;border:1px solid var(--line);background:var(--surface)}
-.lp .sl h3{margin:0 0 6px;font-size:clamp(1.25rem,3.4vw,1.8rem)}
-.lp .sl p{margin:0 0 14px;color:var(--muted);font-size:1.05rem;max-width:52ch}
-.lp .sl{cursor:default}.lp .bn{margin:0;padding:0;list-style:none;display:grid;gap:7px}.lp .bn li{display:flex;gap:9px;line-height:1.4}.lp .bn li::before{content:"✓";color:var(--accent);font-weight:700;flex:none}.lp .sl p{margin-bottom:10px}.lp .sl .im{margin:12px 0 0;color:var(--muted);font-size:.98rem}.lp .sl .rs{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--ink);font-weight:600;font-size:.98rem}
-.lp .nv{display:flex;align-items:center;gap:10px}
-.lp .dots{display:flex;gap:8px;flex:1}
-.lp .dots button{width:11px;height:11px;border-radius:50%;border:0;padding:0;background:var(--line);cursor:pointer;position:relative}
-.lp .dots button::after{content:"";position:absolute;inset:-12px}
-.lp .dots button[aria-current="true"]{background:var(--accent);width:28px;border-radius:99px}
-.lp .ar{min-width:44px;min-height:44px;padding:0}
-@media(max-width:560px){.lp .sl{grid-template-columns:1fr;text-align:left}.lp .em{width:84px;font-size:3rem}}
-@media(prefers-reduced-motion:no-preference){.lp .trk{scroll-behavior:smooth}}`;
-document.head.appendChild(st);
-LP.forEach((L,li)=>{
- const sec=document.createElement('section');sec.id=L.id;sec.className='lp';sec.setAttribute('aria-roledescription','carousel');sec.setAttribute('aria-label',L.k);
- sec.innerHTML=`<span class="kicker">${E(L.k)}</span><h2>${E(L.h)}</h2><div class="trk" tabindex="0">${L.s.map((x,i)=>`<article class="sl" aria-roledescription="slide" aria-label="${i+1} / ${L.s.length}"><div class="em" aria-hidden="true">${x[0]}</div><div><h3>${E(x[2])}</h3><p>${E(x[3])}</p>${bl(x[1])}<p class="im">${E(pick(IMP,x[1]))}</p><p class="rs">${E(pick(RES,x[1]))}</p></div></article>`).join('')}</div><div class="nv"><button type="button" class="btn ghost ar" data-d="-1" aria-label="${X('Алдыңғы','Назад','Previous')}">‹</button><div class="dots">${L.s.map((x,i)=>`<button type="button" data-i="${i}" aria-label="${i+1}" ${i?'':'aria-current="true"'}></button>`).join('')}</div><button type="button" class="btn ghost ar" data-d="1" aria-label="${X('Келесі','Далее','Next')}">›</button></div>`;
- home.appendChild(sec);
- const trk=sec.querySelector('.trk'),dots=[...sec.querySelectorAll('.dots button')];let idx=0;
- const go=i=>{const n=L.s.length;idx=(i+n)%n;trk.scrollTo({left:idx*trk.clientWidth,behavior:'smooth'})};
- const mark=()=>{const i=Math.round(trk.scrollLeft/Math.max(1,trk.clientWidth));idx=i;dots.forEach((d,k)=>k===i?d.setAttribute('aria-current','true'):d.removeAttribute('aria-current'))};
- trk.addEventListener('scroll',()=>{clearTimeout(trk._t);trk._t=setTimeout(mark,60)},{passive:true});
- sec.querySelectorAll('.ar').forEach(b=>b.addEventListener('click',()=>go(idx+ +b.dataset.d)));
- dots.forEach(d=>d.addEventListener('click',()=>go(+d.dataset.i)));
- trk.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){go(idx+1);e.preventDefault()}if(e.key==='ArrowLeft'){go(idx-1);e.preventDefault()}});
- /* автоауыстыру: тек көрінгенде, қолданушы тимесе */
- if(!matchMedia('(prefers-reduced-motion: reduce)').matches){let paused=false,vis=false;
-  ['pointerdown','focusin','mouseenter','touchstart'].forEach(ev=>sec.addEventListener(ev,()=>paused=true,{passive:true}));
-  new IntersectionObserver(es=>vis=es[0].isIntersecting,{threshold:.5}).observe(sec);
-  setInterval(()=>{if(!paused&&vis&&!document.hidden&&!home.hidden)go(idx+1)},5500)}
-});
-}catch(e){try{console.warn('lp',e)}catch(_){}}})();
-</script><script id="glow">(function(){try{
-const X=(k,r,e)=>LANG==='ru'?r:LANG==='en'?e:k;
-const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const st=document.createElement('style');let css=`
-/* Менің жолым: әр қадам кезекпен жарқырап жанады */
-@keyframes jlit{0%{box-shadow:0 0 0 0 transparent;transform:translateY(8px);opacity:.25}
- 45%{box-shadow:0 0 0 2px var(--g2),0 0 34px 4px var(--glowc);transform:none;opacity:1}
- 100%{box-shadow:0 0 0 1px color-mix(in srgb,var(--g2) 45%,transparent),0 0 14px -2px var(--glowc);transform:none;opacity:1}}
-#v-start .jlist li{border-radius:10px}
-.jback0{align-self:flex-start;margin-bottom:10px}
-/* лендинг тақырыптары */
-@keyframes lptitle{0%,100%{filter:drop-shadow(0 0 10px var(--glowc)) drop-shadow(0 0 2px var(--glowc))}50%{filter:drop-shadow(0 0 24px var(--glowc)) drop-shadow(0 0 6px var(--glowc))}}
-.lp h2{font-size:clamp(1.7rem,5vw,3rem);font-weight:700;letter-spacing:.01em;max-width:30ch;background:linear-gradient(100deg,var(--g1),var(--g2),var(--g3),var(--g2),var(--g1));background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:shine 7s linear infinite,lptitle 3.4s ease-in-out infinite;width:fit-content}
-.lp .kicker{align-self:flex-start;border:1px solid color-mix(in srgb,var(--gold) 55%,var(--line));border-radius:999px;padding:5px 14px;background:color-mix(in srgb,var(--gold) 10%,transparent);box-shadow:0 0 18px -6px var(--g3)}
-.lp::before{content:"";position:absolute;left:clamp(22px,5vw,48px);top:0;width:96px;height:4px;border-radius:0 0 6px 6px;background:linear-gradient(90deg,var(--g2),var(--g3));box-shadow:0 0 18px var(--glowc)}
-/* BAYU басты қызметтері: ашылғанда кезекпен жарқырайды */
-@keyframes slit{0%{box-shadow:0 0 0 0 transparent;border-color:var(--line)}35%{box-shadow:0 0 0 2px var(--g2),0 0 30px 3px var(--glowc);border-color:var(--g2);background:color-mix(in srgb,var(--g2) 14%,var(--surface))}100%{box-shadow:0 0 0 1px color-mix(in srgb,var(--g2) 40%,transparent),0 0 12px -2px var(--glowc);border-color:color-mix(in srgb,var(--g2) 55%,var(--line))}}
-#startBox h3{font-size:clamp(1.3rem,3.6vw,1.9rem);background:linear-gradient(100deg,var(--g1),var(--g2),var(--g3),var(--g2),var(--g1));background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;width:fit-content;animation:shine 7s linear infinite,lptitle 3.4s ease-in-out infinite}
-@media(prefers-reduced-motion:reduce){.lp h2,#startBox h3{animation:none}}`;
-if(!rm){for(let i=1;i<=9;i++)css+=`#v-start:not([hidden]) .jlist li:nth-child(${i}){animation:jlit 1.5s cubic-bezier(.2,.7,.2,1) ${(i-1)*.38}s both}\n#startBox.go .sg button:nth-child(${i}){animation:slit 1.6s ease ${(i-1)*.5}s both}\n`}
-st.textContent=css;document.head.appendChild(st);
-/* Менің жолым ішіне «Басты бет» батырмасы */
-const sv=document.getElementById('v-start');
-if(sv&&!sv.querySelector('.jback0')){const b=document.createElement('button');b.type='button';b.className='btn ghost sm jback0';b.dataset.go='home';b.textContent='← '+X('Басты бет','Главная','Home');sv.insertBefore(b,sv.firstChild)}
-/* басты қызметтер көрінгенде кезекпен жарқырау */
-const box=document.getElementById('startBox');
-if(box&&!rm){new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){box.classList.remove('go');void box.offsetWidth;box.classList.add('go')}else box.classList.remove('go')}),{threshold:.45}).observe(box)}
-/* Бастау → Менің жолым */
-const hb=document.getElementById('heroStart');if(hb)hb.addEventListener('click',()=>show('start'));
-}catch(e){try{console.warn('glow',e)}catch(_){}}})();
-</script><script id="aa">(function(){try{
-const X=(k,r,e)=>LANG==='ru'?r:LANG==='en'?e:k;
-const v=document.getElementById('v-isl');if(!v||document.getElementById('aaBadge'))return;
-const st=document.createElement('style');st.textContent=`
-.aaB{display:flex;gap:14px;align-items:flex-start;border:1px solid color-mix(in srgb,var(--g2) 55%,var(--line));border-radius:14px;padding:14px 16px;background:linear-gradient(100deg,color-mix(in srgb,var(--g2) 12%,var(--surface)),var(--surface));box-shadow:0 0 22px -8px var(--glowc)}
-.aaB .ic{font-size:1.7rem;line-height:1;flex:none}
-.aaB b{display:block;font-size:1.05rem;margin-bottom:2px}
-.aaB small{color:var(--muted);display:block;line-height:1.45}
-.aaC{margin:8px 0 2px;padding:0;list-style:none;display:grid;gap:4px;font-size:.92rem}
-.aaC li{display:flex;gap:8px}.aaC li::before{content:"✓";color:var(--accent);font-weight:700;flex:none}
-.lp .aa{display:inline-block;margin-top:10px;font-size:.8rem;color:var(--muted)}
-.lp .aa::before{content:"✓ ";color:var(--accent);font-weight:700}`;
-document.head.appendChild(st);
-const badge=document.createElement('div');badge.id='aaBadge';badge.className='aaB';
-badge.innerHTML=`<span class="ic" aria-hidden="true">✅</span><div><b>${X('Скрининг AAOIFI ережелеріне сәйкес жасалған','Скрининг выполнен по правилам AAOIFI','Screening follows AAOIFI rules')}</b><small>${X('Тексеру AAOIFI Shari’ah Standard №21 («Акциялар мен облигациялар») критерийлеріне негізделген. Бұл AAOIFI растауы не сертификаты емес, фатуа да емес.','Проверка основана на критериях AAOIFI Shari’ah Standard №21 («Акции и облигации»). Это не подтверждение или сертификат AAOIFI и не фетва.','Screening is based on AAOIFI Shari’ah Standard No. 21 (Shares and Bonds). It is not an AAOIFI endorsement or certificate, and not a fatwa.')}</small></div>`;
-const head=v.querySelector('.head');if(head)head.after(badge);
-const card=document.getElementById('s-sector');const c=card&&card.closest('.card');const note=c&&c.querySelector('.note');
-if(note){const u=document.createElement('ul');u.className='aaC';
- u.innerHTML=[X('Негізгі қызметі тыйым салынған салаға жатпайды','Основная деятельность не относится к запрещённым отраслям','Core business is not in a prohibited sector'),X('Пайызды қарыз / нарықтық құн — 30%-дан аз','Процентный долг / рыночная капитализация — менее 30%','Interest-bearing debt / market cap — under 30%'),X('Пайызды депозит пен қағаздар / нарықтық құн — 30%-дан аз','Процентные депозиты и бумаги / рыночная капитализация — менее 30%','Interest-bearing deposits and securities / market cap — under 30%'),X('Пайыздық және тыйым салынған кіріс / түсім — 5%-дан аз','Процентный и запрещённый доход / выручка — менее 5%','Interest and prohibited income / revenue — under 5%')].map(t=>'<li>'+t+'</li>').join('');
- note.after(u)}
-/* басты беттегі Islamic Economic KZ слайдында шағын жазу */
-const sl=[...document.querySelectorAll('.lp .sl')].find(a=>/Islamic Economic KZ/.test(a.querySelector('h3')?.textContent||''));
-if(sl&&!sl.querySelector('.aa')){const s=document.createElement('small');s.className='aa';s.textContent=X('Скрининг AAOIFI ережелеріне сәйкес жасалған','Скрининг выполнен по правилам AAOIFI','Screening follows AAOIFI rules');const rs=sl.querySelector('.rs');(rs||sl.querySelector('ul')).after(s)}
-}catch(e){try{console.warn('aa',e)}catch(_){}}})();
-</script><script id="pathsrc">(function(){try{
-const X=(k,r,e)=>LANG==='ru'?r:LANG==='en'?e:k;
-const home=document.getElementById('v-home');if(!home||document.getElementById('path'))return;
-const E=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const T=(k,r,e)=>E(X(k,r,e));
-const OPEN=T('Ашу','Открыть','Open');
-const st=document.createElement('style');st.textContent=`
-.pth{gap:clamp(34px,6vw,72px)}
-.pth .pn{display:flex;flex-direction:column;gap:clamp(14px,2.4vw,22px)}
-.pth h2.big{font-size:clamp(2rem,5vw,3.2rem)!important;max-width:22ch!important;line-height:1.12!important}
-.pth h3.m{font:700 clamp(1.7rem,4.6vw,2.7rem)/1.15 var(--f-display);margin:0;max-width:24ch;color:var(--ink)}
-.pth .lead{font-size:clamp(1.2rem,2.8vw,1.5rem);line-height:1.65;color:var(--ink);margin:0;max-width:56ch}
-.pth .sm2{font-size:1rem;line-height:1.6;color:var(--muted);margin:0;max-width:70ch}
-.pth .cta{display:flex;gap:12px;flex-wrap:wrap}
-.pth .btn{min-height:52px;font-size:1.1rem;padding:12px 24px;border-radius:12px}
-.pth .btn.big{background:linear-gradient(100deg,var(--g1),var(--g2));border-color:transparent;color:var(--accent-ink,#fff);box-shadow:0 0 22px -6px var(--glowc)}
-.pth .split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(18px,4vw,48px);align-items:center}
-@media(max-width:820px){.pth .split{grid-template-columns:1fr}}
-.pth .sc{border:1px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,34px);background:linear-gradient(160deg,color-mix(in srgb,var(--g2) 14%,var(--surface)),var(--surface));box-shadow:var(--sh);display:flex;flex-direction:column;gap:8px;cursor:default}
-.pth .sc b{font:700 clamp(2.6rem,6vw,4rem)/1.05 var(--f-display);white-space:nowrap;background:linear-gradient(100deg,var(--g1),var(--g2),var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
-.pth .sc span{font-size:clamp(1.15rem,2.6vw,1.4rem);line-height:1.5;color:var(--ink)}
-.pth .sc small{font-size:.95rem;color:var(--muted)}
-.pth .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px}
-.pth .stats .sc b{font-size:clamp(2.4rem,6vw,3.4rem)}
-.pth .stp{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:16px}
-.pth .s{border:1px solid var(--line);border-radius:20px;padding:22px;background:var(--surface);box-shadow:var(--sh);display:flex;flex-direction:column;gap:10px}
-.pth .s .ic{font-size:2.8rem;line-height:1;width:76px;height:76px;display:grid;place-items:center;border-radius:20px;background:color-mix(in srgb,var(--accent) 12%,var(--surface));border:1px solid var(--line)}
-.pth .s h4{font:700 clamp(1.35rem,3vw,1.7rem)/1.2 var(--f-display);margin:0}
-.pth .s p{font-size:1.15rem;line-height:1.6;margin:0;color:var(--ink)}
-.pth .s .n{font:700 .95rem var(--f-num);color:var(--gold)}
-.pth .ph{justify-self:center;width:min(100%,330px);border:10px solid #1d2b27;border-radius:38px;background:var(--bg);padding:18px 14px 14px;box-shadow:0 24px 50px -20px rgba(0,0,0,.5),0 0 30px -8px var(--glowc);display:flex;flex-direction:column;gap:10px;cursor:default;transform:rotate(-2.5deg)}
-.pth .ph .tp{font-weight:700;font-size:.95rem;color:var(--muted)}
-.pth .ph .row2{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:11px 13px;font-size:1.05rem}
-.pth .ph .row2 b{font:600 .95rem var(--f-num);background:color-mix(in srgb,var(--g2) 28%,var(--surface));border-radius:99px;padding:3px 10px;white-space:nowrap}
-.pth .ph .ready{background:linear-gradient(100deg,var(--g1),var(--g2));color:#fff;border-radius:14px;padding:12px 14px;font-weight:700;display:flex;justify-content:space-between;gap:8px}
-.pth .calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
-.pth .calc>div{border:1px solid var(--line);border-radius:18px;padding:20px;background:var(--surface);box-shadow:var(--sh);display:flex;flex-direction:column;gap:6px;cursor:default}
-.pth .calc small{font-size:1rem;color:var(--muted);font-weight:700}
-.pth .calc b{font:700 clamp(1.8rem,4.4vw,2.4rem)/1.1 var(--f-display)}
-.pth .calc span{font-size:1.1rem;line-height:1.5}
-.pth .calc .g b{color:var(--good)}.pth .calc .w b{color:var(--bad)}
-.pth .end{border:2px solid var(--gold);border-radius:24px;padding:clamp(22px,5vw,44px);background:radial-gradient(500px 200px at 90% 0,color-mix(in srgb,var(--g3) 22%,transparent),transparent 70%),var(--surface);display:flex;flex-direction:column;gap:14px;align-items:flex-start;box-shadow:0 0 34px -10px var(--glowc)}
-.pth .src{font-size:.95rem;color:var(--muted);line-height:1.7}.pth .src a{margin-right:10px}
-@media(max-width:560px){.pth .ph{transform:none}}`;
-document.head.appendChild(st);
-const sec=document.createElement('section');sec.id='path';sec.className='lp pth';sec.setAttribute('aria-label',T('Ақша туралы уайымсыз өмір','Жизнь без денежной тревоги','Life without money worry'));
-sec.innerHTML=`
-<div class="pn"><span class="kicker">${T('Қарыздан капиталға','От долгов к капиталу','From debt to capital')}</span>
-<div class="split"><div class="pn">
-<h2 class="big">${T('Ақша туралы уайымдаудан шаршадыңыз ба? Сіз жалғыз емессіз.','Устали переживать о деньгах? Вы не одиноки.','Tired of worrying about money? You are not alone.')}</h2>
-<p class="lead">${T('Ақшаны нашар басқару мінездің кемшілігі емес. Бұл дағдының жетіспеушілігі, ал дағдыны үйренуге болады. BAYU сізге бюджет құруды, қарыздан шығуды және инвестициялауды қадам-қадаммен үйретеді.','Плохое управление деньгами — не недостаток характера. Это пробел в навыках, а навыки можно освоить. BAYU шаг за шагом учит бюджету, выходу из долгов и инвестированию.','Poor money management is not a character flaw. It is a skills gap, and skills can be learned. BAYU teaches budgeting, getting out of debt and investing, step by step.')}</p>
-<div class="cta"><button type="button" class="btn big" data-go="start">${T('Бастау','Начать','Start')}</button><button type="button" class="btn ghost" data-go="qarjy">${OPEN}: Qarjy AI</button></div></div>
-<div class="sc" role="group" aria-label="${T('Қазақстандағы қарыз','Долги в Казахстане','Debt in Kazakhstan')}"><b>26,7 ${T('трлн ₸','трлн ₸','trn ₸')}</b><span>${T('қазақстандықтардың банктерге қарызы. Оның 17,7 трлн ₸-і тұтынушылық несие.','долг казахстанцев перед банками. Из них 17,7 трлн ₸ — потребительские кредиты.','owed by Kazakhstanis to banks. Of this, 17.7 trn ₸ is consumer loans.')}</span><small>${T('01.10.2026, ARRFR деректері (zakon.kz)','на 01.10.2026, данные АРРФР (zakon.kz)','as of 1 Oct 2026, ARRFR data (zakon.kz)')}</small></div></div></div>
-
-<div class="pn"><h3 class="m">${T('Қазақстандағы ақша жағдайы','Деньги в Казахстане сегодня','Money in Kazakhstan today')}</h3>
-<div class="stats">
-<div class="sc"><b>9,3%</b><span>${T('жылдық инфляция (қыркүйек 2026). Ұлттық банктің мақсаты: 2028 жылы 5%.','годовая инфляция (сентябрь 2026). Цель Нацбанка: 5% в 2028 году.','annual inflation (Sept 2026). National Bank target: 5% in 2028.')}</span><small>${T('Дереккөз: Ұлттық банк','Источник: Нацбанк','Source: National Bank')}</small></div>
-<div class="sc"><b>15,75%</b><span>${T('Ұлттық Банктің негізгі пайызы: ақшаның «бағасы». Банктердегі несие мен салым пайызы соған қарап белгіленеді.','главный процент Нацбанка — «цена» денег. От него зависят проценты по кредитам и вкладам в банках.','the National Bank’s main rate, the “price” of money. Loan and savings rates at banks follow it.')}</span><small>${T('23.10.2026, Ұлттық банк','23.10.2026, Нацбанк','23 Oct 2026, National Bank')}</small></div>
-<div class="sc"><b>4,6%</b><span>${T('жеке тұлғалардың несиесі 90 күннен астам мерзімі өткен.','кредитов физлиц просрочены более 90 дней.','of personal loans are overdue by more than 90 days.')}</span><small>${T('01.10.2026, zakon.kz','на 01.10.2026, zakon.kz','1 Oct 2026, zakon.kz')}</small></div>
-<div class="sc"><b>20 ${T('млн ₸','млн ₸','m ₸')}</b><span>${T('мемлекет қорғайтын салым: банк жабылып қалса да, бір банктегі ақшаңыз осы сомаға дейін қайтарылады.','вклад под защитой государства: даже если банк закроется, деньги в одном банке вернут до этой суммы.','savings protected by the state: even if a bank closes, your money in one bank is returned up to this amount.')}</span><small>${T('finance.kz, нақты соманы kdif.kz сайтынан тексеріңіз','finance.kz, точную сумму проверьте на kdif.kz','finance.kz, check the exact amount on kdif.kz')}</small></div>
-</div>
-<p class="sm2">${T('Инфляция 9,3% болса, жылына осыдан аз табыс беретін жинақтың сатып алу қабілеті төмендейді.','Если инфляция 9,3%, накопления с доходностью ниже этой теряют покупательную способность.','With inflation at 9.3%, savings that earn less than that lose buying power.')}</p></div>
-
-<div class="pn"><h3 class="m">${T('Бастау үшін 3 қадам жеткілікті','Для старта достаточно трёх шагов','Three steps are enough to start')}</h3>
-<div class="stp">
-<div class="s"><div class="ic" aria-hidden="true">🚪</div><span class="n">1</span><h4>${T('BAYU-ға қосылыңыз','Присоединяйтесь к BAYU','Join BAYU')}</h4><p>${T('Кіріп, өз қаржыңыздың қазіргі жағдайын жазыңыз: кіріс, шығыс, қарыз.','Войдите и запишите текущее положение: доходы, расходы, долги.','Sign in and write down where you stand: income, spending, debts.')}</p></div>
-<div class="s"><div class="ic" aria-hidden="true">🗺️</div><span class="n">2</span><h4>${T('Жоспар құрыңыз','Составьте план','Make a plan')}</h4><p>${T('Өзіңізден сұраңыз: «Бұл ақша не үшін?» Ақшаны жұмсамай тұрып, икемді жоспар құрыңыз.','Спросите себя: «Для чего эти деньги?» Составьте гибкий план до того, как тратить.','Ask: “What is this money for?” Build a flexible plan before you spend.')}</p></div>
-<div class="s"><div class="ic" aria-hidden="true">🌱</div><span class="n">3</span><h4>${T('Қарызды жауып, өсіре бастаңыз','Закройте долги и начните расти','Clear debt and start growing')}</h4><p>${T('Қарыз жабылған соң, сол төлемді инвестицияға бағыттаңыз. Алдымен InvestLab-та ақшасыз сынап көріңіз.','Когда долг закрыт, направьте тот же платёж в инвестиции. Сначала попробуйте в InvestLab без денег.','Once debt is gone, redirect that payment to investing. Try it in InvestLab first with no real money.')}</p></div>
-</div></div>
-
-<div class="pn"><div class="split">
-<div class="pn"><h3 class="m">${T('Әр теңге өз міндетін біледі','Каждый тенге знает своё дело','Every tenge knows its job')}</h3>
-<p class="lead">${T('Табыс түскен күні бөліп шығыңыз: қажет шығын, қарыз, қор, инвестиция. Тізімде тек «қанша қалды» емес, «не үшін қалды» көрінеді.','В день получения дохода распределите его: обязательные траты, долг, резерв, инвестиции. Видно не только «сколько осталось», но и «на что».','On payday, split income into needs, debt, reserve and investing. You see not only how much is left but what for.')}</p>
-<div class="cta"><button type="button" class="btn" data-go="qarjy">${OPEN}: Qarjy AI</button><button type="button" class="btn ghost" data-go="map">${OPEN}: Financial Map</button></div></div>
-<div class="ph" role="img" aria-label="${T('Бюджет үлгісі','Пример бюджета','Budget example')}"><div class="tp">${T('Мысал: 400 000 ₸ табыс','Пример: доход 400 000 ₸','Example: income 400,000 ₸')}</div>
-<div class="row2"><span>🏠 ${T('Тұрғын үй','Жильё','Housing')}</span><b>140 000 ₸</b></div>
-<div class="row2"><span>🛒 ${T('Азық-түлік','Продукты','Groceries')}</span><b>90 000 ₸</b></div>
-<div class="row2"><span>💳 ${T('Қарыз төлемі','Платёж по долгу','Debt payment')}</span><b>80 000 ₸</b></div>
-<div class="row2"><span>🛟 ${T('Қор','Резерв','Reserve')}</span><b>50 000 ₸</b></div>
-<div class="row2"><span>📈 ${T('Инвестиция','Инвестиции','Investing')}</span><b>40 000 ₸</b></div>
-<div class="ready"><span>${T('Бөлінбеген','Не распределено','Unassigned')}</span><span>0 ₸</span></div></div></div></div>
-
-<div class="pn"><h3 class="m">${T('Мысал есеп: қарыздан инвесторға','Пример расчёта: от долга к инвестору','Worked example: from debt to investor')}</h3>
-<p class="sm2">${T('Бұл ойдан құрастырылған есеп, нақты адамның тарихы емес және болжам да емес. Пайыздар түсіндіру үшін алынды.','Это условный расчёт, не история реального человека и не прогноз. Проценты взяты для иллюстрации.','This is a hypothetical calculation, not a real person’s story and not a forecast. Rates are illustrative.')}</p>
-<div class="calc">
-<div><small>${T('1-кезең. Қарыз','Этап 1. Долг','Stage 1. Debt')}</small><b>1 000 000 ₸</b><span>${T('жылдық 25% несие, ай сайын 50 000 ₸ төленеді','кредит под 25% годовых, платёж 50 000 ₸ в месяц','a loan at 25% a year, paying 50,000 ₸ a month')}</span></div>
-<div class="w"><small>${T('Жабылу мерзімі','Срок погашения','Payoff time')}</small><b>27 ${T('ай','мес.','months')}</b><span>${T('Артық төлем шамамен 307 000 ₸','Переплата около 307 000 ₸','Overpayment about 307,000 ₸')}</span></div>
-<div><small>${T('2-кезең. Сол 50 000 ₸ инвестицияға','Этап 2. Те же 50 000 ₸ в инвестиции','Stage 2. The same 50,000 ₸ invested')}</small><b>36 ${T('ай','мес.','months')}</b><span>${T('Жиналған жарна: 1 800 000 ₸','Внесено: 1 800 000 ₸','Contributed: 1,800,000 ₸')}</span></div>
-<div class="g"><small>${T('Жорамал 12% жылдық табыспен','При условных 12% годовых','At an assumed 12% a year')}</small><b>≈ 2 153 800 ₸</b><span>${T('Табыс кепілдік емес, нарыққа байланысты өзгереді','Доходность не гарантирована и зависит от рынка','Returns are not guaranteed and depend on the market')}</span></div>
-</div></div>
-
-<div class="end"><h3 class="m">${T('Бүгін бір қадам жасаңыз','Сделайте шаг сегодня','Take one step today')}</h3>
-<p class="lead">${T('Қарызыңызды тізімдеп, бір ай бюджетін жазудан бастаңыз. Қалғанын BAYU көрсетеді.','Начните со списка долгов и бюджета на один месяц. Остальное подскажет BAYU.','Start with a list of your debts and one month of budget. BAYU will guide the rest.')}</p>
-<div class="cta"><button type="button" class="btn big" data-go="start">${T('Бастау','Начать','Start')}</button><button type="button" class="btn ghost" data-go="lab">${OPEN}: InvestLab</button></div>
-<p class="src">${T('Дереккөздер:','Источники:','Sources:')} <a href="https://nationalbank.kz/ru/news/press-relizy/20503" target="_blank" rel="noopener noreferrer">${T('Ұлттық банк','Нацбанк','National Bank')}</a><a href="https://www.zakon.kz/finansy/6537456-dolgi-kazakhstantsev-po-kreditam-dostigli-267-trillionov-tenge.html" target="_blank" rel="noopener noreferrer">zakon.kz</a><a href="https://finance.kz/articles/garantiya-kfgd-po-depozitam" target="_blank" rel="noopener noreferrer">finance.kz</a><br>${T('Көрсеткіштер көрсетілген күнге берілген. Бұл білім беру материалы, инвестициялық кеңес емес. Бөлімнің стилі бюджет қолданбаларының үздік тәжірибесіне негізделген, бірақ олармен байланысымыз жоқ.','Показатели даны на указанные даты. Это образовательный материал, а не инвестиционная рекомендация. Стиль раздела основан на лучших практиках бюджетных приложений, но мы с ними не связаны.','Figures are as of the stated dates. This is educational material, not investment advice. The style draws on best practice from budgeting apps, but we are not affiliated with them.')}</p></div>`;
-const after=document.getElementById('lp2');(after&&after.parentNode===home)?after.after(sec):home.appendChild(sec);
-}catch(e){try{console.warn('path',e)}catch(_){}}})();
-</script><script id="flowsrc">(function(){try{
-const home=document.getElementById('v-home');if(!home||document.getElementById('flowcss'))return;
-const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const st=document.createElement('style');st.id='flowcss';st.textContent=`
-html:has(#v-home:not([hidden])){overflow-x:clip}
-body:has(#v-home:not([hidden])){overflow-x:clip}
-#v-home:not([hidden]){gap:0!important}
-#v-home .hero,#v-home #startBox,#v-home .lp{width:100vw;margin:0 calc(50% - 50vw)!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding-inline:max(16px,calc((100vw - 1080px)/2))!important;
- background:radial-gradient(640px 240px at 80% 38%,color-mix(in srgb,var(--g2) 15%,transparent),transparent 100%),radial-gradient(560px 220px at 10% 66%,color-mix(in srgb,var(--g3) 12%,transparent),transparent 100%)!important}
-#v-home .lp::before{display:none!important}
-#v-home .hero{min-height:calc(100svh - 56px - var(--sbh,170px));justify-content:center;padding-block:clamp(24px,5vw,56px)!important}
-#v-home #startBox{padding-block:8px 28px!important;background:none!important}
-#v-home .lp{min-height:0;justify-content:center;padding-block:clamp(36px,7vw,84px)!important}
-#v-home #path{min-height:0;display:block;padding-block:0!important;background:none!important;gap:0}
-#v-home #path>.pn,#v-home #path>.end{min-height:0;justify-content:center;width:100vw;margin:0 calc(50% - 50vw)!important;padding-inline:max(16px,calc((100vw - 1080px)/2));padding-block:clamp(36px,7vw,84px);box-sizing:border-box;
- background:radial-gradient(640px 240px at 80% 38%,color-mix(in srgb,var(--g2) 13%,transparent),transparent 100%),radial-gradient(560px 220px at 10% 66%,color-mix(in srgb,var(--g3) 10%,transparent),transparent 100%)}
-#v-home #path>.end{border:0;border-radius:0;box-shadow:none;align-items:flex-start;display:flex}
-#v-home #path>.pn{display:flex}
-#v-home #path>.pn.first{padding-top:clamp(28px,6vw,64px)}
-@media(prefers-reduced-motion:no-preference){
- #v-home .rev{opacity:1;transform:none}
- #v-home .rev.in{opacity:1;transform:none}}`;
-document.head.appendChild(st);
-const sb=document.getElementById('startBox');
-const fit=()=>{if(sb)document.documentElement.style.setProperty('--sbh',Math.round(sb.getBoundingClientRect().height)+'px')};
-fit();addEventListener('resize',fit);setTimeout(fit,400);setTimeout(fit,1500);
-/* жұмсақ пайда болу */
-if(false){
- const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
- const targets=[];
- home.querySelectorAll('.hero > *, #startBox > *, .lp > *, #path > .pn > *, #path > .end > *').forEach(n=>{if(n.id==='rain'||n.tagName==='CANVAS')return;targets.push(n)});
- targets.forEach((n,i)=>{n.classList.add('rev');io.observe(n)});
- setTimeout(()=>targets.forEach(n=>{const r=n.getBoundingClientRect();if(r.top<innerHeight)n.classList.add('in')}),50);
-}
-}catch(e){try{console.warn('flow',e)}catch(_){}}})();
 </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Nunito:wght@500;600;700&family=Merriweather:wght@700&family=Rubik:wght@600;700&display=swap">
 <style id="homefonts">
 /* басты бет: ерекше, бірақ оқуға жайлы қаріптер. Әр қаріптің артында қор (fallback) бар */
